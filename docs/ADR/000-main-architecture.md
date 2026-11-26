@@ -37,24 +37,26 @@ builder (002 §3.1, `context.ts`).
 ## 2. Technology Documentation References
 
 Context7 IDs were resolved and the key APIs verified with Context7 MCP on 2026-11-25.
-Implementing agents call `query-docs` with these IDs directly; append a version
-(e.g. `/vercel/next.js/v16.4.5`) when one matching the lockfile is listed.
+Implementing agents call `query-docs` with these IDs directly. IDs are templates without a
+pinned dependency version: append the version that matches the installed package in
+`app/package-lock.json`, in the form `/<org>/<project>/vxx.x.x` (e.g. `/vercel/next.js/vxx.x.x`),
+when Context7 lists it; otherwise use the bare ID.
 
 | Library | Version (npm, 2026-11-25) | Context7 ID | Official docs | Used for |
 |---|---|---|---|---|
-| Next.js (App Router) | 16.4.x | `/vercel/next.js` (version `v16.4.5` available) | https://nextjs.org/docs/app | Full-stack framework, route handlers, page |
+| Next.js (App Router) | 16.4.x | `/vercel/next.js` | https://nextjs.org/docs/app | Full-stack framework, route handlers, page |
 | React | as required by Next 16 | — (not needed for decisions) | https://react.dev | UI |
 | Vercel AI SDK (`ai`) + `@ai-sdk/react` | 7.0.x | `/websites/ai-sdk_dev` | https://ai-sdk.dev/docs | `generateText` + `Output.object`, `streamText`, `toUIMessageStream`, `useChat`, `DefaultChatTransport`, `ai/test` mocks |
 | AI SDK Cookbook | — | `/websites/ai-sdk_dev_cookbook` | https://ai-sdk.dev/cookbook | Recipes (e.g. sending only the last chat message) |
 | OpenRouter AI SDK provider (`@openrouter/ai-sdk-provider`) | 3.1.x | `/openrouterteam/ai-sdk-provider` | https://github.com/OpenRouterTeam/ai-sdk-provider | Model access through OpenRouter, `providerOptions.openrouter` |
 | OpenRouter platform | — | `/websites/openrouter_ai` | https://openrouter.ai/docs/guides/best-practices/reasoning-tokens | Model slugs, reasoning tokens |
-| Zod | 4.x | `/colinhacks/zod` (version `v4.6.7` available) | https://zod.dev | Shared input schemas and LLM output schemas |
-| sharp | 0.35.x | `/lovell/sharp` (version `v0.35.5` available) | https://sharp.pixelplumbing.com | Image validation, orientation, resizing, re-encoding |
+| Zod | 4.x | `/colinhacks/zod` | https://zod.dev | Shared input schemas and LLM output schemas |
+| sharp | 0.35.x | `/lovell/sharp` | https://sharp.pixelplumbing.com | Image validation, orientation, resizing, re-encoding |
 | Tailwind CSS | 4.x | `/tailwindlabs/tailwindcss.com` | https://tailwindcss.com/docs/theme | Styling with `@theme` tokens |
-| react-markdown | 10.x | `/remarkjs/react-markdown` (version `10.1.0` available) | https://github.com/remarkjs/react-markdown | Rendering agent Markdown safely |
-| Vitest | 5.x | `/vitest-dev/vitest` (version `v5.0.3` available) | https://vitest.dev · https://nextjs.org/docs/app/guides/testing/vitest | Unit and integration tests |
+| react-markdown | 10.x | `/remarkjs/react-markdown` | https://github.com/remarkjs/react-markdown | Rendering agent Markdown safely |
+| Vitest | 5.x | `/vitest-dev/vitest` | https://vitest.dev · https://nextjs.org/docs/app/guides/testing/vitest | Unit and integration tests |
 | Testing Library (React) | 16.x | — (not resolved) | https://testing-library.com/docs/react-testing-library/intro | Component tests |
-| Playwright Test | 1.65.x | `/microsoft/playwright` (latest listed `v1.64.1`) | https://playwright.dev/docs/intro | E2E tests on the real stack |
+| Playwright Test | 1.65.x | `/microsoft/playwright` | https://playwright.dev/docs/intro | E2E tests on the real stack |
 
 Compatibility notes:
 - The OpenRouter provider README states that its current line targets `ai@^7` on Node 22+, ESM

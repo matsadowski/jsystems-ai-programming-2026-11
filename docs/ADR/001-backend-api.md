@@ -26,8 +26,9 @@
 
 ## 2. Technology Documentation References
 
-Context7 IDs: Next.js `/vercel/next.js` (version `v16.4.5`), sharp `/lovell/sharp` (version
-`v0.35.5`), Zod `/colinhacks/zod` (version `v4.6.7`), Vitest `/vitest-dev/vitest`.
+Context7 IDs (templates; append `/vxx.x.x` matching `app/package-lock.json`, see 000 §2):
+Next.js `/vercel/next.js/vxx.x.x`, sharp `/lovell/sharp/vxx.x.x`, Zod `/colinhacks/zod/vxx.x.x`,
+Vitest `/vitest-dev/vitest/vxx.x.x`.
 
 | Library | Context7 ID or official docs | Used for |
 |---|---|---|
