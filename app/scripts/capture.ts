@@ -9,7 +9,6 @@ import { Output, generateText, isStepCount, streamText, tool, wrapLanguageModel 
 import type { LanguageModelMiddleware } from "ai";
 import { todayInZone } from "../src/lib/shared/dates";
 import { decisionLabel } from "../src/lib/shared/labels";
-import { CATEGORY_LABELS } from "../src/lib/shared/labels";
 import {
   ComplaintDecisionOutputSchema,
   ComplaintImageAnalysisSchema,
@@ -24,6 +23,7 @@ import { callLuna } from "../src/server/decisions/luna-client";
 import { buildQuestions, buildStateText, QUESTIONS_VERSION } from "../src/server/decisions/questions";
 import { computeDecisionFacts } from "../src/server/domain/facts";
 import type { CaseInput } from "../src/lib/shared/case-input";
+import { caseFormText, factsText } from "../src/server/ai/prompt-inputs";
 import { AppError } from "../src/server/http/errors";
 import { processPhoto } from "../src/server/image";
 import { getPolicy } from "../src/server/policies/policies";
@@ -122,17 +122,6 @@ function prepare(caseName: string, imageOverride: string | undefined): Prepared 
 }
 
 const loadImage = (file: string) => processPhoto({ bytes: readFileSync(path.join(IMAGES_DIR, file)) });
-
-function caseFormText(input: CaseInput): string {
-  return [
-    `Case type: ${input.caseType}`,
-    `Device category: ${CATEGORY_LABELS[input.category]}`,
-    `Model: ${input.model}`,
-    `Purchase date: ${input.purchaseDate}`,
-  ].join("\n");
-}
-
-const factsText = (facts: Prepared["facts"]) => JSON.stringify(facts, null, 2);
 
 function baseMeta(p: Prepared, caseName: string, step: FixtureCase["step"], target: string) {
   return {
