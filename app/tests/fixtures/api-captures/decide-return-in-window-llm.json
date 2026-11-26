@@ -1,0 +1,29 @@
+{
+  "status": 200,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "fc47b2d6-eda5-4c1c-a0d1-bc9f9ead456e"
+  },
+  "body": {
+    "decision": {
+      "value": "NEEDS_MANUAL_REVIEW",
+      "label": "Wymaga weryfikacji",
+      "tone": "warning",
+      "daysSincePurchase": 3,
+      "citedClauses": [
+        "R5"
+      ],
+      "decisionPath": "LLM"
+    },
+    "firstMessage": {
+      "id": "ec439299-0498-440b-a47e-c57d4d131f10",
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "text",
+          "text": "Dzień dobry, przeanalizowałem zgłoszenie **Zwrot** dotyczące: Smartfon — Smartfon testowy.\n\n### Decyzja: Wymaga weryfikacji\n\nOd daty zakupu (23.11.2026) minęło **3 dni**.\n\n#### Uzasadnienie\n\n- Zgodnie z R5 sprawa wymaga ręcznej weryfikacji, ponieważ zgodność kategorii urządzenia ze zgłoszeniem oznaczono jako niepewną. Na zdjęciu widać smartfon z mocno popękanym ekranem i przebarwieniami, ale nie da się potwierdzić modelu ani jednoznacznie rozstrzygnąć niepewności dotyczącej zgodności.\n\n#### Brakujące informacje\n\n- Jednoznaczne potwierdzenie, że sfotografowane urządzenie odpowiada kategorii zadeklarowanej w formularzu; potrzebna jest weryfikacja lub zdjęcie umożliwiające identyfikację urządzenia.\n\n#### Kolejne kroki\n\n1. Zweryfikuj, czy urządzenie na zdjęciu odpowiada kategorii podanej w formularzu; w razie potrzeby poproś o zdjęcie pozwalające jednoznacznie zidentyfikować urządzenie. Uwzględnij widoczne uszkodzenia ekranu przy rozpatrywaniu sprawy.\n\n*Decyzja jest rekomendacją wygenerowaną przez AI na podstawie zdjęcia, danych zgłoszenia i regulaminu. Ostateczną decyzję podejmuje pracownik.*\n"
+        }
+      ]
+    }
+  }
+}

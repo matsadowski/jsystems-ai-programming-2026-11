@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-11-26T10:46:06.158Z",
+  "target": "POST /api/cases/{caseId}/decision",
+  "request": {
+    "caseId": "(from the matching create capture)"
+  },
+  "server": "next start (local)",
+  "notes": "Decision for the in-window return on the real LLM path (decision model + guardrails): 200."
+}

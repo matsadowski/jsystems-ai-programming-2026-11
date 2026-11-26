@@ -2,12 +2,12 @@
   "status": 201,
   "headers": {
     "content-type": "application/json",
-    "x-request-id": "4c11598b-dec5-431b-88be-ed83ce5b1b26"
+    "x-request-id": "9ba82810-c484-45b5-843f-bcd894fa4299"
   },
   "body": {
-    "caseId": "827dd27d-6c1a-44f9-8634-826abe711cf0",
+    "caseId": "3ddec892-63fa-4e13-bbb0-45b1919eadd6",
     "caseSummary": {
-      "caseId": "827dd27d-6c1a-44f9-8634-826abe711cf0",
+      "caseId": "3ddec892-63fa-4e13-bbb0-45b1919eadd6",
       "caseType": "COMPLAINT",
       "caseTypeLabel": "Reklamacja",
       "category": "LAPTOP",

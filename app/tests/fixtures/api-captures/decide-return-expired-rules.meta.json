@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-26T10:14:51.906Z",
+  "capturedAt": "2026-11-26T10:45:36.919Z",
   "target": "POST /api/cases/{caseId}/decision",
   "request": {
     "caseId": "(from the matching create capture)"

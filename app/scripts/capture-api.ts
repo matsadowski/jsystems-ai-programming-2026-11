@@ -137,12 +137,20 @@ async function main() {
 
   await decide("decide-unknown-case", randomUUID(), "Random UUID that was never created: 404 expected.");
 
-  await createCase(
-    "create-in-window-ai-unavailable",
+  const llm = await createCase(
+    "create-return-in-window-llm",
     { caseType: "RETURN", category: "SMARTPHONE", model: "Smartfon testowy", purchaseDate: purchaseDate(3), reason: "" },
     image("phone-1.jpg", "image/jpeg"),
-    "In-window return needs the vision model; the AI pipeline is not wired yet (or the key is a placeholder), so the server answers 502 AI_UNAVAILABLE. Replace with a real capture once T12b/T14b are wired.",
+    "In-window return on the real LLM path (DECISION_MODE=llm_only, VISION_MODEL openai/gpt-6-luna): 201 with analysis.",
   );
+  const llmCaseId = (llm as { body?: { caseId?: string } } | undefined)?.body?.caseId;
+  if (llmCaseId) {
+    await decide(
+      "decide-return-in-window-llm",
+      llmCaseId,
+      "Decision for the in-window return on the real LLM path (decision model + guardrails): 200.",
+    );
+  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {

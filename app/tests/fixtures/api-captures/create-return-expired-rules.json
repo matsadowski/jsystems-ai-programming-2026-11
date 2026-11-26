@@ -2,12 +2,12 @@
   "status": 201,
   "headers": {
     "content-type": "application/json",
-    "x-request-id": "0b9e2ec7-afe2-4d87-8151-7216ca585a6c"
+    "x-request-id": "c8a43d4e-8c07-4314-8ae7-9287ba9cc6cd"
   },
   "body": {
-    "caseId": "68a45647-a3a3-4b7e-aa53-420e6d8bccbb",
+    "caseId": "0f18900f-7026-44bd-81bd-8bf62d7aeeff",
     "caseSummary": {
-      "caseId": "68a45647-a3a3-4b7e-aa53-420e6d8bccbb",
+      "caseId": "0f18900f-7026-44bd-81bd-8bf62d7aeeff",
       "caseType": "RETURN",
       "caseTypeLabel": "Zwrot",
       "category": "SMARTPHONE",

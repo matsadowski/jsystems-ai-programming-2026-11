@@ -1,0 +1,27 @@
+{
+  "status": 201,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "85707767-c39e-4bd6-80a0-76f0d99075fb"
+  },
+  "body": {
+    "caseId": "0754f0a3-6107-4115-a2cc-fd5361917c92",
+    "caseSummary": {
+      "caseId": "0754f0a3-6107-4115-a2cc-fd5361917c92",
+      "caseType": "RETURN",
+      "caseTypeLabel": "Zwrot",
+      "category": "SMARTPHONE",
+      "categoryLabel": "Smartfon",
+      "model": "Smartfon testowy",
+      "purchaseDate": "2026-11-23",
+      "reason": ""
+    },
+    "analysis": {
+      "summary": "Na zdjęciu widać smartfon z ekranem mocno popękanym i dużymi czarnymi oraz zielonymi przebarwieniami. Wyświetlacz pokazuje treść, ale z powodu uszkodzeń jest częściowo nieczytelny. Widoczna jest biała podstawka; modelu telefonu nie można potwierdzić na podstawie zdjęcia.",
+      "photoQuality": "SUFFICIENT",
+      "matchesDeclaredCategory": "UNCERTAIN"
+    },
+    "decisionPath": "LLM",
+    "assessment": null
+  }
+}

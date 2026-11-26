@@ -1,12 +1,16 @@
-// Composition root of the case services (part a). Repo, clock and config come from the real
-// modules; the three AI ports are NOT wired yet: the RULES path works, the LLM path fails
-// cleanly with AI_UNAVAILABLE until T12b plugs in the analyst, decider and Luna.
+// Composition root of the case services. Repo, clock, config and the AI ports come from the real
+// modules. The Luna port is built from `callLuna` + `buildQuestions` + `assess`; it is only called
+// in `shadow` and `gated` modes (the default `.env.example` mode is `llm_only`).
 import "server-only";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { getConfig } from "@/server/config/config";
-import { systemClock } from "@/server/domain";
-import { AiUnavailableError } from "@/server/http/errors";
+import { analyzeImage } from "@/server/ai/analyst";
+import { decideWithLlm } from "@/server/ai/decision";
+import { getConfig, type AppConfig } from "@/server/config/config";
+import { assess } from "@/server/decisions/certainty";
+import { callLuna } from "@/server/decisions/luna-client";
+import { buildQuestions, buildStateText, QUESTIONS_VERSION } from "@/server/decisions/questions";
+import { systemClock, type AssessWithLuna } from "@/server/domain";
 import { getCaseRepository } from "@/server/store";
 import type { CaseServiceDeps } from "./services";
 
@@ -22,9 +26,39 @@ function promptVersion(name: string): string {
   return /^version:\s*(\S+)/.exec(readFileSync(file, "utf8"))?.[1] ?? "unknown";
 }
 
-const notWired = async (): Promise<never> => {
-  throw new AiUnavailableError({ detail: "AI pipeline not wired (T12b)" });
-};
+/** Both case types' versions: the case record stores one string per step (ADR 002 §3.2). */
+const bothTypes = (step: "vision" | "decision") =>
+  `${promptVersion(`${step}-return`)} | ${promptVersion(`${step}-complaint`)}`;
+
+/** Luna Decisions call + certainty assessment (ADR 004 §3.3, §4.2). Throws LunaUnavailableError. */
+export function createAssessWithLuna(
+  config: Pick<AppConfig, "lunaConfidenceThreshold" | "lunaTimeoutMs">,
+  call: typeof callLuna = callLuna,
+): AssessWithLuna {
+  return async ({ caseId, input, image }) => {
+    const result = await call({
+      caseId,
+      questions: buildQuestions(input.caseType, input.category, input.model),
+      stateText: buildStateText({
+        caseType: input.caseType,
+        category: input.category,
+        model: input.model,
+        reason: input.reason,
+      }),
+      imageJpeg: image.bytes,
+      timeoutMs: config.lunaTimeoutMs,
+    });
+    const assessment = assess(result.answers, config.lunaConfidenceThreshold);
+    return {
+      questionsVersion: QUESTIONS_VERSION,
+      answers: result.answers,
+      uncertainKeys: assessment.uncertainKeys,
+      refusedKeys: assessment.refusedKeys,
+      latencyMs: result.latencyMs,
+      costUsd: result.costUsd,
+    };
+  };
+}
 
 /** Throws ConfigError (503 CONFIG_ERROR) when the environment is incomplete. */
 export function getCaseDeps(): CaseServiceDeps {
@@ -41,13 +75,13 @@ export function getCaseDeps(): CaseServiceDeps {
       policyDir: config.policyDir,
     },
     promptVersions: {
-      vision: promptVersion("vision-return"),
-      decision: promptVersion("decision-return"),
+      vision: bothTypes("vision"),
+      decision: bothTypes("decision"),
       chat: promptVersion("chat-system"),
     },
-    analyzeImage: notWired,
-    assessWithLuna: notWired,
-    decideWithLlm: notWired,
+    analyzeImage,
+    assessWithLuna: createAssessWithLuna(config),
+    decideWithLlm,
     newId: () => crypto.randomUUID(),
   };
 }
