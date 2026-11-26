@@ -36,6 +36,8 @@ playwright/.cache/
 
 # Private agent briefs and Java build artifacts
 .agent-briefs/
+!docs/.agent-briefs/
+.agent-logs/
 **/target/
 *.class
 /.idea

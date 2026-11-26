@@ -261,7 +261,8 @@ boundary dates.
 |---|---|---|
 | `VALIDATION_ERROR` | 400 | "Popraw zaznaczone pola" (+ `fieldErrors` per field) |
 | `CASE_NOT_FOUND` | 404 | "Sesja zgłoszenia wygasła. Rozpocznij nowe zgłoszenie." |
-| `CASE_NOT_DECIDED` / `CHAT_BUSY` | 409 | "Poczekaj na zakończenie poprzedniej odpowiedzi." (busy) / "Decyzja nie jest jeszcze gotowa." |
+| `CHAT_BUSY` | 409 | "Poczekaj na zakończenie poprzedniej odpowiedzi." |
+| `CASE_NOT_DECIDED` | 409 | "Decyzja nie jest jeszcze gotowa." |
 | `FILE_TOO_LARGE` | 413 | "Plik przekracza limit 10 MB" |
 | `UNSUPPORTED_MEDIA_TYPE` | 415 | "Dozwolone formaty: JPG, PNG, WEBP" |
 | `IMAGE_TOO_SMALL` | 422 | "Zdjęcie jest zbyt małe do oceny (min. 200 px)" |

@@ -315,6 +315,10 @@ matrix):**
 **Consistency:** each matrix cell runs 3 times. The agreement rate of final decisions is reported
 (target ≥ 2/3 agreement per cell). It is not a hard failure.
 
+**Budget (amendment A4):** `EVAL_MAX_COST_USD` (default `5`). The runner sums the `usage.cost`
+reported by OpenRouter for every call and stops before a call would exceed the budget. The stop
+and the spent amount are recorded in the report.
+
 **Report:** Markdown in `app/evals/reports/<date>-<model>.md`. These reports are not committed
 unless the user asks.
 

@@ -314,6 +314,10 @@ sequenceDiagram
 | E2E validation | E2E | Empty submit attempt, future date | Inline errors, no network request to `/api/cases` | — |
 | E2E responsive | E2E | Viewports 360×800, 1280×800 | No horizontal scroll (`scrollWidth ≤ clientWidth`) on both screens (AC-39) | — |
 
+*Amendment A5:* component tests that need API responses use only real captures of our own three
+endpoints (running app, real OpenRouter), stored in `app/tests/fixtures/api-captures/` with a
+`.meta.json` per capture. Derived variants (for example a 504) carry `derived-from`.
+
 ### Technical acceptance criteria
 
 - **TAC-003-01** No component renders raw HTML from model output. No `dangerouslySetInnerHTML` is
@@ -324,7 +328,8 @@ sequenceDiagram
   rendered: E2E checks the page text against a list of forbidden English words such as "Submit",
   "Loading" and "Error".
 - **TAC-003-04** Lighthouse/axe accessibility check of both screens reports no violations of
-  critical or serious impact.
+  critical or serious impact. *Amendment A1:* the tool is `@axe-core/playwright` run inside the
+  E2E suite; the spec fails on any violation with impact `critical` or `serious`.
 - **TAC-003-05** Manual QA screenshots of the form, processing state and chat screen are compared
   against `assets/homepage.png` and `docs/design-guidelines.md`. The primary button color is
   `#79003C`, the font is Nunito Sans and the button radius is 16 px.

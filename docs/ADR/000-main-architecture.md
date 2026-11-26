@@ -82,6 +82,8 @@ app/
   package.json, package-lock.json, next.config.ts, tsconfig.json, vitest.config.mts,
   playwright.config.ts, postcss.config.mjs, eslint.config.mjs, .prettierrc, .env.example
   AGENTS.md                      stack-specific rules for agents (created at scaffold)
+  CLAUDE.md                      contains only `@AGENTS.md`: Claude Code does not auto-load a
+                                 nested AGENTS.md (amendment A6); OpenCode and Codex read it directly
   public/                        logo, favicon, fonts copied from ../assets at scaffold time
   src/
     app/                         Next.js routes only (thin)
@@ -142,6 +144,7 @@ server reads them from a configurable directory (Decision 8.6).
 | `server/policies` | Load return/complaint policy Markdown, compute version hash, cache in memory | `server/config` | `server/ai` |
 | `server/store` | `CaseRepository` interface; `InMemoryCaseRepository` with TTL + capacity eviction | `server/config` | `server/cases`, chat route |
 | `server/ai` | Model registry, prompt templates, output schemas, image analyst, decision agent, guardrails, first-message renderer, chat agent + `reviseDecision` tool | AI SDK, OpenRouter provider, `server/policies`, `lib/shared` | `server/cases`, chat route |
+| `server/decisions` | Decision routing (`DECISION_MODE`), Luna Decisions client, question sets, certainty, fast-path mapping ([004](004-confidence-gated-decisions.md)) | `server/config`, `server/ai` (guardrails, schemas), `lib/shared` | `server/cases` |
 | `server/cases` | Use-case services: `createCaseWithAnalysis`, `decideCase`, `appendChatTurn` | `server/image`, `server/ai`, `server/store` | route handlers |
 | `app/api/*` | Thin HTTP adapters: parse → call service → serialize | `server/http`, `server/cases` | client |
 | `components` | UI (003) | `lib/shared`, `@ai-sdk/react`, react-markdown | `app/page.tsx` |
@@ -154,6 +157,8 @@ Dependency direction:
   - `components` and `lib/shared` never import from `server/`. Enforce this with the
     `server-only` marker package in every `server/` entry module.
   - No circular dependencies.
+  - An ESLint `no-restricted-imports` rule forbids importing `@/server/**` from `src/components/**`
+    and `src/lib/**` (TAC-04). The rule covers all of `src/server/**`, including `server/decisions`.
 
 ---
 
