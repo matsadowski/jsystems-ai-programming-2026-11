@@ -338,6 +338,11 @@ unless the user asks.
    3. checks window rule G2: if the window is expired, only `REJECT` is allowed;
    4. checks the clauses exist.
 
+   5. *Amendment D13:* refuses a positive decision (`ACCEPT`, `REPAIR`, `REPLACE`, `REFUND`)
+      when the stored analysis triggers G3/G3c, and refuses `ACCEPT` when it triggers G6, unless
+      the tool input `basis` is `PHYSICAL_INSPECTION` (the employee inspected the device in
+      person). The error output is `{ ok: false, error: 'EVIDENCE_CONTRADICTS' }`.
+
    On success it updates the case: `decision` with `source = CHAT_REVISION`, plus a new
    `decisionHistory` entry. It returns the output in §4.5. On failure it returns the error output
    without changing anything, and the model continues and explains.
