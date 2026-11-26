@@ -6,6 +6,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": new URL("./src", import.meta.url).pathname,
+      // `server-only` throws outside the react-server condition; tests run server modules directly.
+      "server-only": new URL("./node_modules/server-only/empty.js", import.meta.url).pathname,
     },
   },
   test: {
