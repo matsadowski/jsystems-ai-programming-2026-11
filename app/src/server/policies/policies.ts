@@ -29,10 +29,10 @@ export function parseClauseIds(markdown: string): Set<string> {
 }
 
 function loadPolicyFile(caseType: PolicyCaseType, policyDir: string): Policy {
-  const filePath = path.join(policyDir, POLICY_FILES[caseType]);
+  const filePath = path.join(/* turbopackIgnore: true */ policyDir, POLICY_FILES[caseType]);
   let text: string;
   try {
-    text = readFileSync(filePath, "utf8");
+    text = readFileSync(/* turbopackIgnore: true */ filePath, "utf8");
   } catch (cause) {
     throw new ConfigError({ detail: `Missing policy file: ${filePath}`, cause });
   }

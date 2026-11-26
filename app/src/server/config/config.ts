@@ -70,7 +70,7 @@ function parse(env: Record<string, string | undefined>): AppConfig {
     decisionModel: e.DECISION_MODEL,
     decisionReasoningEffort: e.DECISION_REASONING_EFFORT,
     chatReasoningEffort: e.CHAT_REASONING_EFFORT,
-    policyDir: path.resolve(process.cwd(), e.POLICY_DIR),
+    policyDir: path.resolve(/* turbopackIgnore: true */ process.cwd(), e.POLICY_DIR),
     caseTtlMinutes: e.CASE_TTL_MINUTES,
     caseStoreMax: e.CASE_STORE_MAX,
     appTimezone: e.APP_TIMEZONE,
