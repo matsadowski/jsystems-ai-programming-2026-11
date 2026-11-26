@@ -9,8 +9,9 @@ import {
 import type { TextUIMessage } from "@/lib/shared/api";
 import type { Decision, DecisionFacts } from "@/server/domain/case";
 
-export const DISCLAIMER =
-  "Decyzja jest rekomendacją wygenerowaną przez AI na podstawie zdjęcia, danych zgłoszenia i regulaminu. Ostateczną decyzję podejmuje pracownik.";
+import { DISCLAIMER } from "@/lib/shared/labels";
+
+export { DISCLAIMER };
 
 /** Single-line, with a leading `#`, `>` or `<` backslash-escaped. */
 function safe(text: string): string {

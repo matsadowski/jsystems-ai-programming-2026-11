@@ -59,6 +59,15 @@ describe("CaseInputSchema (ADR 001 §3.2, PRD AC-01–AC-06)", () => {
     ).toBeUndefined();
   });
 
+  it("reports the complaint reason error even when another field is invalid", () => {
+    expect(
+      fieldErrors({ ...valid, caseType: "COMPLAINT", reason: "krótko", category: undefined }),
+    ).toMatchObject({
+      category: "Wybierz kategorię sprzętu",
+      reason: "Opisz powód reklamacji (min. 10 znaków)",
+    });
+  });
+
   it("reason is at most 2000 chars in both case types", () => {
     expect(fieldErrors({ ...valid, reason: "x".repeat(2001) }).reason).toBe(
       "Maksymalnie 2000 znaków",

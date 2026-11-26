@@ -62,3 +62,7 @@ export const DECISION_PATH_LABELS: Record<DecisionPath, string> = {
   LLM: "Pełna analiza AI",
   LLM_ESCALATED: "Pełna analiza AI (niepewna ocena wstępna)",
 };
+
+/** Mandatory disclaimer (PRD §11.5, ADR 002 §5.4, §7). Single source for server and UI. */
+export const DISCLAIMER =
+  "Decyzja jest rekomendacją wygenerowaną przez AI na podstawie zdjęcia, danych zgłoszenia i regulaminu. Ostateczną decyzję podejmuje pracownik.";

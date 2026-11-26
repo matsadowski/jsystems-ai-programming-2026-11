@@ -53,15 +53,20 @@ export function makeCaseInputSchema(today: string) {
         .max(REASON_MAX_LENGTH, VALIDATION_MESSAGES.reasonMax)
         .default(""),
     })
-    .superRefine((input, ctx) => {
-      if (input.caseType === "COMPLAINT" && input.reason.length < COMPLAINT_REASON_MIN_LENGTH) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["reason"],
-          message: VALIDATION_MESSAGES.reasonComplaint,
-        });
-      }
-    });
+    .refine(
+      (input) =>
+        input.caseType !== "COMPLAINT" || input.reason.length >= COMPLAINT_REASON_MIN_LENGTH,
+      {
+        path: ["reason"],
+        message: VALIDATION_MESSAGES.reasonComplaint,
+        // Run even when unrelated fields (e.g. category) are invalid, so all errors show at
+        // once; skip only if caseType or reason themselves failed (Zod 4 `when`).
+        when: (payload) =>
+          payload.issues.every(
+            (issue) => !["caseType", "reason"].includes(String(issue.path?.[0])),
+          ),
+      },
+    );
 }
 
 export type CaseInput = z.output<ReturnType<typeof makeCaseInputSchema>>;
