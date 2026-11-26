@@ -180,3 +180,26 @@ whitespace. Typography uses one rounded sans-serif (Nunito Sans) with very heavy
 headlines, which makes the voice confident and direct. Photography is bright and
 playful (people in motion, bowler-hat characters), and calls to action are always
 clear, large and bordo-colored.
+
+## App additions
+
+The token file has no success, error or warning colors, so the app defines these status tokens
+(ADR 003 section 3.5). They are mapped in `app/src/app/globals.css` under `@theme`.
+
+| Token | Text | Background tint | Contrast (text on tint) |
+|---|---|---|---|
+| `--color-status-positive` | `#1E6B34` | `#E6F4EA` (`--color-status-positive-bg`) | 5.76:1 |
+| `--color-status-negative` | `#A1192B` | `#FCE8EA` (`--color-status-negative-bg`) | 6.64:1 |
+| `--color-status-warning` | `#7A4B00` | `#FFF4D6` (`--color-status-warning-bg`) | 6.76:1 |
+
+Other measured pairs (WCAG 2.x, `contrastRatio` in `app/src/lib/shared/contrast.ts`, all >= 4.5:1):
+
+| Pair | Contrast |
+|---|---|
+| Brand primary `#79003C` on white | 11.18:1 |
+| White on brand primary | 11.18:1 |
+| `text.muted` `#5E5E6E` on `background.light` `#F7F7F8` | 5.94:1 |
+
+Logo: the reference logo is a third-party trademark. It is not shown in the app build; the header
+uses the text product name. `AppHeader` renders it only with the `showDemoLogo` prop, which nothing
+passes in this PoC.

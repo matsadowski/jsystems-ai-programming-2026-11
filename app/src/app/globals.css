@@ -1,1 +1,92 @@
 @import "tailwindcss";
+
+@theme {
+  /* Brand (assets/design-tokens.json) */
+  --color-brand-primary: #79003c;
+  --color-brand-primary-dark: #470023;
+  --color-brand-primary-bright: #a30051;
+  --color-brand-accent: #ffc426;
+  --color-brand-accent-text: #ffc326;
+
+  --color-tint-pink: #ffe5f2;
+  --color-tint-pink-subtle: #fbf3f7;
+
+  --color-bg-default: #ffffff;
+  --color-bg-light: #f7f7f8;
+  --color-bg-footer: #470023;
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
+  --color-bg-overlay-strong: rgba(0, 0, 0, 0.65);
+  --color-bg-glass-on-image: rgba(255, 255, 255, 0.4);
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #383842;
+  --color-text-muted: #5e5e6e;
+  --color-text-brand: #79003c;
+  --color-text-on-dark: #ffffff;
+  --color-text-on-accent: #000000;
+
+  --color-border-default: #dedee3;
+  --color-border-brand: #79003c;
+  --color-border-pink: #ffe5f2;
+  --color-border-neutral-strong: #868698;
+
+  /* Status (ADR 003 section 3.5) */
+  --color-status-positive: #1e6b34;
+  --color-status-positive-bg: #e6f4ea;
+  --color-status-negative: #a1192b;
+  --color-status-negative-bg: #fce8ea;
+  --color-status-warning: #7a4b00;
+  --color-status-warning-bg: #fff4d6;
+
+  /* Typography */
+  --font-sans: var(--font-nunito), sans-serif;
+
+  --text-sm: 14px;
+  --text-sm--line-height: 22px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-md: 18px;
+  --text-md--line-height: 28px;
+  --text-lg: 20px;
+  --text-lg--line-height: 28px;
+  --text-xl: 24px;
+  --text-xl--line-height: 32px;
+  --text-2xl: 36px;
+  --text-2xl--line-height: 44px;
+  --text-3xl: 48px;
+  --text-3xl--line-height: 56px;
+
+  /* Radii */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 999px;
+
+  /* Shadow */
+  --shadow-card: 0px 8px 30px 0px rgba(7, 7, 7, 0.08);
+}
+
+body {
+  background: #f7f7f8;
+  color: #000000;
+  font-family: var(--font-sans);
+}
+
+/* Long model names and Markdown must wrap (ADR 003 section 3.6, AC-39). */
+p,
+li,
+h1,
+h2,
+h3,
+pre,
+td {
+  overflow-wrap: anywhere;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
