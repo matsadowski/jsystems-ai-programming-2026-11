@@ -75,3 +75,25 @@ export async function noHorizontalScroll(page: Page): Promise<{ scrollWidth: num
     clientWidth: document.documentElement.clientWidth,
   }));
 }
+
+export const RETURN_LABELS = ["Zwrot zaakceptowany", "Zwrot odrzucony", "Wymaga weryfikacji"];
+export const COMPLAINT_LABELS = [
+  "Reklamacja uznana — naprawa",
+  "Reklamacja uznana — wymiana",
+  "Reklamacja uznana — zwrot środków",
+  "Reklamacja odrzucona",
+  "Wymaga weryfikacji",
+];
+
+export const LLM_STEP_TIMEOUT = 90_000;
+
+/** Skips the calling spec unless the run is wired to the real model (E2E_REAL_LLM=1). */
+export function needsRealModel(test: { skip: (cond: boolean, reason: string) => void }): void {
+  test.skip(process.env.E2E_REAL_LLM !== "1", "needs the real model");
+}
+
+
+export async function sendChatMessage(page: Page, text: string): Promise<void> {
+  await page.getByLabel("Wiadomość").fill(text);
+  await page.getByRole("button", { name: "Wyślij" }).click();
+}
