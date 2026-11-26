@@ -12,6 +12,8 @@ export default defineConfig({
     environment: "node",
     include: ["src/**/*.test.{ts,tsx}", "tests/**/*.test.{ts,tsx}", "scripts/**/*.test.ts", "evals/**/*.test.ts"],
     exclude: ["e2e/**", "node_modules/**"],
+    setupFiles: ["./tests/setup/network-guard.ts", "./tests/setup/jest-dom.ts"],
+    restoreMocks: true,
     coverage: {
       provider: "v8",
       include: ["src/**"],
