@@ -20,6 +20,27 @@ const fail = (error: Extract<ReviseDecisionResult, { ok: false }>["error"]) => (
 const isFlip = (from: DecisionValue, to: DecisionValue) =>
   [from, to].some((v) => v === "ACCEPT" || v === "REJECT");
 
+const POSITIVE: readonly DecisionValue[] = ["ACCEPT", "REPAIR", "REPLACE", "REFUND"];
+
+/**
+ * Amendment D13 (ADR 002 §7): an employee statement cannot turn the photo evidence around. A
+ * positive decision is refused when the stored analysis triggers G3/G3c, and ACCEPT also when it
+ * triggers G6, unless the new fact rests on a physical inspection. No analysis → no check.
+ */
+function contradictsEvidence(c: Case, next: DecisionValue, basis: string): boolean {
+  const a = c.analysis as Record<string, unknown> | null;
+  if (!a || basis === "PHYSICAL_INSPECTION" || !POSITIVE.includes(next)) return false;
+  const insufficient =
+    a.deviceVisible === false ||
+    a.photoQuality === "INSUFFICIENT" ||
+    a.matchesDeclaredCategory === "NO" ||
+    a.matchesDeclaredCategory === "UNCERTAIN" ||
+    a.describedDefectVisible === "NO" ||
+    a.describedDefectVisible === "UNCERTAIN";
+  const visibleUse = next === "ACCEPT" && (a.signsOfUse === "CLEAR" || a.resaleableAsNew === "NO");
+  return insufficient || visibleUse;
+}
+
 export function applyRevision(
   c: Case,
   input: ReviseDecisionInput,
@@ -39,6 +60,7 @@ export function applyRevision(
   if (input.citedClauses.some((id) => !id.startsWith(prefix) || !ctx.clauseIds.has(id))) {
     return fail("UNKNOWN_CLAUSE");
   }
+  if (contradictsEvidence(c, next, input.basis ?? "EMPLOYEE_STATEMENT")) return fail("EVIDENCE_CONTRADICTS");
 
   const decision: Decision = {
     decision: next,

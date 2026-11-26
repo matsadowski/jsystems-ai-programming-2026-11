@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-26T10:31:52.308Z",
+  "capturedAt": "2026-11-26T11:58:03.649Z",
   "target": "openai/gpt-6-luna",
   "request": {
     "step": "chat",
@@ -7,7 +7,7 @@
     "caseType": "COMPLAINT",
     "category": "LAPTOP",
     "imageFile": "laptop-2.webp",
-    "promptVersion": "chat-system@2",
+    "promptVersion": "chat-system@3",
     "policyVersion": "c17d94b9364d"
   },
   "packages": {

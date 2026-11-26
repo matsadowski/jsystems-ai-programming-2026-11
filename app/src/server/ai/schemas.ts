@@ -94,5 +94,7 @@ export const ReviseDecisionInputSchema = z.object({
     .array(z.string().regex(/^[RC]\d+(\.\d+)?$/))
     .min(1)
     .max(6),
+  /** Amendment D13: what the new fact rests on; a physical inspection may override the photo. */
+  basis: z.enum(["EMPLOYEE_STATEMENT", "PHYSICAL_INSPECTION"]).default("EMPLOYEE_STATEMENT"),
 });
-export type ReviseDecisionInput = z.infer<typeof ReviseDecisionInputSchema>;
+export type ReviseDecisionInput = z.input<typeof ReviseDecisionInputSchema>;

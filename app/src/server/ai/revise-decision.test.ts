@@ -185,3 +185,62 @@ describe("applyRevision success", () => {
     expect(updated?.decisionHistory).not.toBe(c.decisionHistory);
   });
 });
+
+describe("applyRevision evidence guard (amendment D13: G3/G6 analogues)", () => {
+  const baseAnalysis = {
+    deviceVisible: true,
+    detectedDevice: "laptop",
+    matchesDeclaredCategory: "YES",
+    photoQuality: "SUFFICIENT",
+    qualityIssues: [],
+    observations: [],
+    summary: "Laptop.",
+  };
+  const returnCase = (analysis: Record<string, unknown>) => ({
+    ...makeCase("RETURN", "NEEDS_MANUAL_REVIEW"),
+    analysis: { ...baseAnalysis, signsOfUse: "NONE_VISIBLE", resaleableAsNew: "YES", packagingOrAccessoriesVisible: [], ...analysis } as never,
+  });
+  const complaintCase = (analysis: Record<string, unknown>) => ({
+    ...makeCase("COMPLAINT", "NEEDS_MANUAL_REVIEW"),
+    analysis: { ...baseAnalysis, describedDefectVisible: "YES", damage: [], likelyCauses: [], ...analysis } as never,
+  });
+  const accept = (basis?: "EMPLOYEE_STATEMENT" | "PHYSICAL_INSPECTION") => ({
+    ...input("ACCEPT", ["R2.1"]),
+    ...(basis ? { basis } : {}),
+  });
+
+  it("refuses ACCEPT on clear signs of use (G6) from an employee statement", () => {
+    const { result, updated } = applyRevision(returnCase({ signsOfUse: "CLEAR" }), accept(), ctx);
+    expect(result).toEqual({ ok: false, error: "EVIDENCE_CONTRADICTS" });
+    expect(updated).toBeNull();
+  });
+
+  it("refuses ACCEPT when the photo is not resaleable as new (G6)", () => {
+    expect(applyRevision(returnCase({ resaleableAsNew: "NO" }), accept(), ctx).result).toEqual({
+      ok: false,
+      error: "EVIDENCE_CONTRADICTS",
+    });
+  });
+
+  it("refuses a positive decision on insufficient evidence (G3)", () => {
+    for (const a of [{ photoQuality: "INSUFFICIENT" }, { deviceVisible: false }, { matchesDeclaredCategory: "UNCERTAIN" }]) {
+      expect(applyRevision(returnCase(a), accept(), ctx).result).toEqual({ ok: false, error: "EVIDENCE_CONTRADICTS" });
+    }
+  });
+
+  it("refuses REPAIR when the claimed defect is not visible (G3c)", () => {
+    const c = complaintCase({ describedDefectVisible: "NO" });
+    expect(applyRevision(c, input("REPAIR", ["C2.1"]), ctx).result).toEqual({ ok: false, error: "EVIDENCE_CONTRADICTS" });
+  });
+
+  it("allows the positive decision when the basis is a physical inspection", () => {
+    const { result } = applyRevision(returnCase({ signsOfUse: "CLEAR" }), accept("PHYSICAL_INSPECTION"), ctx);
+    expect(result.ok).toBe(true);
+  });
+
+  it("never blocks REJECT or NEEDS_MANUAL_REVIEW, and does not apply without an analysis", () => {
+    const c = returnCase({ signsOfUse: "CLEAR", photoQuality: "INSUFFICIENT" });
+    expect(applyRevision(c, input("REJECT", ["R2.1"]), ctx).result.ok).toBe(true);
+    expect(applyRevision(makeCase("RETURN", "NEEDS_MANUAL_REVIEW"), accept(), ctx).result.ok).toBe(true);
+  });
+});

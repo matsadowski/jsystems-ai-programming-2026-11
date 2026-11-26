@@ -97,5 +97,10 @@ export type ReviseDecisionResult =
   | { ok: true; from: DecisionValue; to: DecisionValue; fromLabel: string; toLabel: string }
   | {
       ok: false;
-      error: "SAME_DECISION" | "NOT_ALLOWED_FOR_CASE_TYPE" | "WINDOW_EXPIRED" | "UNKNOWN_CLAUSE";
+      error:
+        | "SAME_DECISION"
+        | "NOT_ALLOWED_FOR_CASE_TYPE"
+        | "WINDOW_EXPIRED"
+        | "UNKNOWN_CLAUSE"
+        | "EVIDENCE_CONTRADICTS";
     };

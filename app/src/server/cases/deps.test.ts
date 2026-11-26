@@ -40,7 +40,7 @@ describe("getCaseDeps", () => {
     const { promptVersions } = getCaseDeps();
     expect(promptVersions.vision).toBe("vision-return@1 | vision-complaint@1");
     expect(promptVersions.decision).toBe("decision-return@1 | decision-complaint@1");
-    expect(promptVersions.chat).toBe("chat-system@2");
+    expect(promptVersions.chat).toBe("chat-system@3");
   });
 });
 

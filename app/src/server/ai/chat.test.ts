@@ -53,7 +53,7 @@ function makeCase(over: { purchaseDate?: string; caseType?: "RETURN" | "COMPLAIN
     decisionHistory: [{ decision: d, at: NOW, trigger: "INITIAL" }],
     messages: [{ id: "m-first", role: "assistant", parts: [{ type: "text", text: "Pierwsza wiadomość z decyzją." }] }],
     policyVersion: "p1",
-    promptVersions: { vision: "v@1", decision: "d@1", chat: "chat-system@2" },
+    promptVersions: { vision: "v@1", decision: "d@1", chat: "chat-system@3" },
     decisionPath: "RULES",
     lunaAssessment: null,
     shadow: null,
