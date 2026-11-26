@@ -40,11 +40,18 @@ export type AssessWithLuna = (args: AssessWithLunaArgs) => Promise<LunaAssessmen
 
 /** Case repository (ADR 001 §3.4). Implemented in `server/store`. */
 export interface CaseRepository {
+  /** Stores a new case; purges expired entries and evicts the oldest-accessed over capacity. */
   create(c: Case): void;
+  /** Returns the case and refreshes `lastAccessAt`, or `null` if unknown or expired. */
   get(id: string): Case | null;
-  save(c: Case): void;
-  /** Sets the busy flag; false if a chat turn is already running (and not expired). */
+  /** Atomic read-modify-write; returns the updated case or `null` if unknown or expired. */
+  update(id: string, mutator: (c: Case) => Case): Case | null;
+  delete(id: string): void;
+  size(): number;
+  /**
+   * Sets `chatInProgress` (with `chatStartedAt`). Returns false while another turn is running.
+   * A flag older than 90 s is treated as stale and taken over (auto-expiry).
+   */
   tryAcquireChat(id: string): boolean;
   releaseChat(id: string): void;
-  size(): number;
 }
