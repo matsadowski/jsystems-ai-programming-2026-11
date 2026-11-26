@@ -68,6 +68,9 @@ must record their first real runs.
 | D9 | (2026-11-26) Luna Decisions returns 401 from its upstream provider ("OpenAI account ... deactivated"): provider outage. Fallback scope 1 (§7) applies: `DECISION_MODE=llm_only` in `.env.example`, no Luna captures, no gated E2E, no Luna eval. ADR-004 code stays, unit-tested. AC-41 and AC-44 (FAST path observable at runtime) are BLOCKED (provider) | User, 2026-11-26 |
 | D10 | PR base (C1): option (b), a `design_system` → `main` PR first, then `feat/hsdc-poc` → `main`. Push/PR still need the explicit G3 go-ahead | User, 2026-11-26 |
 
+| D11 | (2026-11-26) Luna Decisions recovered (HTTP 200, real captures). Fallback 1 is reverted: default `DECISION_MODE=shadow` again (D7); the `--luna` eval part runs and its report goes to the user before any switch to `gated` (G4, TAC-004-06) | User, 2026-11-26 |
+| D12 | Eval matrix uses realistic, condition-neutral model names per example file (identity only, never condition), so the category match is not UNCERTAIN by construction | User, 2026-11-26 |
+
 ### 2.1 Proposed ADR amendments (need approval with this plan)
 
 These fill gaps where the ADRs leave an implementing agent unsure. They are **not** assumed until
