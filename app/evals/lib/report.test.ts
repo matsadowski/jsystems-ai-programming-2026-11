@@ -75,6 +75,14 @@ describe("renderReport", () => {
     expect(md).toMatch(/unsafe/i);
   });
 
+  it("renders the exit criteria for switching to gated", () => {
+    const md = renderReport(input({ luna: { model: "m", report: evaluateThresholds([]) } }));
+    expect(md).toMatch(/exit criteria/i);
+    expect(md).toContain("agreement >= 95%");
+    expect(md).toContain("0 unsafe disagreements");
+    expect(md).toContain("coverage >= 30%");
+  });
+
   it("renders a SWITCH recommendation with the threshold", () => {
     const luna = evaluateThresholds([]);
     const md = renderReport(input({ luna: { model: "m", report: { ...luna, recommendation: { kind: "SWITCH", threshold: 0.7 } } } }));

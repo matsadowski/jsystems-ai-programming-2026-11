@@ -4,7 +4,7 @@ import type { CellAgreement } from "./agreement";
 import type { Budget } from "./budget";
 import type { InvariantFailure } from "./invariants";
 import type { CallStats } from "./stats";
-import type { LunaThresholdReport } from "./luna-thresholds";
+import { EXIT_CRITERIA, type LunaThresholdReport } from "./luna-thresholds";
 
 /** ADR 004 section 6 item 5. */
 export const LIMITATION_SENTENCE = "10 images × 3 runs is a smoke test, not a statistical validation.";
@@ -108,6 +108,12 @@ export function renderReport(input: ReportInput): string {
       "",
       stats("Luna", report.luna),
       stats("LLM path", report.llm),
+      "",
+      "## Exit criteria for switching DECISION_MODE to gated",
+      "",
+      `- agreement >= ${Math.round(EXIT_CRITERIA.minAgreement * 100)}% on FAST cases`,
+      `- ${EXIT_CRITERIA.maxUnsafe} unsafe disagreements`,
+      `- coverage >= ${Math.round(EXIT_CRITERIA.minCoverage * 100)}%`,
       "",
       "## Recommendation",
       "",

@@ -1,4 +1,5 @@
-// Eval runner (ADR 002 section 6.3, T20b): npm run eval -- [--runs N] [--only targeted|matrix|<case-id>] [--luna]
+// Eval runner (ADR 002 section 6.3, ADR 004 section 6): npm run eval -- [--runs N] [--only targeted|matrix|<case-id>] [--luna]
+// With --luna every matrix cell run (and the Luna targeted case) also gets one real Luna Decisions call.
 // Runs the real pipeline in-process (processPhoto -> analyzeImage -> facts -> routeAnalysis ->
 // routeDecision in llm_only mode; chatStream for chat cases) against OpenRouter, within
 // EVAL_MAX_COST_USD. Reads app/.env at runtime and never prints environment values.
@@ -8,7 +9,7 @@ import { todayInZone } from "../src/lib/shared/dates";
 import { analyzeImage, VISION_BUDGET_MS } from "../src/server/ai/analyst";
 import { chatStream } from "../src/server/ai/chat";
 import { decideWithLlm, DECISION_BUDGET_MS } from "../src/server/ai/decision";
-import { getCaseDeps } from "../src/server/cases/deps";
+import { createAssessWithLuna, getCaseDeps } from "../src/server/cases/deps";
 import { getConfig } from "../src/server/config/config";
 import { routeAnalysis, routeDecision, type RouterDeps } from "../src/server/decisions/router";
 import { computeDecisionFacts, type Case, type Decision, type ImageAnalysis, type ImageMeta } from "../src/server/domain";
@@ -20,25 +21,29 @@ import { buildMatrix, buildTargetedCases, type EvalCase } from "./cases";
 import { agreementByCell } from "./lib/agreement";
 import { createBudget, type Budget } from "./lib/budget";
 import { checkInvariants, fallbackRate, type InvariantFailure } from "./lib/invariants";
+import { evaluateThresholds, type LunaEvalRun } from "./lib/luna-thresholds";
 import { renderReport } from "./lib/report";
 import { percentile } from "./lib/stats";
 import {
   EvalArgsError,
   buildAnalyzedCase,
   buildChatCase,
+  buildLunaEvalRun,
   evaluateTargeted,
   extractCostFromBody,
+  lunaCost,
   parseEvalArgs,
   runLabel,
   selectCases,
   toCaseRow,
+  type LunaRunRecord,
   type RunResult,
 } from "./run-lib";
 
 const IMAGES_DIR = path.resolve(process.cwd(), "../assets/example-images");
 const REPORT_DIR = path.resolve(process.cwd(), "evals/reports");
 const FIRST_CALL_ESTIMATE_USD = 0.05;
-const LUNA_MESSAGE = "Luna unavailable (provider outage, D9)";
+const REFERENCE_NO_LUNA = "Luna is not part of the reference LLM pipeline (llm_only)";
 
 class BudgetStop extends Error {}
 
@@ -123,7 +128,7 @@ async function runPipeline(c: EvalCase, run: number): Promise<PipelineOutcome> {
       threshold: 0.8,
       lunaTimeoutMs: 1,
       assessWithLuna: async () => {
-        throw new Error(LUNA_MESSAGE);
+        throw new Error(REFERENCE_NO_LUNA);
       },
       analyzeImage: async (args) => {
         try {
@@ -193,6 +198,37 @@ async function pipelineFor(c: EvalCase, run: number): Promise<{ outcome: Pipelin
   return { outcome, shared: false };
 }
 
+// ---- Luna: one real call per run through the production port (createAssessWithLuna + callLuna) ----
+const processedImages = new Map<string, ReturnType<typeof processPhoto>>();
+function processedImage(file: string) {
+  let p = processedImages.get(file);
+  if (!p) {
+    const bytes = new Uint8Array(readFileSync(path.join(IMAGES_DIR, file)));
+    p = processPhoto({ bytes, declaredByteSize: bytes.byteLength });
+    processedImages.set(file, p);
+  }
+  return p;
+}
+
+let assessWithLuna: ReturnType<typeof createAssessWithLuna>;
+
+/** A Luna failure is recorded per run (not fatal); only a budget stop propagates. */
+async function runLuna(c: EvalCase): Promise<LunaRunRecord> {
+  const started = Date.now();
+  try {
+    const image = await processedImage(c.imageFile);
+    const input = { caseType: c.caseType, category: c.category, model: c.model, purchaseDate: c.purchaseDate, reason: c.reason };
+    const step = await metered(() => assessWithLuna({ caseId: crypto.randomUUID(), input, image }));
+    return { answers: step.value.answers, latencyMs: step.value.latencyMs, costUsd: lunaCost(step.cost, step.value.costUsd) };
+  } catch (e) {
+    if (e instanceof BudgetStop) throw e;
+    const t = e as { stepCost?: number | null };
+    return { answers: null, latencyMs: Date.now() - started, costUsd: t.stepCost ?? null, error: errorCode(e) };
+  }
+}
+
+const hasLunaCall = (c: EvalCase) => c.kind === "matrix" || c.expectation?.kind === "LUNA_ANSWER";
+
 async function runChat(c: EvalCase, run: number): Promise<RunResult> {
   const { outcome, shared } = await pipelineFor(c, run);
   const base = outcome.result;
@@ -242,17 +278,22 @@ async function runChat(c: EvalCase, run: number): Promise<RunResult> {
 async function main() {
   const args = parseEvalArgs(process.argv.slice(2));
   process.loadEnvFile?.(".env");
-  if (args.luna) console.log(`--luna ignored: ${LUNA_MESSAGE}. Luna is not called.`);
   const config = getConfig();
   setup = { today: todayInZone(new Date(), config.appTimezone), deps: getCaseDeps(), policyDir: config.policyDir };
   const maxUsd = config.evalMaxCostUsd;
   budget = createBudget(maxUsd);
+  assessWithLuna = createAssessWithLuna(config);
+  const lunaRuns: LunaEvalRun[] = [];
+  const lunaFailures: { caseId: string; run: number; error: string }[] = [];
+  const lunaRaw: { caseId: string; run: number; answers: string }[] = [];
 
-  const selection = selectCases(buildMatrix(setup.today), buildTargetedCases(setup.today), args.only);
+  const selection = selectCases(buildMatrix(setup.today), buildTargetedCases(setup.today), args.only, args.luna);
   const runsByCase = new Map<string, RunResult[]>();
   const invariantFailures: { caseId: string; run: number; failures: InvariantFailure[] }[] = [];
   const order = [...selection.targeted, ...selection.matrix];
-  console.log(`Eval: ${order.length} cases x ${args.runs} runs, models ${config.visionModel} / ${config.decisionModel}, budget $${maxUsd}`);
+  console.log(
+    `Eval: ${order.length} cases x ${args.runs} runs, models ${config.visionModel} / ${config.decisionModel}${args.luna ? ` / Luna ${config.lunaModel}` : ""}, budget $${maxUsd}`,
+  );
 
   const record = (c: EvalCase, r: RunResult) => {
     const list = runsByCase.get(c.id) ?? [];
@@ -277,7 +318,24 @@ async function main() {
         if (c.kind === "chat") record(c, await runChat(c, run));
         else {
           const { outcome, shared } = await pipelineFor(c, run);
-          record(c, { ...outcome.result, caseId: c.id, run, costUsd: shared ? 0 : outcome.result.costUsd });
+          const r: RunResult = { ...outcome.result, caseId: c.id, run, costUsd: shared ? 0 : outcome.result.costUsd };
+          record(c, r);
+          if (args.luna && hasLunaCall(c)) {
+            const luna = await runLuna(c);
+            if (c.expectation?.kind === "LUNA_ANSWER") {
+              r.lunaAnswers = luna.answers ?? undefined;
+              r.lunaError = luna.error;
+            }
+            if (luna.error) lunaFailures.push({ caseId: c.id, run, error: luna.error });
+            if (luna.answers) {
+              const text = luna.answers.map((a) => `${a.key}=${String(a.value)}${a.certainty === null ? "" : ` (${a.certainty.toFixed(2)})`}`);
+              lunaRaw.push({ caseId: c.id, run, answers: text.join("; ") });
+            }
+            const evalRun = buildLunaEvalRun(c, luna, outcome.result, setup.today);
+            if (evalRun) lunaRuns.push(evalRun);
+            const cost = luna.costUsd === null ? "n/a" : `$${luna.costUsd.toFixed(5)}`;
+            console.log(`  ${c.id} run ${run}: Luna ${luna.error ? `ERROR(${luna.error})` : `${luna.latencyMs} ms cost ${cost}`}`);
+          }
         }
       }
     }
@@ -315,6 +373,7 @@ async function main() {
     invariantFailures,
     fallbackRate: rate,
     agreement,
+    ...(args.luna ? { luna: { model: config.lunaModel, report: evaluateThresholds(lunaRuns) } } : {}),
   });
   md += [
     "## Targeted assertions", "",
@@ -327,7 +386,17 @@ async function main() {
     "- Cost: OpenRouter usage.cost; for BYOK keys it reports 0, so the upstream inference cost is used instead. Cases sharing an identical pipeline (injection control and the chat cases) reuse one run; the reuse shows $0.",
     "- Runs per case may be below the requested count when the budget stopped the run.",
     "",
-    "## Luna", "", LUNA_MESSAGE, "",
+    ...(args.luna
+      ? [
+          "## Luna runs", "",
+          `- Comparable runs fed to the threshold table (Luna answered and the LLM reference has a decision): ${lunaRuns.length}.`,
+          `- Luna errors (recorded per run, not fatal): ${lunaFailures.length}${lunaFailures.length ? ` (${lunaFailures.map((f) => `${f.caseId} run ${f.run}: ${f.error}`).join("; ")})` : ""}.`,
+          "- Cost: Luna reports usage.cost 0 for BYOK keys, so the upstream inference cost is used.",
+          "", "Raw Luna answers (value and certainty per question):", "",
+          ...lunaRaw.map((r) => `- ${r.caseId} run ${r.run}: ${r.answers}`),
+          "",
+        ]
+      : ["## Luna", "", "Not run (pass --luna).", ""]),
   ].join("\n");
   mkdirSync(REPORT_DIR, { recursive: true });
   const slug = config.decisionModel.replace(/[^a-z0-9.]+/gi, "-").toLowerCase();

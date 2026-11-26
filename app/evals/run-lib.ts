@@ -3,8 +3,10 @@
 // No model calls and no environment access here; `run.ts` does the I/O.
 import type { CaseInput } from "@/lib/shared/case-input";
 import { firstMessageUIMessage, renderFirstMessage } from "@/server/ai/render-first-message";
-import { computeDecisionFacts, type Case, type Decision, type ImageAnalysis, type ImageMeta } from "@/server/domain";
+import { isFastPathEligible } from "@/server/decisions/eligibility";
+import { computeDecisionFacts, type Case, type Decision, type DecisionValue, type ImageAnalysis, type ImageMeta, type LunaAnswer } from "@/server/domain";
 import type { EvalCase } from "./cases";
+import type { LunaEvalRun } from "./lib/luna-thresholds";
 import type { CaseRow } from "./lib/report";
 import { percentile } from "./lib/stats";
 
@@ -86,15 +88,21 @@ export function extractCostFromBody(body: string): number | null {
   return found;
 }
 
+/** Luna cost: the tapped response body (handles BYOK upstream cost) wins over the client-reported `usage.cost`. */
+export function lunaCost(tapped: number | null, reported: number | null): number | null {
+  return tapped ?? reported;
+}
+
 // ---- case selection ---------------------------------------------------------------------------
 
-/** `only`: null = all, "matrix", "targeted", or one case id (the injection control comes with `injection`). Luna cases are never run here. */
+/** `only`: null = all, "matrix", "targeted", or one case id (the injection control comes with `injection`). Luna cases are selected only with `luna`. */
 export function selectCases(
   matrix: EvalCase[],
   targeted: EvalCase[],
   only: string | null,
+  luna = false,
 ): { matrix: EvalCase[]; targeted: EvalCase[] } {
-  const runnable = targeted.filter((c) => c.expectation?.kind !== "LUNA_ANSWER");
+  const runnable = luna ? targeted : targeted.filter((c) => c.expectation?.kind !== "LUNA_ANSWER");
   if (only === null) return { matrix, targeted: runnable };
   if (only === "matrix") return { matrix, targeted: [] };
   if (only === "targeted") return { matrix: [], targeted: runnable };
@@ -189,6 +197,10 @@ export interface RunResult {
   /** Per-step latency (vision / decision / chat), when the step ran. */
   stepLatencyMs?: Partial<Record<"vision" | "decision" | "chat", number>>;
   chat?: { text: string; toolCalls: string[] };
+  /** Luna answers recorded for this run (the Luna targeted case only). */
+  lunaAnswers?: LunaAnswer[];
+  /** Luna error code for this run (the Luna call failed; not fatal). */
+  lunaError?: string;
 }
 
 export interface Assertion {
@@ -251,7 +263,10 @@ export function evaluateTargeted(c: EvalCase, runs: RunResult[], controlRuns: Ru
     case "CHAT_LEGAL":
       return failing((r) => !!r.chat && r.chat.toolCalls.length === 0 && LEGAL_REFERRAL.test(r.chat.text), "no tool, refers to legal/compliance");
     case "LUNA_ANSWER":
-      return { passed: false, detail: "Luna unavailable (provider outage, D9)" };
+      return failing(
+        (r) => !r.lunaError && r.lunaAnswers?.find((a) => a.key === e.key)?.value === e.value,
+        `Luna answers ${e.key} = ${e.value}`,
+      );
   }
 }
 
@@ -266,5 +281,37 @@ export function toCaseRow(caseId: string, runs: RunResult[], passed: boolean | n
     p50LatencyMs: percentile(runs.map((r) => r.latencyMs), 50),
     costUsd: known.length ? known.reduce((a, b) => a + b, 0) : null,
     passed,
+  };
+}
+
+// ---- Luna eval --------------------------------------------------------------------------------
+
+/** One Luna call on a matrix cell run (or the Luna targeted case). */
+export interface LunaRunRecord {
+  /** `null` when the call failed (see `error`). */
+  answers: LunaAnswer[] | null;
+  latencyMs: number;
+  costUsd: number | null;
+  error?: string;
+}
+
+/**
+ * Input row for `evaluateThresholds` (T20a): Luna answers + the independent LLM decision as the
+ * reference. `null` when Luna failed or the reference run produced no decision (not comparable).
+ */
+export function buildLunaEvalRun(c: EvalCase, luna: LunaRunRecord, reference: RunResult, today: string): LunaEvalRun | null {
+  if (!luna.answers || luna.error || reference.error || reference.decision === null) return null;
+  const facts = computeDecisionFacts(c.caseType, c.purchaseDate, today);
+  return {
+    caseId: c.id,
+    answers: luna.answers,
+    eligible: isFastPathEligible(c.caseType, c.category, facts).eligible,
+    facts,
+    caseType: c.caseType,
+    referenceDecision: reference.decision as DecisionValue,
+    lunaLatencyMs: luna.latencyMs,
+    lunaCostUsd: luna.costUsd,
+    llmLatencyMs: reference.latencyMs,
+    llmCostUsd: reference.costUsd,
   };
 }

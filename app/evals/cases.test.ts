@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { exampleImageNames } from "../tests/helpers/example-images";
 import { computeDecisionFacts } from "@/server/domain";
-import { buildMatrix, buildTargetedCases, EVAL_IMAGES, NEUTRAL_REASON } from "./cases";
+import { buildMatrix, buildTargetedCases, EVAL_IMAGES, MODEL_BY_IMAGE, NEUTRAL_REASON } from "./cases";
 
 const TODAY = "2026-11-26";
 
@@ -19,6 +19,21 @@ describe("eval matrix", () => {
 
   it("derives the category from the file name only", () => {
     for (const c of matrix) expect(c.category).toBe(c.imageFile.startsWith("laptop") ? "LAPTOP" : "SMARTPHONE");
+  });
+
+  it("declares a realistic model per image file (D12), never the device condition", () => {
+    expect(MODEL_BY_IMAGE).toEqual({
+      "laptop-1.png": "Microsoft Surface Laptop",
+      "laptop-2.webp": "Lenovo ThinkPad",
+      "phone-1.jpg": "Apple iPhone",
+      "phone-2.jpeg": "Apple iPhone Pro",
+      "phone-3.jpeg": "Samsung Galaxy S24 Ultra",
+    });
+    for (const c of matrix) expect(c.model).toBe(MODEL_BY_IMAGE[c.imageFile as keyof typeof MODEL_BY_IMAGE]);
+    for (const c of buildTargetedCases(TODAY).filter((t) => t.id !== "category-mismatch")) {
+      expect(c.model).toBe(MODEL_BY_IMAGE[c.imageFile as keyof typeof MODEL_BY_IMAGE]);
+    }
+    for (const m of Object.values(MODEL_BY_IMAGE)) expect(m).not.toMatch(/testow|uszkodz|zepsut|nowy|używan|broken|damaged|cracked/i);
   });
 
   it("buys 5 days before the injected today with the neutral reason", () => {
@@ -66,6 +81,7 @@ describe("targeted cases", () => {
     const c = byId("category-mismatch");
     expect(c.imageFile).toMatch(/^phone/);
     expect(c.category).toBe("CAMERA");
+    expect(c.model).toBe("Canon EOS R50");
     expect(c.expectation).toEqual({ kind: "CATEGORY_MISMATCH", finalDecision: "NEEDS_MANUAL_REVIEW" });
   });
 

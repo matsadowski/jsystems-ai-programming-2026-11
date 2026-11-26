@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadCapture } from "../tests/helpers/captures";
+import { computeDecisionFacts, type LunaAnswer } from "@/server/domain";
 import { buildMatrix, buildTargetedCases } from "./cases";
 import {
   EvalArgsError,
@@ -7,7 +8,9 @@ import {
   buildChatCase,
   evaluateTargeted,
   extractCost,
+  buildLunaEvalRun,
   extractCostFromBody,
+  lunaCost,
   parseEvalArgs,
   selectCases,
   toCaseRow,
@@ -233,5 +236,77 @@ describe("toCaseRow", () => {
     expect(row.costUsd).toBeNull();
     expect(row.decisions).toEqual(["ERROR(AI_TIMEOUT)"]);
     expect(row.passed).toBe(true);
+  });
+});
+
+describe("Luna cost (real captures)", () => {
+  it("BYOK Luna bodies report cost 0: the upstream inference cost is used", () => {
+    for (const [name, upstream] of [["luna-return-phone-1", 0.0001722], ["luna-complaint-laptop-2", 0.0001601]] as const) {
+      const capture = loadCapture<{ body: unknown }>("llm", name);
+      expect(extractCostFromBody(JSON.stringify(capture.body))).toBeCloseTo(upstream, 9);
+    }
+  });
+  it("lunaCost prefers the tapped body cost, then the client-reported cost", () => {
+    expect(lunaCost(0.0002, 0)).toBe(0.0002);
+    expect(lunaCost(null, 0.003)).toBe(0.003);
+    expect(lunaCost(null, null)).toBeNull();
+  });
+});
+
+describe("selectCases with luna", () => {
+  const matrix = buildMatrix(TODAY);
+  const targeted = buildTargetedCases(TODAY);
+  it("includes the Luna case only with luna", () => {
+    expect(selectCases(matrix, targeted, null, true).targeted.some((c) => c.id === "luna-not-photographable")).toBe(true);
+    expect(selectCases(matrix, targeted, null, false).targeted.some((c) => c.id === "luna-not-photographable")).toBe(false);
+    expect(selectCases(matrix, targeted, "luna-not-photographable", true).targeted.map((c) => c.id)).toEqual(["luna-not-photographable"]);
+  });
+  it("selecting the Luna case without luna is an error", () => {
+    expect(() => selectCases(matrix, targeted, "luna-not-photographable", false)).toThrow(EvalArgsError);
+  });
+});
+
+describe("evaluateTargeted LUNA_ANSWER", () => {
+  const c = find("luna-not-photographable");
+  const ans = (value: string): LunaAnswer[] => [{ key: "defect_visibility", type: "choice", value, certainty: 0.9 }];
+  it("passes when every run answered the key with the value", () => {
+    expect(evaluateTargeted(c, [run({ lunaAnswers: ans("not_photographable") })], []).passed).toBe(true);
+  });
+  it("fails on another value, a missing answer or a Luna error", () => {
+    expect(evaluateTargeted(c, [run({ lunaAnswers: ans("visible") })], []).passed).toBe(false);
+    expect(evaluateTargeted(c, [run()], []).passed).toBe(false);
+    expect(evaluateTargeted(c, [run({ lunaAnswers: ans("not_photographable"), lunaError: "LUNA_UNAVAILABLE" })], []).passed).toBe(false);
+  });
+});
+
+describe("buildLunaEvalRun", () => {
+  const matrixCase = buildMatrix(TODAY).find((m) => m.id === "matrix-phone-1-return")!;
+  const answers: LunaAnswer[] = [{ key: "device_matches", type: "noul", value: true, certainty: 0.98 }];
+  const luna = { answers, latencyMs: 700, costUsd: 0.0002 };
+  const reference = run({ decision: "REJECT", latencyMs: 15000, costUsd: 0.01 });
+
+  it("maps a Luna record and the LLM reference into the evaluateThresholds input", () => {
+    const r = buildLunaEvalRun(matrixCase, luna, reference, TODAY);
+    expect(r).toEqual({
+      caseId: matrixCase.id,
+      answers,
+      eligible: true,
+      facts: computeDecisionFacts("RETURN", matrixCase.purchaseDate, TODAY),
+      caseType: "RETURN",
+      referenceDecision: "REJECT",
+      lunaLatencyMs: 700,
+      lunaCostUsd: 0.0002,
+      llmLatencyMs: 15000,
+      llmCostUsd: 0.01,
+    });
+  });
+  it("marks out-of-window and OTHER-category cases as not eligible", () => {
+    const old = { ...matrixCase, purchaseDate: "2026-01-01" };
+    expect(buildLunaEvalRun(old, luna, reference, TODAY)!.eligible).toBe(false);
+    expect(buildLunaEvalRun({ ...matrixCase, category: "OTHER" }, luna, reference, TODAY)!.eligible).toBe(false);
+  });
+  it("returns null when Luna failed or the reference has no decision", () => {
+    expect(buildLunaEvalRun(matrixCase, { ...luna, answers: null, error: "LUNA_UNAVAILABLE" }, reference, TODAY)).toBeNull();
+    expect(buildLunaEvalRun(matrixCase, luna, run({ decision: null, error: "AI_TIMEOUT" }), TODAY)).toBeNull();
   });
 });
