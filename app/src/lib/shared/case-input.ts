@@ -67,7 +67,7 @@ export function makeCaseInputSchema(today: string) {
 export type CaseInput = z.output<ReturnType<typeof makeCaseInputSchema>>;
 
 /** First error message per field, for `fieldErrors` in API responses and inline UI errors. */
-export function toFieldErrors(error: z.ZodError): Partial<Record<string, string>> {
+export function toFieldErrors(error: z.ZodError): Record<string, string> {
   const out: Record<string, string> = {};
   for (const issue of error.issues) {
     const key = String(issue.path[0] ?? "form");
