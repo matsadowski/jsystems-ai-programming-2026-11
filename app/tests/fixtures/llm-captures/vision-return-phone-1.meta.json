@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T10:30:21.179Z",
+  "target": "openai/gpt-6-luna",
+  "request": {
+    "step": "vision",
+    "case": "vision-return-phone-1",
+    "caseType": "RETURN",
+    "category": "SMARTPHONE",
+    "imageFile": "phone-1.jpg",
+    "promptVersion": "vision-return@1"
+  },
+  "packages": {
+    "ai": "7.0.183",
+    "@openrouter/ai-sdk-provider": "3.1.0"
+  }
+}

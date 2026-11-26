@@ -1,0 +1,1224 @@
+[
+  [
+    {
+      "type": "stream-start",
+      "warnings": []
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-start",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "toolName": "reviseDecision"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": ""
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "{\""
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "new"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "Decision"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "\":\""
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "RE"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "JECT"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "\",\""
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "reason"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "\":\""
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "Kl"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "ient"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " przy"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "zna"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "ł"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": ","
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " że"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " laptop został"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " zalany"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " kawą"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " tydzie"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "ń przed"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " wystą"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "pieniem"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " usterki"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "; jest to"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " uszkod"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "zenie cieczą"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " wyłączone"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": " z ochrony"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": ".\",\"citedCla"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "uses\":[\"C2"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": ".2\",\"C"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "tool-input-delta",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "delta": "5\"]}"
+    },
+    {
+      "type": "tool-input-end",
+      "id": "call_0h7gnr129SCpjp7K1hyNhWFi"
+    },
+    {
+      "type": "tool-call",
+      "toolCallId": "call_0h7gnr129SCpjp7K1hyNhWFi",
+      "toolName": "reviseDecision",
+      "input": "{\"newDecision\":\"REJECT\",\"reason\":\"Klient przyznał, że laptop został zalany kawą tydzień przed wystąpieniem usterki; jest to uszkodzenie cieczą wyłączone z ochrony.\",\"citedClauses\":[\"C2.2\",\"C5\"]}",
+      "providerMetadata": {
+        "openrouter": {
+          "reasoning_details": []
+        }
+      }
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689108-TLXUKnwiAuSRXGBObkRG"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "finish",
+      "finishReason": {
+        "unified": "tool-calls",
+        "raw": "tool_calls"
+      },
+      "usage": {
+        "inputTokens": {
+          "total": 2914,
+          "noCache": 2914,
+          "cacheRead": 0,
+          "cacheWrite": 2911
+        },
+        "outputTokens": {
+          "total": 77,
+          "text": 77,
+          "reasoning": 0
+        },
+        "raw": {
+          "prompt_tokens": 2914,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 2911,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "completion_tokens": 77,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          },
+          "total_tokens": 2991,
+          "cost": 0,
+          "cost_details": {
+            "upstream_inference_cost": 0.000402675,
+            "upstream_inference_prompt_cost": 0.000364175,
+            "upstream_inference_completions_cost": 0.0000385
+          },
+          "is_byok": true
+        }
+      },
+      "providerMetadata": {
+        "openrouter": {
+          "usage": {
+            "promptTokens": 2914,
+            "promptTokensDetails": {
+              "cachedTokens": 0
+            },
+            "completionTokens": 77,
+            "completionTokensDetails": {
+              "reasoningTokens": 0
+            },
+            "cost": 0,
+            "totalTokens": 2991,
+            "costDetails": {
+              "upstreamInferenceCost": 0.000402675
+            }
+          },
+          "provider": "Azure",
+          "reasoning_details": []
+        }
+      }
+    }
+  ],
+  [
+    {
+      "type": "stream-start",
+      "warnings": []
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-start",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "text-delta",
+      "delta": "Dec",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "yz",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "ja",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " zm",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "ienia",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " się",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " z",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " **",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "W",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "ym",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "aga",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " w",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "ery",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "fik",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "acji",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "**",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " na **",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "Rekl",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "amacja",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " odr",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "zucona",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "**.",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " Klient",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " potwierdzi",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "ł zalanie",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " laptopa kaw",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "ą przed wyst",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "ąpieniem",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " usterki",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": ". Uszkod",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "zenia spowod",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "owane cieczą są",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " wyłączone z ochron",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "y zgodnie z C",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "2.2; od",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "rzucenie wynika z",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " C5.\n\n",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "*Decyzja jest rekom",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "endacją wygenerowaną przez",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " AI",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " na podstawie zdjęcia, danych",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": " zgłoszenia i regulaminu",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": ". Ostateczną decyzję pode",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-delta",
+      "delta": "jmuje pracownik.*",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "response-metadata",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "response-metadata",
+      "modelId": "openai/gpt-6-luna"
+    },
+    {
+      "type": "text-end",
+      "id": "gen-1795689110-0M2fVpVfiop0TcH2eBCm"
+    },
+    {
+      "type": "finish",
+      "finishReason": {
+        "unified": "stop",
+        "raw": "stop"
+      },
+      "usage": {
+        "inputTokens": {
+          "total": 3040,
+          "noCache": 129,
+          "cacheRead": 2911,
+          "cacheWrite": 126
+        },
+        "outputTokens": {
+          "total": 129,
+          "text": 129,
+          "reasoning": 0
+        },
+        "raw": {
+          "prompt_tokens": 3040,
+          "prompt_tokens_details": {
+            "cached_tokens": 2911,
+            "cache_write_tokens": 126,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "completion_tokens": 129,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          },
+          "total_tokens": 3169,
+          "cost": 0,
+          "cost_details": {
+            "upstream_inference_cost": 0.00010966,
+            "upstream_inference_prompt_cost": 0.00004516,
+            "upstream_inference_completions_cost": 0.0000645
+          },
+          "is_byok": true
+        }
+      },
+      "providerMetadata": {
+        "openrouter": {
+          "usage": {
+            "promptTokens": 3040,
+            "promptTokensDetails": {
+              "cachedTokens": 2911
+            },
+            "completionTokens": 129,
+            "completionTokensDetails": {
+              "reasoningTokens": 0
+            },
+            "cost": 0,
+            "totalTokens": 3169,
+            "costDetails": {
+              "upstreamInferenceCost": 0.00010966
+            }
+          },
+          "provider": "Azure",
+          "reasoning_details": []
+        }
+      }
+    }
+  ]
+]

@@ -1,0 +1,17 @@
+{
+  "capturedAt": "2026-11-26T10:31:52.308Z",
+  "target": "openai/gpt-6-luna",
+  "request": {
+    "step": "chat",
+    "case": "chat-revise",
+    "caseType": "COMPLAINT",
+    "category": "LAPTOP",
+    "imageFile": "laptop-2.webp",
+    "promptVersion": "chat-system@2",
+    "policyVersion": "c17d94b9364d"
+  },
+  "packages": {
+    "ai": "7.0.183",
+    "@openrouter/ai-sdk-provider": "3.1.0"
+  }
+}

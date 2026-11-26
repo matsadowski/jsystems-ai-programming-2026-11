@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T10:30:33.767Z",
+  "target": "openai/gpt-6-luna",
+  "request": {
+    "step": "vision",
+    "case": "vision-complaint-laptop-2",
+    "caseType": "COMPLAINT",
+    "category": "LAPTOP",
+    "imageFile": "laptop-2.webp",
+    "promptVersion": "vision-complaint@1"
+  },
+  "packages": {
+    "ai": "7.0.183",
+    "@openrouter/ai-sdk-provider": "3.1.0"
+  }
+}

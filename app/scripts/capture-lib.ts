@@ -63,7 +63,7 @@ export const FIXTURE_CASES: Record<string, FixtureCase> = {
     ...COMPLAINT_LAPTOP,
     visionCase: "vision-complaint-laptop-2",
     decisionCase: "decision-complaint-laptop-2",
-    userMessage: "Klient przyznał, że telefon wpadł do wody.",
+    userMessage: "Klient przyznał, że laptop został zalany kawą tydzień przed wystąpieniem usterki.",
   },
   "luna-return-phone-1": { step: "luna", ...RETURN_PHONE },
   "luna-complaint-laptop-2": { step: "luna", ...COMPLAINT_LAPTOP },

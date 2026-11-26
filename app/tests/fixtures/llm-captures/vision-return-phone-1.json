@@ -1,0 +1,183 @@
+{
+  "content": [
+    {
+      "type": "reasoning",
+      "text": "**Analyzing phone condition**\n\nI'm assessing the condition of a smartphone with significant screen damage, featuring a cracked and shattered display with a black bleed and green line. To ensure clarity, I’ll need a full front photo and might mention the quality of the image. The model is unclear, which means I'll categorize it as a generic test smartphone due to this uncertainty. I’ll note the visible buttons and casing while summarizing the situation concisely in a few sentences.",
+      "providerMetadata": {
+        "openrouter": {
+          "reasoning_details": [
+            {
+              "type": "reasoning.summary",
+              "summary": "**Analyzing phone condition**\n\nI'm assessing the condition of a smartphone with significant screen damage, featuring a cracked and shattered display with a black bleed and green line. To ensure clarity, I’ll need a full front photo and might mention the quality of the image. The model is unclear, which means I'll categorize it as a generic test smartphone due to this uncertainty. I’ll note the visible buttons and casing while summarizing the situation concisely in a few sentences.",
+              "format": "azure-openai-responses-v1",
+              "index": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"deviceVisible\": true,\n  \"detectedDevice\": \"Smartfon z ekranem dotykowym\",\n  \"matchesDeclaredCategory\": \"UNCERTAIN\",\n  \"photoQuality\": \"SUFFICIENT\",\n  \"qualityIssues\": [],\n  \"observations\": [\n    {\n      \"area\": \"Ekran\",\n      \"finding\": \"Widoczne liczne pęknięcia i rozbita powierzchnia, szczególnie u góry i po lewej stronie. Na wyświetlaczu widać również duży czarny obszar oraz pionową zieloną linię.\",\n      \"severity\": \"SEVERE\"\n    },\n    {\n      \"area\": \"Obudowa\",\n      \"finding\": \"Widoczna przednia ramka i część boków; nie widać na nich wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Przyciski\",\n      \"finding\": \"Widoczne przyciski na lewym boku telefonu.\",\n      \"severity\": \"NONE\"\n    }\n  ],\n  \"summary\": \"Na zdjęciu widoczny jest smartfon ustawiony na podstawce, sfotografowany od przodu. Ekran jest mocno popękany i ma widoczne uszkodzenia obrazu. Kategoria urządzenia wydaje się zgodna ze zgłoszonym smartfonem, ale modelu nie można potwierdzić na podstawie zdjęcia.\",\n  \"signsOfUse\": \"CLEAR\",\n  \"resaleableAsNew\": \"NO\",\n  \"packagingOrAccessoriesVisible\": [\n    \"Podstawka\"\n  ]\n}"
+    }
+  ],
+  "finishReason": {
+    "unified": "stop",
+    "raw": "stop"
+  },
+  "usage": {
+    "inputTokens": {
+      "total": 2304,
+      "noCache": 2304,
+      "cacheRead": 0,
+      "cacheWrite": 2301
+    },
+    "outputTokens": {
+      "total": 545,
+      "text": 364,
+      "reasoning": 181
+    },
+    "raw": {
+      "prompt_tokens": 2304,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2301,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "completion_tokens": 545,
+      "completion_tokens_details": {
+        "reasoning_tokens": 181,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      },
+      "total_tokens": 2849,
+      "cost": 0,
+      "cost_details": {
+        "upstream_inference_cost": 0.000560425,
+        "upstream_inference_prompt_cost": 0.000287925,
+        "upstream_inference_completions_cost": 0.0002725
+      },
+      "is_byok": true
+    }
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openrouter": {
+      "provider": "Azure",
+      "reasoning_details": [
+        {
+          "type": "reasoning.summary",
+          "summary": "**Analyzing phone condition**\n\nI'm assessing the condition of a smartphone with significant screen damage, featuring a cracked and shattered display with a black bleed and green line. To ensure clarity, I’ll need a full front photo and might mention the quality of the image. The model is unclear, which means I'll categorize it as a generic test smartphone due to this uncertainty. I’ll note the visible buttons and casing while summarizing the situation concisely in a few sentences.",
+          "format": "azure-openai-responses-v1",
+          "index": 0
+        },
+        {
+          "type": "reasoning.encrypted",
+          "data": "gAAAAABrCAo5QuPZkUeu4pAvlGNN0mcRbsso6LVDiKXEfCq9wlsa32LG8jc1yVni3QOo0t4Me6qRZPFq82UwY-ijDkEU1yxnyrKOzStbWTjTn_flkMzUTrJY2IqrdXPzMrNWLf_AlnU6kvmvi7hloJXVPUYYe1q8_NpQNNvtGMiiBlt4B96cJkyvWSUL5z3c9bsrojOUCUDGL3xgcJl-3Cw5cGIZduK7qiITGEN1VqrJ4Oc9Ls8xUQnCPJSTAUGtq921M6ohFEXDj6KBdgFUkCMHFz1k091Pyf94BoGYKbOnhfDWmtJV5q8G7-6XQVs8tsYQWfeK-p4XIafBZxQBRoUii8SAiGyET3V5ACNjjibGnr-7GxwSQ0ScMCG4YYmrLliy2eWrU03lTHXmtUocsOnowa_qfFnMt56B6RgIaeJOkKtz854lRQpqvFnoBtbzCd-iAhjDWTopTCiIYYnizDH9FDlsyixsqySf72QrVBQoD0yC7Y3FTyvj7AyFo9CPEq-59XupAIbWPzHFoBNl62qaTUbyUPAHw1Pt-1PdngsJaWJYQntnUMM2Cv4sIf6toXYZraJtYQQKgYjWxJ0g48wtYynZCLkgx5_XshiCKxgXON6SIclG2OmmS9VLzIgW9ooMvn3IYa6-eO-tQlJhBVlldARAdwgXaeY8HVRuQ7ttTjosRZKurF9FDtqv6dkKJ3VnJ9FFJmpu5GwWZ-31iMA_OrWY71sOqNXYWpF9aLIr8rT1QCGS6-t97QKO3DszsN_OL6gyy5V-jQa9n7o5R1GyZoS448CPzqIsv0zmGf0h0rJQztakhZpPj_eHk6H42hwJy6ecyNPABxZAgtbfDnqB3wvbEPS6W_BAoNE2L5rA1_Tdrjd56UE6h1RsQvm5O6nzcBMMl4fHhVRD8OlOm_fx3SRztDNezVxj_DMPM1n8aUk7vkrzCgPs9udakDsyepMWQZm27nv25P6Bgm1lwxh2n-OvkCTMqmpJznBQKPXZ8S8OvKxJcpIa-CDS4TQqjx8F9Fau3nRpu9MDJnnwvTQ0O0-hgy3vcwcRpdP8vkhuFAqxCCKFV9JRz5Iouwj1a7WOstWkGwqHchCFQUyOS2AEBDpv-IMlI6nhFYmGrAaM3J-ecsKeVTrwUHEXIat4tXd1wJN2OffqI-VhgIthIbs9s_zGeL0LCydw9IFdCeROE70TdOmWXcqEte_pCBIDz6LyI_kQs4BJn7PF-e4DyaonTurEevPt4-fRRCU0i7l96LY4gE1dyIhynZOzueLs4YcUgTdXEDWNWzJulNE9PJ00NulGpj1qGvi3SnYjInSWUO2opiSyvyJ3Fnj0QJeo_AIcwu2kiUkyrYKBRUcdqAOlpiuMXlxuApTGcWYSnhp6J0BbI8tpyRJPwOmhhPADPFGgPSCOq_ZLH37Pue4C0S_UOXpqzzbr4kGkuEJSgFYJl6EVKNheiByt_EgRmNhoFKrkRekU6mwHD-gN0aym-lqXEtZWTHtERFQ1nQ0rc_IT3Wf5Lmbs4Kwuqf9Nr4vwA8emzsrC6KqqbOF4QJIb1aBLGV5EnNtcpnJqPTJDBXsPgmCD9a1Cv3ow2cGLHLb_yZKs-XsM7OVsVOGmKjAd-tYtaDSyx4N1a_zLN85LM_0fM2B_XKweYMmUZaLjj8fKkovEG8lqHAaL2Z89Bv5iwr4a2e-PWi_JS-x03npfj_cABbJ2T7QhBP5NiNfzaknVtZAU1sydybPj6KdqRMkcVKEXTdJsFCcBg4Lz2y51n5VUecNyrVEPEr92kqbcnMtJpmJ-7oba2KOXvhDg_9AE7pNWw8kBOiBHDEdBtFYHOHhJfxTxpUTYOcOxjp8eb6tIKLhHQKkX06YSmVec-UEmTD_cZrCQTzEnhnWYxZ4guymBcS3EwdQUtAkD67MTR0_PTKdnea5NmxCajtfB-5fUlTWVaQb8z_-aprjXzw_pGeVXPIVGafJPk11Dre2xVTvp6Ila3h-X8kZvMMwPKzi1fvRFifMGcjLM6CXqD7-hlvBrFHDccjyRMfWc1UlKDunZf0eZeDCO5LxtIOc7ir76DjsN2usGVdECvkeXkmjmnfxAm4y2o3Y3zsgahNj-osxH5tT5rl-JxJztQEHixh4bdD2_F5TU8efzUDLUBeihj1p7nhN0eoXgPUdf3falfe76wzNl1hlZcymqRI1zoTJNbWaWCWvUX2P63XAq0qPUKpX1GaUXqzMmoWb8KIDVrwQ_x1OdwJXXNN-EJqpJsG0lFEBCLI0p_Hz1Srt50FiUPtf4UlDi37ROcrWrzM3smW0qlOV4Xj52bFPrdUY7s0lEQ2NX6k-Bkmsb_-2G4hg9JKeOAjiSCOI9s8SqmcvhseR6GOUaz4RKA-1AlrfS4kd62S-rJkJtREZrgeNMQVelNtqG2holov9LOmxV_KNtviaDRZqqfUSN_Dqt4bVahvqBiepRRumH0NC1Ym_nb4-Do2tW7-qkqXZtwIIWWPrKZfLXR3jZqd0q2j2_OknA82vdfymGyf0ukmTBk0sSHuBLtMXTEAG3qgX1yHYD31TpY--3NItT6p-Yk8g8WjECVDhyfTKLt3ID1u1_IR-vdg35VCcMDteZVSPZRCjBJNC-rP4pPjEdS1p2ZwzgSh_kghKyjCzBD7or5klCJXPhjJX7KTaQb-nrnS58H4pEyiCyeZooOXAWfLs6r3BPJoIh5m6U1p1l8rk8z1sULeYeDo5dMih76m3DXRPnwshEy_qK8-xqbzIYos8h3Ho2-G4qhizgAF4I-bNa-8rF6Z8NEM3bolDd6wG7JYblaKBtrySVgvYUDfGuMclgoqRJlkObJG2px0GoGcDi7cN7iqksvWbnOqC5aWZO7qqEhnDT96UrUyko17Vx0B3psl0TAsUcrHxMKge41niS-6Oy45zIZubymPeFC98Z4qGqLfnNk4X50toThxrThyKBpKk82pfANhmU9TfwBW004_Zp9r5iUQpH5w7txeCE3eRZ0cPpE78sK4hiMi_6XEwVQQlHWdXLJ3Aqs_3B8Ci2jHPKqHDbhFLgKp78ct29fybTrtkfEkwf3iHGFCjowQoHbi1IZ7yH5KGmVtri2M8huGL1BGTb7O6rBgzBrp37pm9o0MThmpsCoejBf6Wjjbeov4RsHCq1Xu2-AmyJf_H_oJnfynpn5QCz6TN1Vp6OfOADWPDvFd4ZGamir3g-HZ4GUjhvffmD67jp4vNyzTHjANK2hK9k4_sIeGGcCNShFvnXCI59H055nGlwOGbXduRIlvFM3qN6LctjLf6IzLr26zYzXJHzhW0DGwJv-uJKbWZ2MTXsFtKPnaK-5ZPSWZhIrbXFkvpNXl4bDNqsqmyZElNfHMSVi0nRg2AC6U5CqgsDvWIWXIi4DqHRw5Q1T8pN-yq-AlVPn1YUansqaR2jqGOja-MfexcSa58Hm53ote9tJuU4QjDD82N-i_p7tEvSUOdGsIYOWA8m1o0kJJ1WUrkEtzHlwnxF3IV2eyboZeP-Q3CE79aK6iUuxy3CU9RzkigIACpjLCBaJhmtC06terA6ThnbKTPNj4LXcOtT-qwvUpZ23XFMAdPXuLzNBVCV7Spelj0ERbB_VhwJ_WqX9FKlqkn0PtMbhYmH-gkfwBaNkQYIu9ggeMjWCTUysjlpV6yUwc87TKJSL9DsT_e_KiBU1PnPZgmg1w8Krsu3tHVj0rzWqoIJq0_scL7E4yifmyd3MLezl2eu8HCIgGDHl82GVFtrSYSGR_ThXjNOfo6GFYSIKnb8sOnX59JsUaPGjnfQaiYMSab9wVuDlVTMNSZXn4SyGKnwDA3zcAMnKdlUp55dWBGO63GlX3N-Vz_uOlnR.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LWx1bmEtMjAyNjA5MjJ8YXp1cmUifQ",
+          "id": "rs_074d89073f1a660e016b080a36285c81968bf96022b323007b",
+          "format": "azure-openai-responses-v1",
+          "index": 1
+        }
+      ],
+      "usage": {
+        "promptTokens": 2304,
+        "promptTokensDetails": {
+          "cachedTokens": 0
+        },
+        "completionTokens": 545,
+        "completionTokensDetails": {
+          "reasoningTokens": 181
+        },
+        "totalTokens": 2849,
+        "cost": 0,
+        "costDetails": {
+          "upstreamInferenceCost": 0.000560425
+        }
+      }
+    }
+  },
+  "request": {},
+  "response": {
+    "id": "gen-1795689012-UoEI0dXrlDF8LfFtmOxn",
+    "modelId": "openai/gpt-6-luna",
+    "headers": {
+      "access-control-allow-origin": "*",
+      "access-control-expose-headers": "WWW-Authenticate,PAYMENT-REQUIRED,Payment-Receipt,PAYMENT-RESPONSE,Location,X-Generation-Id,x-openrouter-error-origin,x-openrouter-error-tool,X-Provider-Name,request-id,x-openrouter-subscription-passthrough,anthropic-ratelimit-unified-status,Retry-After,cf-ray",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-ray": "a60837687921c4d9-WAW",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Thu, 26 Nov 2026 10:30:15 GMT",
+      "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+      "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-generation-id": "gen-1795689012-UoEI0dXrlDF8LfFtmOxn",
+      "x-openrouter-release": "api;6974da3e-2d30-4253-9b9d-763143ceef81"
+    },
+    "body": {
+      "id": "gen-1795689012-UoEI0dXrlDF8LfFtmOxn",
+      "model": "openai/gpt-6-luna",
+      "provider": "Azure",
+      "usage": {
+        "prompt_tokens": 2304,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2301,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "completion_tokens": 545,
+        "completion_tokens_details": {
+          "reasoning_tokens": 181,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        },
+        "total_tokens": 2849,
+        "cost": 0,
+        "cost_details": {
+          "upstream_inference_cost": 0.000560425,
+          "upstream_inference_prompt_cost": 0.000287925,
+          "upstream_inference_completions_cost": 0.0002725
+        },
+        "is_byok": true
+      },
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"deviceVisible\": true,\n  \"detectedDevice\": \"Smartfon z ekranem dotykowym\",\n  \"matchesDeclaredCategory\": \"UNCERTAIN\",\n  \"photoQuality\": \"SUFFICIENT\",\n  \"qualityIssues\": [],\n  \"observations\": [\n    {\n      \"area\": \"Ekran\",\n      \"finding\": \"Widoczne liczne pęknięcia i rozbita powierzchnia, szczególnie u góry i po lewej stronie. Na wyświetlaczu widać również duży czarny obszar oraz pionową zieloną linię.\",\n      \"severity\": \"SEVERE\"\n    },\n    {\n      \"area\": \"Obudowa\",\n      \"finding\": \"Widoczna przednia ramka i część boków; nie widać na nich wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Przyciski\",\n      \"finding\": \"Widoczne przyciski na lewym boku telefonu.\",\n      \"severity\": \"NONE\"\n    }\n  ],\n  \"summary\": \"Na zdjęciu widoczny jest smartfon ustawiony na podstawce, sfotografowany od przodu. Ekran jest mocno popękany i ma widoczne uszkodzenia obrazu. Kategoria urządzenia wydaje się zgodna ze zgłoszonym smartfonem, ale modelu nie można potwierdzić na podstawie zdjęcia.\",\n  \"signsOfUse\": \"CLEAR\",\n  \"resaleableAsNew\": \"NO\",\n  \"packagingOrAccessoriesVisible\": [\n    \"Podstawka\"\n  ]\n}",
+            "reasoning": "**Analyzing phone condition**\n\nI'm assessing the condition of a smartphone with significant screen damage, featuring a cracked and shattered display with a black bleed and green line. To ensure clarity, I’ll need a full front photo and might mention the quality of the image. The model is unclear, which means I'll categorize it as a generic test smartphone due to this uncertainty. I’ll note the visible buttons and casing while summarizing the situation concisely in a few sentences.",
+            "reasoning_details": [
+              {
+                "type": "reasoning.summary",
+                "summary": "**Analyzing phone condition**\n\nI'm assessing the condition of a smartphone with significant screen damage, featuring a cracked and shattered display with a black bleed and green line. To ensure clarity, I’ll need a full front photo and might mention the quality of the image. The model is unclear, which means I'll categorize it as a generic test smartphone due to this uncertainty. I’ll note the visible buttons and casing while summarizing the situation concisely in a few sentences.",
+                "format": "azure-openai-responses-v1",
+                "index": 0
+              },
+              {
+                "type": "reasoning.encrypted",
+                "data": "gAAAAABrCAo5QuPZkUeu4pAvlGNN0mcRbsso6LVDiKXEfCq9wlsa32LG8jc1yVni3QOo0t4Me6qRZPFq82UwY-ijDkEU1yxnyrKOzStbWTjTn_flkMzUTrJY2IqrdXPzMrNWLf_AlnU6kvmvi7hloJXVPUYYe1q8_NpQNNvtGMiiBlt4B96cJkyvWSUL5z3c9bsrojOUCUDGL3xgcJl-3Cw5cGIZduK7qiITGEN1VqrJ4Oc9Ls8xUQnCPJSTAUGtq921M6ohFEXDj6KBdgFUkCMHFz1k091Pyf94BoGYKbOnhfDWmtJV5q8G7-6XQVs8tsYQWfeK-p4XIafBZxQBRoUii8SAiGyET3V5ACNjjibGnr-7GxwSQ0ScMCG4YYmrLliy2eWrU03lTHXmtUocsOnowa_qfFnMt56B6RgIaeJOkKtz854lRQpqvFnoBtbzCd-iAhjDWTopTCiIYYnizDH9FDlsyixsqySf72QrVBQoD0yC7Y3FTyvj7AyFo9CPEq-59XupAIbWPzHFoBNl62qaTUbyUPAHw1Pt-1PdngsJaWJYQntnUMM2Cv4sIf6toXYZraJtYQQKgYjWxJ0g48wtYynZCLkgx5_XshiCKxgXON6SIclG2OmmS9VLzIgW9ooMvn3IYa6-eO-tQlJhBVlldARAdwgXaeY8HVRuQ7ttTjosRZKurF9FDtqv6dkKJ3VnJ9FFJmpu5GwWZ-31iMA_OrWY71sOqNXYWpF9aLIr8rT1QCGS6-t97QKO3DszsN_OL6gyy5V-jQa9n7o5R1GyZoS448CPzqIsv0zmGf0h0rJQztakhZpPj_eHk6H42hwJy6ecyNPABxZAgtbfDnqB3wvbEPS6W_BAoNE2L5rA1_Tdrjd56UE6h1RsQvm5O6nzcBMMl4fHhVRD8OlOm_fx3SRztDNezVxj_DMPM1n8aUk7vkrzCgPs9udakDsyepMWQZm27nv25P6Bgm1lwxh2n-OvkCTMqmpJznBQKPXZ8S8OvKxJcpIa-CDS4TQqjx8F9Fau3nRpu9MDJnnwvTQ0O0-hgy3vcwcRpdP8vkhuFAqxCCKFV9JRz5Iouwj1a7WOstWkGwqHchCFQUyOS2AEBDpv-IMlI6nhFYmGrAaM3J-ecsKeVTrwUHEXIat4tXd1wJN2OffqI-VhgIthIbs9s_zGeL0LCydw9IFdCeROE70TdOmWXcqEte_pCBIDz6LyI_kQs4BJn7PF-e4DyaonTurEevPt4-fRRCU0i7l96LY4gE1dyIhynZOzueLs4YcUgTdXEDWNWzJulNE9PJ00NulGpj1qGvi3SnYjInSWUO2opiSyvyJ3Fnj0QJeo_AIcwu2kiUkyrYKBRUcdqAOlpiuMXlxuApTGcWYSnhp6J0BbI8tpyRJPwOmhhPADPFGgPSCOq_ZLH37Pue4C0S_UOXpqzzbr4kGkuEJSgFYJl6EVKNheiByt_EgRmNhoFKrkRekU6mwHD-gN0aym-lqXEtZWTHtERFQ1nQ0rc_IT3Wf5Lmbs4Kwuqf9Nr4vwA8emzsrC6KqqbOF4QJIb1aBLGV5EnNtcpnJqPTJDBXsPgmCD9a1Cv3ow2cGLHLb_yZKs-XsM7OVsVOGmKjAd-tYtaDSyx4N1a_zLN85LM_0fM2B_XKweYMmUZaLjj8fKkovEG8lqHAaL2Z89Bv5iwr4a2e-PWi_JS-x03npfj_cABbJ2T7QhBP5NiNfzaknVtZAU1sydybPj6KdqRMkcVKEXTdJsFCcBg4Lz2y51n5VUecNyrVEPEr92kqbcnMtJpmJ-7oba2KOXvhDg_9AE7pNWw8kBOiBHDEdBtFYHOHhJfxTxpUTYOcOxjp8eb6tIKLhHQKkX06YSmVec-UEmTD_cZrCQTzEnhnWYxZ4guymBcS3EwdQUtAkD67MTR0_PTKdnea5NmxCajtfB-5fUlTWVaQb8z_-aprjXzw_pGeVXPIVGafJPk11Dre2xVTvp6Ila3h-X8kZvMMwPKzi1fvRFifMGcjLM6CXqD7-hlvBrFHDccjyRMfWc1UlKDunZf0eZeDCO5LxtIOc7ir76DjsN2usGVdECvkeXkmjmnfxAm4y2o3Y3zsgahNj-osxH5tT5rl-JxJztQEHixh4bdD2_F5TU8efzUDLUBeihj1p7nhN0eoXgPUdf3falfe76wzNl1hlZcymqRI1zoTJNbWaWCWvUX2P63XAq0qPUKpX1GaUXqzMmoWb8KIDVrwQ_x1OdwJXXNN-EJqpJsG0lFEBCLI0p_Hz1Srt50FiUPtf4UlDi37ROcrWrzM3smW0qlOV4Xj52bFPrdUY7s0lEQ2NX6k-Bkmsb_-2G4hg9JKeOAjiSCOI9s8SqmcvhseR6GOUaz4RKA-1AlrfS4kd62S-rJkJtREZrgeNMQVelNtqG2holov9LOmxV_KNtviaDRZqqfUSN_Dqt4bVahvqBiepRRumH0NC1Ym_nb4-Do2tW7-qkqXZtwIIWWPrKZfLXR3jZqd0q2j2_OknA82vdfymGyf0ukmTBk0sSHuBLtMXTEAG3qgX1yHYD31TpY--3NItT6p-Yk8g8WjECVDhyfTKLt3ID1u1_IR-vdg35VCcMDteZVSPZRCjBJNC-rP4pPjEdS1p2ZwzgSh_kghKyjCzBD7or5klCJXPhjJX7KTaQb-nrnS58H4pEyiCyeZooOXAWfLs6r3BPJoIh5m6U1p1l8rk8z1sULeYeDo5dMih76m3DXRPnwshEy_qK8-xqbzIYos8h3Ho2-G4qhizgAF4I-bNa-8rF6Z8NEM3bolDd6wG7JYblaKBtrySVgvYUDfGuMclgoqRJlkObJG2px0GoGcDi7cN7iqksvWbnOqC5aWZO7qqEhnDT96UrUyko17Vx0B3psl0TAsUcrHxMKge41niS-6Oy45zIZubymPeFC98Z4qGqLfnNk4X50toThxrThyKBpKk82pfANhmU9TfwBW004_Zp9r5iUQpH5w7txeCE3eRZ0cPpE78sK4hiMi_6XEwVQQlHWdXLJ3Aqs_3B8Ci2jHPKqHDbhFLgKp78ct29fybTrtkfEkwf3iHGFCjowQoHbi1IZ7yH5KGmVtri2M8huGL1BGTb7O6rBgzBrp37pm9o0MThmpsCoejBf6Wjjbeov4RsHCq1Xu2-AmyJf_H_oJnfynpn5QCz6TN1Vp6OfOADWPDvFd4ZGamir3g-HZ4GUjhvffmD67jp4vNyzTHjANK2hK9k4_sIeGGcCNShFvnXCI59H055nGlwOGbXduRIlvFM3qN6LctjLf6IzLr26zYzXJHzhW0DGwJv-uJKbWZ2MTXsFtKPnaK-5ZPSWZhIrbXFkvpNXl4bDNqsqmyZElNfHMSVi0nRg2AC6U5CqgsDvWIWXIi4DqHRw5Q1T8pN-yq-AlVPn1YUansqaR2jqGOja-MfexcSa58Hm53ote9tJuU4QjDD82N-i_p7tEvSUOdGsIYOWA8m1o0kJJ1WUrkEtzHlwnxF3IV2eyboZeP-Q3CE79aK6iUuxy3CU9RzkigIACpjLCBaJhmtC06terA6ThnbKTPNj4LXcOtT-qwvUpZ23XFMAdPXuLzNBVCV7Spelj0ERbB_VhwJ_WqX9FKlqkn0PtMbhYmH-gkfwBaNkQYIu9ggeMjWCTUysjlpV6yUwc87TKJSL9DsT_e_KiBU1PnPZgmg1w8Krsu3tHVj0rzWqoIJq0_scL7E4yifmyd3MLezl2eu8HCIgGDHl82GVFtrSYSGR_ThXjNOfo6GFYSIKnb8sOnX59JsUaPGjnfQaiYMSab9wVuDlVTMNSZXn4SyGKnwDA3zcAMnKdlUp55dWBGO63GlX3N-Vz_uOlnR.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LWx1bmEtMjAyNjA5MjJ8YXp1cmUifQ",
+                "id": "rs_074d89073f1a660e016b080a36285c81968bf96022b323007b",
+                "format": "azure-openai-responses-v1",
+                "index": 1
+              }
+            ],
+            "refusal": null
+          },
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "completed"
+        }
+      ],
+      "object": "chat.completion",
+      "created": 1795689012,
+      "system_fingerprint": null,
+      "service_tier": "default"
+    }
+  }
+}

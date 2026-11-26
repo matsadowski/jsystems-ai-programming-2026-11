@@ -1,0 +1,183 @@
+{
+  "content": [
+    {
+      "type": "reasoning",
+      "text": "**Assessing device condition**\n\nI'm examining the device's condition, and it seems like the severity of any damage is none, with ports appearing moderate. The finding \"Niewidoczne z tej perspektywy\" suggests there might be no damage at all. I’ll include the visible areas, noting that the corners can be seen. Accessories aren’t present in this frame, and the screen is lit. The model is labeled as testowy, but I can't identify it exactly. The device is visible.",
+      "providerMetadata": {
+        "openrouter": {
+          "reasoning_details": [
+            {
+              "type": "reasoning.summary",
+              "summary": "**Assessing device condition**\n\nI'm examining the device's condition, and it seems like the severity of any damage is none, with ports appearing moderate. The finding \"Niewidoczne z tej perspektywy\" suggests there might be no damage at all. I’ll include the visible areas, noting that the corners can be seen. Accessories aren’t present in this frame, and the screen is lit. The model is labeled as testowy, but I can't identify it exactly. The device is visible.",
+              "format": "azure-openai-responses-v1",
+              "index": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"deviceVisible\": true,\n  \"detectedDevice\": \"Laptop Lenovo ThinkPad.\",\n  \"matchesDeclaredCategory\": \"UNCERTAIN\",\n  \"photoQuality\": \"SUFFICIENT\",\n  \"qualityIssues\": [],\n  \"observations\": [\n    {\n      \"area\": \"Ekran\",\n      \"finding\": \"Ekran jest włączony i wyświetla obraz; nie widać pęknięć ani innych wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Obudowa\",\n      \"finding\": \"Obudowa wygląda na kompletną; nie widać wyraźnych pęknięć ani wgnieceń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Narożniki\",\n      \"finding\": \"Widoczne narożniki nie wykazują wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Porty\",\n      \"finding\": \"Porty nie są widoczne z tej perspektywy.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Klawiatura i przyciski\",\n      \"finding\": \"Klawiatura i przyciski wyglądają na kompletne; nie widać wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Akcesoria\",\n      \"finding\": \"Nie widać akcesoriów.\",\n      \"severity\": \"NONE\"\n    }\n  ],\n  \"summary\": \"Na zdjęciu widoczny jest laptop Lenovo ThinkPad z włączonym ekranem. Nie widać wyraźnych uszkodzeń ekranu, obudowy ani klawiatury; porty nie są pokazane. Dokładnego modelu nie można potwierdzić na podstawie zdjęcia.\",\n  \"describedDefectVisible\": \"UNCERTAIN\",\n  \"damage\": [],\n  \"likelyCauses\": []\n}"
+    }
+  ],
+  "finishReason": {
+    "unified": "stop",
+    "raw": "stop"
+  },
+  "usage": {
+    "inputTokens": {
+      "total": 2031,
+      "noCache": 2031,
+      "cacheRead": 0,
+      "cacheWrite": 2028
+    },
+    "outputTokens": {
+      "total": 708,
+      "text": 446,
+      "reasoning": 262
+    },
+    "raw": {
+      "prompt_tokens": 2031,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2028,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "completion_tokens": 708,
+      "completion_tokens_details": {
+        "reasoning_tokens": 262,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      },
+      "total_tokens": 2739,
+      "cost": 0,
+      "cost_details": {
+        "upstream_inference_cost": 0.0006078,
+        "upstream_inference_prompt_cost": 0.0002538,
+        "upstream_inference_completions_cost": 0.000354
+      },
+      "is_byok": true
+    }
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openrouter": {
+      "provider": "Azure",
+      "reasoning_details": [
+        {
+          "type": "reasoning.summary",
+          "summary": "**Assessing device condition**\n\nI'm examining the device's condition, and it seems like the severity of any damage is none, with ports appearing moderate. The finding \"Niewidoczne z tej perspektywy\" suggests there might be no damage at all. I’ll include the visible areas, noting that the corners can be seen. Accessories aren’t present in this frame, and the screen is lit. The model is labeled as testowy, but I can't identify it exactly. The device is visible.",
+          "format": "azure-openai-responses-v1",
+          "index": 0
+        },
+        {
+          "type": "reasoning.encrypted",
+          "data": "gAAAAABrCApGmxiKENL2NXnS82ze8CEEXqmgvTWk0oE4x-OS_BRA6gUriNhfPB0vDMyGAJG61Sic7-AdJ9c0W6sgYE3PzHiogY5-9n29Q1s7LBQgR4uhIkK80iI22nPqbFoq7FSMRm5shwckWJn6hy0Y7zR1pMAEKhH05-2P-Xz1gA1Png8zgzDmxTO7Mw0ytvDmIxxP7Ml0nSQS5qC2aUZWnjBvHLUHZvwIf1J7mrKN6tVvmEywKYIm-xhTPq1V6bDy2aC-f9gb6arQYBqRmpO7jk_LKFVomO9rSZf2zE4Wvulu58XZjquBWHHGOM-qStf6_uUspOhkAQ-Cb6y-ZmwszF7bNfh8oy4-fAy1-v4swGqkFI2fIy83Ser0vNohJKLg1FPBOEV-vXGpVYI28tJVZwzt-fFXsGxD5KIJctvb0O-YrdJ5O84TAPx8ljDk2xJ-nTw1VU6bVeeGcRk9T7t_PIGaNytuqbITbiuZA3eP29a2_lHY6MdXGrlNOuPfqfuDa30-BujtiD1db6oXBbaw4khxKz_r4Ikb1pKegS-m420XUkPhzce4UlQeQiieh_Duapg8OrWWxi6EeoqTeKhrBDNJ49k5_JgKmFem0ul7I-U8eG3b60AUmtbxvpQUdxsvK90KIwnMn2kpNk1sVD-dJpfXOCPuvsWiolP5AUa0LIb6OUI-x5v3kb74Mpejx98H1NueXxpSUcZQYe4QSfwK5uAka_XBwzFt6zmj5Y1n1N2Fmw3o7h_ELufn-TcE37hiPQ5Is34kYg2sW0o-xu11Wsh50BH1POl28ravcdFetcv9S2ANaTpvQCnExAPlBDoLIzP4-h92Z7QXaf1_OrCYMOjwAOD3tK755K6Q4T1gS9G7N4koDKrKxpn2v_Oqe3V8agJnTS29NLRkxaY-78zeJKKYMosG4F9NqwgifXxD9Tcis-qlNa7DjRtZ2itfSqKOtpQJeirbzzIg1MbywTeHc1Je671ZTpfEzlKIphz5QxX4dIKvdrqP8hqSMAYk2mAhreymodD-PA06dLSLMEKVscuvrhgskN3zH4XWmZzSv7Nrx5dbYwv-BENOWl7wkqxcAfGv6tP1w2d3T0VTwlmcJUueGWXemtuhi2WqEs7dfbWxPvjDZqd5vRRh-l-UefWURsidr2PWZOhwxS4ptXU9-RoV-X-7FoF97kIMqFJhgM3pal63ar78oNMjzmUIbPwFbSuthL_K0lp-cxy3kbj65nZJQunbRBRNnOZ801AmI2dKIxvtQQC7_M9C7bZucRbcctsQsRS7WOxJHN0c-P-k63YNlYVg7WH_VWY4Sz5V0ijkhEst0j4jFDJspwDKJbsI73mKsEE-Jxu8e7XYbjcgr-MW7KuXliL02AkByHOYRqTccHpyelZkUb7i1qyYeUo9qVpiJ38eIDEgZXFil7t59rMNMuuh7gEBLT8ymas-IaBSuiOqUIaJgDt2hklcn3JpJNc0KPjOn6XYxX8yOzEqiPQDekJ_onZIk4sBoTkSiJSXYgEczjMT9dbt32IrJ7iZlRakwsm50oynKLwM5FIchnYsO33b1Wpjz2pFWr1d-YUT883Nic9K47X4THqI_EuQe1VFeJZnGJ4l12iaqE8hTDNGVjjTqFmKXjZ2nzjfKaD519W42cFWhHo-ahFvFi0zNDeWQWAyhZ0ZJALqN2Q7kGTWGMj_NfF3f-UNgrC5e6C65YfdIVBs6DTFINjPZkdjGTeZovMyJaRd4vUmxNb1c5L9gUV1v5_C1GDBSMPsNcHiwQzsklugTqLJ-UCmtIyRZJ8aHVFi7eGIMFh0xmQEmmuo8htzu9q--Vkm6TjtmtUhRb7vsl7oxMNpjBn-CNFymcVaRX_1tCWBjdZXUghbn2SvInBztbInLFkmonatpn9VFBaz-7PClcKz-Duh1rNjXHIMbcNKJSewsAKRFfddxD9TLpDXfMEP8njmght3lT7J7wyIeUFo-n9nAEglVWJVNB_rwUjk8eH3C98Ntfrg-0YpCrCT_59DepcPT_S2OcXLaqoukzSWbTt_DzaZWL2bjjW3rgXXq_PScnNO0HdAUxbEYQNdRkn3-m0tXedVIAdIOPvwLp09fVfXzKS00QJZY_fqI9ywBOZDjpi4tfe26h0AW04f7S7lHGFMWQmnwSPGmAPqSrMaqv2BxhjKyYi2DzjlmTIn_yLvwsVJkT6rxsSFHoxVyapevMuq278r5z3BrfWtHL0uTUfWep61lsbhMgFZpfgWnq8rtdNVzaZQWdGdDa1gWNrN0UVc3JDZGMMmOWe9_1JM9O940qfaHuLfg2_Wj87pdbb42LLOeBsBS4722EqV_pZdiWvLu_Enjdw41YZR0grf9OABxIk7_FBJKpOqFRxADVFdI-X4ct6GTMtCisF8jxvA5wtzpgcALGG3FKtcbR-FcT7B77SMrccR5LzTeb9nVuaLsyRqdHMYiI1cnzbzS_pQ0MNEwAN0RcGzlcY1uSY3V3FXL6TgWH5ZkRuWbLGqWEyqsT5Rt_oEvXdOThNLZbs0yoLsBMsNL5QJXfGdfvXLf2jJ7ZjNVHQrYPhItvaUUbs0fD4iHy_ubAiV_jIAuPwP9k2Etzh7TNcdXerP3BZeZBy9XQnQFakrMzSXVPghHzYbXefQ-fOCBnJ3zCRvj8GB3jfX_qMZN_gvRBDjcfCci0N3jm2UJLxDBFZ5vzFqA8g9ug076za_JJ8KCTrQdf0ncWXhCMApBMDUMTro8F2xFNOtGRvip3OF9cRA-aoLkn4lWPQyDdB004Oa3-8njnnkrqUQQZrWEjxqBCJ6iRDYvBtlgFsjKANtvt-gOgq3E80RhE8jaAyyV_LsqwE2P03ZpczGql7nvpFD1pHLdqlskyKcGeKTRb5cCdzLfNkpbYyrAVs-W5T7Ui1vLxlPJY2A0OrXoMlx-OZX5qP-y3IIBtHzcQoLAQ8MczT8h3rwy2P_J_42WEVeHConYPSWqG4J_fDydre7j4hTq_ZzYnfWDdZRfigHFs3_j_tBZCSD7oPYv4RmeI_fzkJcd4jiSdhbL8jtH8fcBD3dJy0Go6vVq3nzMpKv-3aW1kcMBmM6ihmr6NG8R4NdVZZQDt9mYX453AdL4Ua5q3I5QPP-RCzNLD1fl_Tnpbl96cL-etWihd7NKTlp8AyxqHLvwQfYp2i0VekZjk_CnJCH2B_Y5U6ExnL1byGT5qUVBc6s02NiiN7a9AEOSKRDFvrWbWFQ_v6pTtAbloVCDAgJ3QZEmhijwlSHfXYvpYqkCwCKGF5i2x27dyBlR3ltUfK-R7Pbpx2JbLLaUsYyZXJlrXSV2ph0YR4woHgZgSMRTMVNG0AdW81ViM-icLSWuhXYQHeoegsdL4Bcj4gvaVkFDGkpA1lAXHk663msVfU8LZfh5_AsZ8o2SttZTQyI2jVfzigCFJz24ta9PV_3MiqbWwM1ageSy3MixorpywR-43WTCmn-OXxHZpsyH6gWSazCWOjMsK7egs8DIxoPqHke_zilqqkdsGrIEwibIHeJkukWP94afNDvsu2OUHrZy8RjjD_DD20LiAjQ2ioaeVE5sT1aUyr9fpT280hQyGr0XNOuIJF1VZMDfFBFrjZON_bGQQH4iMVHBhHxCggeJ8Vzp9JYppB-l-aUaZxr6z8WH1SzV3QXjaWBdUMLubJLqQs82LEu-t4_X1jKkStIxFF5wK5GtJbb_ZyfBgmKIhRKnXH94qIggbxrBlNlMSvYzic1sFVwbHEr1GvWfN0S7xpKnjvhtsbQ6RhhmhIE9PALxbFpKRtyVRuNRKoRlXVs1IJR7Q-JdBiPOz1Ye5scm3otKEPvIwI4j6uyr6b4VKce_BgTRn90-_5LU87VXs7CRTXH1T1KDx6oO6T6y1BIfBqEpe9QqWTQRn6cGHoAZ_H_4-fe0U1fiPt836r6EOz__STpW6mX3NsmF22U1Yh32lM-n2vap9yjYhqPUc7nFb1I6QDqCfAS-Jz_4k9Q2XmBKSzJyB0t41e6aqMCxaccPnUz0xI9m19jwOgs7Wd4cCpQe6qrpbLuf3LpE3nh98FN6jh96JN6QsWEaQkcx5kRrytqeYO78BjFWq8-dje4EK9FAJmgcg0TsjZIY2LSMa1hvDEEnGhgtqgsnBzfWCsjvUtn_S3uTyUXJCZc5_0e-a9lFeY4cX6ZmDfjV7hTM1yEMTK8uiuwle0uVJA6mwOGUTk7zqekkOnoYBOP3Ar5sh8KcBYDBWWRaGBv-taiGsp-g2JbwmFI0yWitrenCdr2OM0a-dWxFYvJidvS8Ou6zphqfvn5NKvz4zxjr2a_kZT-E091P8kjkh1StUUjHguBxFscynlrazxgsYSf0mhaVrxQ_uCyAEkOB6_AnIfxpXnejhr3gPUJdqlQ0_6FXYFreyisYZZfOnN-baa68B9Kxp1R-hfnDKvB07zrh9uQXbzlAvnfNTAsftR0kzaiIEvPLhuj1dDiZGbcFNaHKPiaFig4Hnk7xJL_rZG32P22k8x4SJrGuNtRU5g9CbHnZB_Xp4uxVctrfMlIfDlMGBXBLw_ksmVPRj5b-nga4pqoZTMcK3qv6WvfJiL34iPh9dxbGzs0RX-c3HiZ19JbwK60KbpA5zKot-g_9cVHmMXPsg_cV2I-31dSwH_qiqJ6A66c-SgJgmLiMq5zpBr3TH_RdB1lRlxbvWTI8ck_jlHpL41akM7yS2plk2MwTWksxZgA-9FJnCmTida4rKu5-aLR-V4I3IWfyqAsO_kHi8gK4kXkEirmd-88jE6gT41PROq8brIn4yHym9C6bNVipQPtcFRA37I5-DLh7d7Fe7PPkucvk77FIVwbUCpSHZxSP5wlvefU_LNOahjZI1HB1I_LgX2cEz20zPrM.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LWx1bmEtMjAyNjA5MjJ8YXp1cmUifQ",
+          "id": "rs_092312078dc3a2b0016b080a41e59081908a87d000242e46df",
+          "format": "azure-openai-responses-v1",
+          "index": 1
+        }
+      ],
+      "usage": {
+        "promptTokens": 2031,
+        "promptTokensDetails": {
+          "cachedTokens": 0
+        },
+        "completionTokens": 708,
+        "completionTokensDetails": {
+          "reasoningTokens": 262
+        },
+        "totalTokens": 2739,
+        "cost": 0,
+        "costDetails": {
+          "upstreamInferenceCost": 0.0006078
+        }
+      }
+    }
+  },
+  "request": {},
+  "response": {
+    "id": "gen-1795689024-WVDpWI7DS7LvZFpWxBJ1",
+    "modelId": "openai/gpt-6-luna",
+    "headers": {
+      "access-control-allow-origin": "*",
+      "access-control-expose-headers": "WWW-Authenticate,PAYMENT-REQUIRED,Payment-Receipt,PAYMENT-RESPONSE,Location,X-Generation-Id,x-openrouter-error-origin,x-openrouter-error-tool,X-Provider-Name,request-id,x-openrouter-subscription-passthrough,anthropic-ratelimit-unified-status,Retry-After,cf-ray",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-ray": "a60837affc9dd082-WAW",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Thu, 26 Nov 2026 10:30:27 GMT",
+      "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+      "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-generation-id": "gen-1795689024-WVDpWI7DS7LvZFpWxBJ1",
+      "x-openrouter-release": "api;6974da3e-2d30-4253-9b9d-763143ceef81"
+    },
+    "body": {
+      "id": "gen-1795689024-WVDpWI7DS7LvZFpWxBJ1",
+      "model": "openai/gpt-6-luna",
+      "provider": "Azure",
+      "usage": {
+        "prompt_tokens": 2031,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2028,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "completion_tokens": 708,
+        "completion_tokens_details": {
+          "reasoning_tokens": 262,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        },
+        "total_tokens": 2739,
+        "cost": 0,
+        "cost_details": {
+          "upstream_inference_cost": 0.0006078,
+          "upstream_inference_prompt_cost": 0.0002538,
+          "upstream_inference_completions_cost": 0.000354
+        },
+        "is_byok": true
+      },
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"deviceVisible\": true,\n  \"detectedDevice\": \"Laptop Lenovo ThinkPad.\",\n  \"matchesDeclaredCategory\": \"UNCERTAIN\",\n  \"photoQuality\": \"SUFFICIENT\",\n  \"qualityIssues\": [],\n  \"observations\": [\n    {\n      \"area\": \"Ekran\",\n      \"finding\": \"Ekran jest włączony i wyświetla obraz; nie widać pęknięć ani innych wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Obudowa\",\n      \"finding\": \"Obudowa wygląda na kompletną; nie widać wyraźnych pęknięć ani wgnieceń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Narożniki\",\n      \"finding\": \"Widoczne narożniki nie wykazują wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Porty\",\n      \"finding\": \"Porty nie są widoczne z tej perspektywy.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Klawiatura i przyciski\",\n      \"finding\": \"Klawiatura i przyciski wyglądają na kompletne; nie widać wyraźnych uszkodzeń.\",\n      \"severity\": \"NONE\"\n    },\n    {\n      \"area\": \"Akcesoria\",\n      \"finding\": \"Nie widać akcesoriów.\",\n      \"severity\": \"NONE\"\n    }\n  ],\n  \"summary\": \"Na zdjęciu widoczny jest laptop Lenovo ThinkPad z włączonym ekranem. Nie widać wyraźnych uszkodzeń ekranu, obudowy ani klawiatury; porty nie są pokazane. Dokładnego modelu nie można potwierdzić na podstawie zdjęcia.\",\n  \"describedDefectVisible\": \"UNCERTAIN\",\n  \"damage\": [],\n  \"likelyCauses\": []\n}",
+            "reasoning": "**Assessing device condition**\n\nI'm examining the device's condition, and it seems like the severity of any damage is none, with ports appearing moderate. The finding \"Niewidoczne z tej perspektywy\" suggests there might be no damage at all. I’ll include the visible areas, noting that the corners can be seen. Accessories aren’t present in this frame, and the screen is lit. The model is labeled as testowy, but I can't identify it exactly. The device is visible.",
+            "reasoning_details": [
+              {
+                "type": "reasoning.summary",
+                "summary": "**Assessing device condition**\n\nI'm examining the device's condition, and it seems like the severity of any damage is none, with ports appearing moderate. The finding \"Niewidoczne z tej perspektywy\" suggests there might be no damage at all. I’ll include the visible areas, noting that the corners can be seen. Accessories aren’t present in this frame, and the screen is lit. The model is labeled as testowy, but I can't identify it exactly. The device is visible.",
+                "format": "azure-openai-responses-v1",
+                "index": 0
+              },
+              {
+                "type": "reasoning.encrypted",
+                "data": "gAAAAABrCApGmxiKENL2NXnS82ze8CEEXqmgvTWk0oE4x-OS_BRA6gUriNhfPB0vDMyGAJG61Sic7-AdJ9c0W6sgYE3PzHiogY5-9n29Q1s7LBQgR4uhIkK80iI22nPqbFoq7FSMRm5shwckWJn6hy0Y7zR1pMAEKhH05-2P-Xz1gA1Png8zgzDmxTO7Mw0ytvDmIxxP7Ml0nSQS5qC2aUZWnjBvHLUHZvwIf1J7mrKN6tVvmEywKYIm-xhTPq1V6bDy2aC-f9gb6arQYBqRmpO7jk_LKFVomO9rSZf2zE4Wvulu58XZjquBWHHGOM-qStf6_uUspOhkAQ-Cb6y-ZmwszF7bNfh8oy4-fAy1-v4swGqkFI2fIy83Ser0vNohJKLg1FPBOEV-vXGpVYI28tJVZwzt-fFXsGxD5KIJctvb0O-YrdJ5O84TAPx8ljDk2xJ-nTw1VU6bVeeGcRk9T7t_PIGaNytuqbITbiuZA3eP29a2_lHY6MdXGrlNOuPfqfuDa30-BujtiD1db6oXBbaw4khxKz_r4Ikb1pKegS-m420XUkPhzce4UlQeQiieh_Duapg8OrWWxi6EeoqTeKhrBDNJ49k5_JgKmFem0ul7I-U8eG3b60AUmtbxvpQUdxsvK90KIwnMn2kpNk1sVD-dJpfXOCPuvsWiolP5AUa0LIb6OUI-x5v3kb74Mpejx98H1NueXxpSUcZQYe4QSfwK5uAka_XBwzFt6zmj5Y1n1N2Fmw3o7h_ELufn-TcE37hiPQ5Is34kYg2sW0o-xu11Wsh50BH1POl28ravcdFetcv9S2ANaTpvQCnExAPlBDoLIzP4-h92Z7QXaf1_OrCYMOjwAOD3tK755K6Q4T1gS9G7N4koDKrKxpn2v_Oqe3V8agJnTS29NLRkxaY-78zeJKKYMosG4F9NqwgifXxD9Tcis-qlNa7DjRtZ2itfSqKOtpQJeirbzzIg1MbywTeHc1Je671ZTpfEzlKIphz5QxX4dIKvdrqP8hqSMAYk2mAhreymodD-PA06dLSLMEKVscuvrhgskN3zH4XWmZzSv7Nrx5dbYwv-BENOWl7wkqxcAfGv6tP1w2d3T0VTwlmcJUueGWXemtuhi2WqEs7dfbWxPvjDZqd5vRRh-l-UefWURsidr2PWZOhwxS4ptXU9-RoV-X-7FoF97kIMqFJhgM3pal63ar78oNMjzmUIbPwFbSuthL_K0lp-cxy3kbj65nZJQunbRBRNnOZ801AmI2dKIxvtQQC7_M9C7bZucRbcctsQsRS7WOxJHN0c-P-k63YNlYVg7WH_VWY4Sz5V0ijkhEst0j4jFDJspwDKJbsI73mKsEE-Jxu8e7XYbjcgr-MW7KuXliL02AkByHOYRqTccHpyelZkUb7i1qyYeUo9qVpiJ38eIDEgZXFil7t59rMNMuuh7gEBLT8ymas-IaBSuiOqUIaJgDt2hklcn3JpJNc0KPjOn6XYxX8yOzEqiPQDekJ_onZIk4sBoTkSiJSXYgEczjMT9dbt32IrJ7iZlRakwsm50oynKLwM5FIchnYsO33b1Wpjz2pFWr1d-YUT883Nic9K47X4THqI_EuQe1VFeJZnGJ4l12iaqE8hTDNGVjjTqFmKXjZ2nzjfKaD519W42cFWhHo-ahFvFi0zNDeWQWAyhZ0ZJALqN2Q7kGTWGMj_NfF3f-UNgrC5e6C65YfdIVBs6DTFINjPZkdjGTeZovMyJaRd4vUmxNb1c5L9gUV1v5_C1GDBSMPsNcHiwQzsklugTqLJ-UCmtIyRZJ8aHVFi7eGIMFh0xmQEmmuo8htzu9q--Vkm6TjtmtUhRb7vsl7oxMNpjBn-CNFymcVaRX_1tCWBjdZXUghbn2SvInBztbInLFkmonatpn9VFBaz-7PClcKz-Duh1rNjXHIMbcNKJSewsAKRFfddxD9TLpDXfMEP8njmght3lT7J7wyIeUFo-n9nAEglVWJVNB_rwUjk8eH3C98Ntfrg-0YpCrCT_59DepcPT_S2OcXLaqoukzSWbTt_DzaZWL2bjjW3rgXXq_PScnNO0HdAUxbEYQNdRkn3-m0tXedVIAdIOPvwLp09fVfXzKS00QJZY_fqI9ywBOZDjpi4tfe26h0AW04f7S7lHGFMWQmnwSPGmAPqSrMaqv2BxhjKyYi2DzjlmTIn_yLvwsVJkT6rxsSFHoxVyapevMuq278r5z3BrfWtHL0uTUfWep61lsbhMgFZpfgWnq8rtdNVzaZQWdGdDa1gWNrN0UVc3JDZGMMmOWe9_1JM9O940qfaHuLfg2_Wj87pdbb42LLOeBsBS4722EqV_pZdiWvLu_Enjdw41YZR0grf9OABxIk7_FBJKpOqFRxADVFdI-X4ct6GTMtCisF8jxvA5wtzpgcALGG3FKtcbR-FcT7B77SMrccR5LzTeb9nVuaLsyRqdHMYiI1cnzbzS_pQ0MNEwAN0RcGzlcY1uSY3V3FXL6TgWH5ZkRuWbLGqWEyqsT5Rt_oEvXdOThNLZbs0yoLsBMsNL5QJXfGdfvXLf2jJ7ZjNVHQrYPhItvaUUbs0fD4iHy_ubAiV_jIAuPwP9k2Etzh7TNcdXerP3BZeZBy9XQnQFakrMzSXVPghHzYbXefQ-fOCBnJ3zCRvj8GB3jfX_qMZN_gvRBDjcfCci0N3jm2UJLxDBFZ5vzFqA8g9ug076za_JJ8KCTrQdf0ncWXhCMApBMDUMTro8F2xFNOtGRvip3OF9cRA-aoLkn4lWPQyDdB004Oa3-8njnnkrqUQQZrWEjxqBCJ6iRDYvBtlgFsjKANtvt-gOgq3E80RhE8jaAyyV_LsqwE2P03ZpczGql7nvpFD1pHLdqlskyKcGeKTRb5cCdzLfNkpbYyrAVs-W5T7Ui1vLxlPJY2A0OrXoMlx-OZX5qP-y3IIBtHzcQoLAQ8MczT8h3rwy2P_J_42WEVeHConYPSWqG4J_fDydre7j4hTq_ZzYnfWDdZRfigHFs3_j_tBZCSD7oPYv4RmeI_fzkJcd4jiSdhbL8jtH8fcBD3dJy0Go6vVq3nzMpKv-3aW1kcMBmM6ihmr6NG8R4NdVZZQDt9mYX453AdL4Ua5q3I5QPP-RCzNLD1fl_Tnpbl96cL-etWihd7NKTlp8AyxqHLvwQfYp2i0VekZjk_CnJCH2B_Y5U6ExnL1byGT5qUVBc6s02NiiN7a9AEOSKRDFvrWbWFQ_v6pTtAbloVCDAgJ3QZEmhijwlSHfXYvpYqkCwCKGF5i2x27dyBlR3ltUfK-R7Pbpx2JbLLaUsYyZXJlrXSV2ph0YR4woHgZgSMRTMVNG0AdW81ViM-icLSWuhXYQHeoegsdL4Bcj4gvaVkFDGkpA1lAXHk663msVfU8LZfh5_AsZ8o2SttZTQyI2jVfzigCFJz24ta9PV_3MiqbWwM1ageSy3MixorpywR-43WTCmn-OXxHZpsyH6gWSazCWOjMsK7egs8DIxoPqHke_zilqqkdsGrIEwibIHeJkukWP94afNDvsu2OUHrZy8RjjD_DD20LiAjQ2ioaeVE5sT1aUyr9fpT280hQyGr0XNOuIJF1VZMDfFBFrjZON_bGQQH4iMVHBhHxCggeJ8Vzp9JYppB-l-aUaZxr6z8WH1SzV3QXjaWBdUMLubJLqQs82LEu-t4_X1jKkStIxFF5wK5GtJbb_ZyfBgmKIhRKnXH94qIggbxrBlNlMSvYzic1sFVwbHEr1GvWfN0S7xpKnjvhtsbQ6RhhmhIE9PALxbFpKRtyVRuNRKoRlXVs1IJR7Q-JdBiPOz1Ye5scm3otKEPvIwI4j6uyr6b4VKce_BgTRn90-_5LU87VXs7CRTXH1T1KDx6oO6T6y1BIfBqEpe9QqWTQRn6cGHoAZ_H_4-fe0U1fiPt836r6EOz__STpW6mX3NsmF22U1Yh32lM-n2vap9yjYhqPUc7nFb1I6QDqCfAS-Jz_4k9Q2XmBKSzJyB0t41e6aqMCxaccPnUz0xI9m19jwOgs7Wd4cCpQe6qrpbLuf3LpE3nh98FN6jh96JN6QsWEaQkcx5kRrytqeYO78BjFWq8-dje4EK9FAJmgcg0TsjZIY2LSMa1hvDEEnGhgtqgsnBzfWCsjvUtn_S3uTyUXJCZc5_0e-a9lFeY4cX6ZmDfjV7hTM1yEMTK8uiuwle0uVJA6mwOGUTk7zqekkOnoYBOP3Ar5sh8KcBYDBWWRaGBv-taiGsp-g2JbwmFI0yWitrenCdr2OM0a-dWxFYvJidvS8Ou6zphqfvn5NKvz4zxjr2a_kZT-E091P8kjkh1StUUjHguBxFscynlrazxgsYSf0mhaVrxQ_uCyAEkOB6_AnIfxpXnejhr3gPUJdqlQ0_6FXYFreyisYZZfOnN-baa68B9Kxp1R-hfnDKvB07zrh9uQXbzlAvnfNTAsftR0kzaiIEvPLhuj1dDiZGbcFNaHKPiaFig4Hnk7xJL_rZG32P22k8x4SJrGuNtRU5g9CbHnZB_Xp4uxVctrfMlIfDlMGBXBLw_ksmVPRj5b-nga4pqoZTMcK3qv6WvfJiL34iPh9dxbGzs0RX-c3HiZ19JbwK60KbpA5zKot-g_9cVHmMXPsg_cV2I-31dSwH_qiqJ6A66c-SgJgmLiMq5zpBr3TH_RdB1lRlxbvWTI8ck_jlHpL41akM7yS2plk2MwTWksxZgA-9FJnCmTida4rKu5-aLR-V4I3IWfyqAsO_kHi8gK4kXkEirmd-88jE6gT41PROq8brIn4yHym9C6bNVipQPtcFRA37I5-DLh7d7Fe7PPkucvk77FIVwbUCpSHZxSP5wlvefU_LNOahjZI1HB1I_LgX2cEz20zPrM.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LWx1bmEtMjAyNjA5MjJ8YXp1cmUifQ",
+                "id": "rs_092312078dc3a2b0016b080a41e59081908a87d000242e46df",
+                "format": "azure-openai-responses-v1",
+                "index": 1
+              }
+            ],
+            "refusal": null
+          },
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "completed"
+        }
+      ],
+      "object": "chat.completion",
+      "created": 1795689024,
+      "system_fingerprint": null,
+      "service_tier": "default"
+    }
+  }
+}
