@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T11:06:43.700Z",
+  "target": "https://openrouter.ai/api/alpha/decisions",
+  "request": {
+    "step": "luna",
+    "case": "luna-complaint-laptop-2",
+    "caseType": "COMPLAINT",
+    "category": "LAPTOP",
+    "imageFile": "laptop-2.webp",
+    "questionsVersion": "luna-questions@1"
+  },
+  "packages": {
+    "ai": "7.0.183",
+    "@openrouter/ai-sdk-provider": "3.1.0"
+  }
+}
