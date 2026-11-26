@@ -55,9 +55,10 @@ export function decisionLabel(caseType: CaseType, value: DecisionValue): LabelAn
   return entry;
 }
 
+/** ADR 003 §3.2 `DecisionPathLabel`. Shadow results are never shown. */
 export const DECISION_PATH_LABELS: Record<DecisionPath, string> = {
-  RULES: "Decyzja z regulaminu (termin)",
-  FAST: "Ocena automatyczna",
-  LLM: "Analiza AI",
-  LLM_ESCALATED: "Analiza AI (po wstępnej ocenie)",
+  RULES: "Reguła terminu",
+  FAST: "Szybka ocena automatyczna",
+  LLM: "Pełna analiza AI",
+  LLM_ESCALATED: "Pełna analiza AI (niepewna ocena wstępna)",
 };
