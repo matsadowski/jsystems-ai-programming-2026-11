@@ -1,6 +1,9 @@
 // Luna question sets and Polish display labels (ADR 004 §4.1). Pure.
 import { CATEGORY_LABELS, type CaseType, type DeviceCategory } from "@/lib/shared";
 
+/** Employee-entered model name, made safe to embed inside a quoted instruction span. */
+const quotedSafe = (text: string): string => text.replace(/[\r\n]+/g, " ").replace(/["<]/g, "'").trim();
+
 export const QUESTIONS_VERSION = "luna-questions@1";
 
 /** Decisions API question; T11's client adapts this shape after a real capture. */
@@ -24,7 +27,7 @@ export function buildQuestions(caseType: CaseType, category: DeviceCategory, mod
     q({
       key: "device_matches",
       type: "noul",
-      instructions: `The photo shows a ${CATEGORY_LABELS[category]} consistent with the model "${model}".`,
+      instructions: `The photo shows a ${CATEGORY_LABELS[category]} consistent with the model "${quotedSafe(model)}".`,
       criteria: {
         true: "the declared kind of device is clearly shown",
         false: "a different device, no device, or not identifiable",
@@ -95,7 +98,7 @@ export function buildStateText(input: StateTextInput): string {
   const lines = [
     `Case type: ${input.caseType}`,
     `Device category: ${CATEGORY_LABELS[input.category]}`,
-    `Model: ${input.model}`,
+    `Model: ${quotedSafe(input.model)}`,
   ];
   if (input.caseType === "COMPLAINT") {
     lines.push(

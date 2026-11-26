@@ -138,6 +138,23 @@ describe("POST /api/cases/{caseId}/decision", () => {
     expect(body.firstMessage.parts[0].text).toContain("Uzasadnienie");
   });
 
+  it("passes the create request abort signal down to the vision port", async () => {
+    const { deps } = testDeps();
+    deps.config.decisionMode = "llm_only";
+    let observed: boolean | undefined;
+    deps.analyzeImage = async (args) => {
+      observed = args.signal?.aborted;
+      throw new Error("stop");
+    };
+    setCaseDepsForTests(deps);
+    const today = new Date().toISOString().slice(0, 10);
+    const base = createRequest({ purchaseDate: today, category: "LAPTOP" });
+    const ctl = new AbortController();
+    ctl.abort();
+    await createCase(new Request(base, { signal: ctl.signal }));
+    expect(observed).toBe(true);
+  });
+
   it("passes the request abort signal down to the decision port", async () => {
     const { deps } = testDeps();
     deps.config.decisionMode = "llm_only";
