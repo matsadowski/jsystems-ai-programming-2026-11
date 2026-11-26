@@ -29,7 +29,16 @@ function parse(raw: unknown): Parsed | "refusal" | null {
     const certainty = confidence ?? best[1];
     if (raw.type === "choice") {
       if (typeof raw.choice !== "string") return null;
-      return { type: "choice", value: raw.choice, certainty, probabilities: probs.probabilities };
+      // Fail closed: the reported certainty belongs to the most probable option, so a choice that is
+      // not (tied for) the arg-max has no trustworthy certainty.
+      const chosen = (raw.probabilities as Record<string, unknown>)[raw.choice];
+      const isArgMax = isNum(chosen) && chosen >= best[1];
+      return {
+        type: "choice",
+        value: raw.choice,
+        certainty: isArgMax ? certainty : null,
+        probabilities: probs.probabilities,
+      };
     }
     if (!isNum(raw.score)) return null;
     return { type: "score", value: Number(best[0]), certainty, probabilities: probs.probabilities };

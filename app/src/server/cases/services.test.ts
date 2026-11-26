@@ -267,6 +267,85 @@ describe("decideCase", () => {
     expect(repo.get(created.caseId)?.decisionHistory).toHaveLength(1);
   });
 
+  it("concurrent decides share one model call, one INITIAL entry and one decision", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const { deps, calls, repo } = makeDeps({
+      mode: "llm_only",
+      decide: async () => {
+        await gate;
+        return llmDecision;
+      },
+    });
+    const created = await createCaseWithAnalysis(deps, freshReturn, photo("laptop-1.png"));
+    const a = decideCase(deps, created.caseId);
+    const b = decideCase(deps, created.caseId);
+    release();
+    const [ra, rb] = await Promise.all([a, b]);
+    expect(rb).toEqual(ra);
+    expect(calls.llm).toBe(1);
+    const stored = repo.get(created.caseId)!;
+    expect(stored.decisionHistory).toHaveLength(1);
+    expect(stored.messages).toHaveLength(1);
+  });
+
+  it("a late finisher keeps an already DECIDED case unchanged (no overwrite, no wiped messages)", async () => {
+    let enter!: () => void;
+    const entered = new Promise<void>((r) => (enter = r));
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const { deps, repo } = makeDeps({
+      mode: "llm_only",
+      decide: async () => {
+        enter();
+        await gate;
+        return { ...llmDecision, justification: ["Druga decyzja."] };
+      },
+    });
+    const created = await createCaseWithAnalysis(deps, freshReturn, photo("laptop-1.png"));
+    const late = decideCase(deps, created.caseId);
+    await entered;
+    // Another writer decides first and a chat message lands afterwards.
+    const firstMsg = { id: "first", role: "assistant" as const, parts: [{ type: "text" as const, text: "pierwsza" }] };
+    const chatMsg = { id: "chat-1", role: "user" as const, parts: [{ type: "text" as const, text: "pytanie" }] };
+    repo.update(created.caseId, (c) => ({
+      ...c,
+      status: "DECIDED",
+      decision: llmDecision,
+      decisionHistory: [{ decision: llmDecision, at: NOW, trigger: "INITIAL" }],
+      messages: [firstMsg, chatMsg],
+    }));
+    release();
+    const res = await late;
+    const stored = repo.get(created.caseId)!;
+    expect(stored.decisionHistory).toHaveLength(1);
+    expect(stored.messages.map((m) => m.id)).toEqual(["first", "chat-1"]);
+    expect(stored.decision?.justification).toEqual(llmDecision.justification);
+    expect(res.firstMessage.id).toBe("first");
+  });
+
+  it("passes the request abort signal to the decision port and the vision port", async () => {
+    const seen: (AbortSignal | undefined)[] = [];
+    const { deps } = makeDeps({
+      mode: "llm_only",
+      decide: async (a) => {
+        seen.push(a.signal);
+        return llmDecision;
+      },
+    });
+    const visionSeen: (AbortSignal | undefined)[] = [];
+    deps.analyzeImage = async (a) => {
+      visionSeen.push(a.signal);
+      return analysis;
+    };
+    const ctl = new AbortController();
+    ctl.abort();
+    const created = await createCaseWithAnalysis(deps, freshReturn, photo("laptop-1.png"), ctl.signal);
+    await decideCase(deps, created.caseId, ctl.signal);
+    expect(seen[0]?.aborted).toBe(true);
+    expect(visionSeen[0]?.aborted).toBe(true);
+  });
+
   it("unknown id gives 404 and malformed id gives 400", async () => {
     const { deps } = makeDeps();
     const unknown = await decideCase(deps, "11111111-1111-4111-8111-111111111111").catch((e: unknown) => e);

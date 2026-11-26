@@ -30,7 +30,8 @@ describe("toErrorResponse", () => {
     expect(JSON.parse(text).error.code).toBe("INTERNAL_ERROR");
     expect(text).not.toContain("secret stack");
     expect(logs.text()).toContain("r2");
-    expect(logs.text()).toContain("secret stack");
+    expect(logs.text()).toContain('"errorName":"Error"');
+    expect(logs.text()).not.toContain("secret stack"); // message may carry model output (TAC-001-05)
     expect(logs.text()).not.toContain("leak1");
   });
 });

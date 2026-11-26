@@ -51,14 +51,16 @@ export interface CaseServiceDeps {
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-function routerDeps(deps: CaseServiceDeps): RouterDeps {
+/** Router deps; a request abort signal is injected into the vision and decision ports. */
+function routerDeps(deps: CaseServiceDeps, signal?: AbortSignal): RouterDeps {
+  const withSignal = <A extends { signal?: AbortSignal }>(args: A): A => (signal ? { ...args, signal } : args);
   return {
     mode: deps.config.decisionMode,
     threshold: deps.config.lunaConfidenceThreshold,
     lunaTimeoutMs: deps.config.lunaTimeoutMs,
-    analyzeImage: deps.analyzeImage,
+    analyzeImage: (args) => deps.analyzeImage(withSignal(args)),
     assessWithLuna: deps.assessWithLuna,
-    decideWithLlm: deps.decideWithLlm,
+    decideWithLlm: (args) => deps.decideWithLlm(withSignal(args)),
   };
 }
 
@@ -67,6 +69,7 @@ export async function createCaseWithAnalysis(
   deps: CaseServiceDeps,
   fields: Record<string, string>,
   photo: File,
+  signal?: AbortSignal,
 ): Promise<CreateCaseResponse> {
   const now = deps.clock.now();
   const parsed = makeCaseInputSchema(todayInZone(now, deps.config.appTimezone)).safeParse(fields);
@@ -78,7 +81,7 @@ export async function createCaseWithAnalysis(
 
   const facts = computeDecisionFacts(input.caseType, input.purchaseDate, todayInZone(now, deps.config.appTimezone));
   const caseId = deps.newId();
-  const routed = await routeAnalysis(routerDeps(deps), { caseId, input, image, facts });
+  const routed = await routeAnalysis(routerDeps(deps, signal), { caseId, input, image, facts });
   const policy = getPolicy(input.caseType, deps.config.policyDir);
 
   const iso = now.toISOString();
@@ -142,14 +145,38 @@ function toDecideResponse(c: Case): DecideCaseResponse {
   return { decision: toDecisionDTO(c), firstMessage: toTextUIMessage(first) as DecideCaseResponse["firstMessage"] };
 }
 
+/** In-flight decides by case id: a concurrent call awaits the first instead of calling the model again. */
+const inFlightDecisions = new Map<string, Promise<DecideCaseResponse>>();
+
 /** POST /api/cases/{id}/decision. Idempotent once DECIDED; on error the case stays ANALYZED. */
-export async function decideCase(deps: CaseServiceDeps, caseId: string): Promise<DecideCaseResponse> {
+export async function decideCase(
+  deps: CaseServiceDeps,
+  caseId: string,
+  signal?: AbortSignal,
+): Promise<DecideCaseResponse> {
   if (!UUID.test(caseId)) throw new ValidationError({ caseId: "Nieprawidłowy identyfikator zgłoszenia" });
   const existing = deps.repo.get(caseId);
   if (!existing) throw new CaseNotFoundError();
   if (existing.status === "DECIDED" && existing.decision) return toDecideResponse(existing);
 
-  const { decision, shadow } = await routeDecision(routerDeps(deps), existing);
+  const running = inFlightDecisions.get(caseId);
+  if (running) return running;
+  const promise = runDecision(deps, caseId, existing, signal);
+  inFlightDecisions.set(caseId, promise);
+  try {
+    return await promise;
+  } finally {
+    inFlightDecisions.delete(caseId);
+  }
+}
+
+async function runDecision(
+  deps: CaseServiceDeps,
+  caseId: string,
+  existing: Case,
+  signal?: AbortSignal,
+): Promise<DecideCaseResponse> {
+  const { decision, shadow } = await routeDecision(routerDeps(deps, signal), existing);
   const markdown = renderFirstMessage({
     caseType: existing.input.caseType,
     category: existing.input.category,
@@ -161,23 +188,31 @@ export async function decideCase(deps: CaseServiceDeps, caseId: string): Promise
   const firstMessage = firstMessageUIMessage(deps.newId(), markdown);
   const at = deps.clock.now().toISOString();
 
-  const updated = deps.repo.update(caseId, (c) => ({
-    ...c,
-    status: "DECIDED",
-    decision,
-    decisionHistory: [...c.decisionHistory, { decision, at, trigger: "INITIAL" }],
-    messages: [firstMessage],
-    shadow: shadow ?? c.shadow,
-  }));
-  if (!updated) throw new CaseNotFoundError();
-  logger.info("case_decided", {
-    caseId,
-    decisionPath: updated.decisionPath,
-    decision: decision.decision,
-    source: decision.source,
-    ...(updated.shadow
-      ? { shadowFast: updated.shadow.fastDecision, agreesWithLlm: updated.shadow.agreesWithLlm }
-      : {}),
+  let committed = false;
+  const updated = deps.repo.update(caseId, (c) => {
+    // Another writer decided while the model ran: keep its result (messages, history) untouched.
+    if (c.status === "DECIDED" && c.decision) return c;
+    committed = true;
+    return {
+      ...c,
+      status: "DECIDED",
+      decision,
+      decisionHistory: [...c.decisionHistory, { decision, at, trigger: "INITIAL" }],
+      messages: [firstMessage],
+      shadow: shadow ?? c.shadow,
+    };
   });
+  if (!updated) throw new CaseNotFoundError();
+  if (committed) {
+    logger.info("case_decided", {
+      caseId,
+      decisionPath: updated.decisionPath,
+      decision: decision.decision,
+      source: decision.source,
+      ...(updated.shadow
+        ? { shadowFast: updated.shadow.fastDecision, agreesWithLlm: updated.shadow.agreesWithLlm }
+        : {}),
+    });
+  }
   return toDecideResponse(updated);
 }

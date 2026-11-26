@@ -138,6 +138,25 @@ describe("POST /api/cases/{caseId}/decision", () => {
     expect(body.firstMessage.parts[0].text).toContain("Uzasadnienie");
   });
 
+  it("passes the request abort signal down to the decision port", async () => {
+    const { deps } = testDeps();
+    deps.config.decisionMode = "llm_only";
+    deps.analyzeImage = async () => ({ summary: "x" }) as never;
+    let observed: boolean | undefined;
+    deps.decideWithLlm = async (args) => {
+      observed = args.signal?.aborted;
+      throw new Error("stop");
+    };
+    setCaseDepsForTests(deps);
+    const today = new Date().toISOString().slice(0, 10);
+    const created = (await (await createCase(createRequest({ purchaseDate: today, category: "LAPTOP" }))).json()) as CreateCaseResponse;
+    const ctl = new AbortController();
+    ctl.abort();
+    const req = new Request("http://localhost/api/cases/x/decision", { method: "POST", signal: ctl.signal });
+    await decide(req, ctx(created.caseId));
+    expect(observed).toBe(true);
+  });
+
   it("answers 404 for an unknown id and 400 for a malformed id", async () => {
     const { deps } = testDeps();
     setCaseDepsForTests(deps);

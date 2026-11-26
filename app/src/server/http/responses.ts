@@ -28,7 +28,6 @@ export function toErrorResponse(error: unknown, requestId: string): Response {
   logger.error("unhandled_error", {
     requestId,
     errorName: error instanceof Error ? error.name : typeof error,
-    message: error instanceof Error ? error.message : String(error),
   });
   const internal = new InternalError();
   return jsonResponse(errorBody(internal), internal.status, requestId);

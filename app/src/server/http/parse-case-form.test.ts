@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { exampleImage } from "../../../tests/helpers/example-images";
 import { FileTooLargeError, ValidationError } from "./errors";
-import { parseCaseForm } from "./parse-case-form";
+import { MAX_MULTIPART_BYTES, parseCaseForm } from "./parse-case-form";
 
 function photo(name = "phone-1.jpg"): File {
   return new File([new Uint8Array(exampleImage(name))], name, { type: "image/jpeg" });
@@ -49,6 +49,62 @@ describe("parseCaseForm", () => {
     };
     await expect(parseCaseForm(request)).rejects.toBeInstanceOf(FileTooLargeError);
     expect(parsed).toBe(false);
+  });
+
+  it("aborts a streamed body without content-length once the limit is exceeded, without buffering it all", async () => {
+    const CHUNK = 64 * 1024;
+    const TOTAL = 11 * 1024 * 1024;
+    let pulled = 0;
+    let cancelled = false;
+    const body = new ReadableStream<Uint8Array>(
+      {
+        pull(controller) {
+          if (pulled >= TOTAL) return controller.close();
+          pulled += CHUNK;
+          controller.enqueue(new Uint8Array(CHUNK));
+        },
+        cancel() {
+          cancelled = true;
+        },
+      },
+      { highWaterMark: 0 },
+    );
+    const request = new Request("http://localhost/api/cases", {
+      method: "POST",
+      body,
+      headers: { "content-type": "multipart/form-data; boundary=xyz" },
+      duplex: "half",
+    } as RequestInit);
+    expect(request.headers.get("content-length")).toBeNull();
+    const error = await parseCaseForm(request).catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(FileTooLargeError);
+    expect((error as FileTooLargeError).status).toBe(413);
+    expect(pulled).toBeLessThanOrEqual(MAX_MULTIPART_BYTES + 2 * CHUNK);
+    expect(pulled).toBeLessThan(TOTAL);
+    expect(cancelled).toBe(true);
+  });
+
+  it("aborts when the declared content-length understates the real body", async () => {
+    const CHUNK = 64 * 1024;
+    let pulled = 0;
+    const body = new ReadableStream<Uint8Array>(
+      {
+        pull(controller) {
+          if (pulled >= 20 * 1024 * 1024) return controller.close();
+          pulled += CHUNK;
+          controller.enqueue(new Uint8Array(CHUNK));
+        },
+      },
+      { highWaterMark: 0 },
+    );
+    const request = new Request("http://localhost/api/cases", {
+      method: "POST",
+      body,
+      headers: { "content-type": "multipart/form-data; boundary=xyz", "content-length": "1000" },
+      duplex: "half",
+    } as RequestInit);
+    await expect(parseCaseForm(request)).rejects.toBeInstanceOf(FileTooLargeError);
+    expect(pulled).toBeLessThanOrEqual(MAX_MULTIPART_BYTES + 2 * CHUNK);
   });
 
   it("reports a missing photo as a field error", async () => {

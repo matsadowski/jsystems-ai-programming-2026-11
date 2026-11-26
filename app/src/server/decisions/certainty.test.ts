@@ -26,6 +26,19 @@ describe("certaintyOf", () => {
     expect(certaintyOf({ type: "choice", choice: "a", probabilities: {} })).toBeNull();
     expect(certaintyOf({ type: "choice", choice: "a", probabilities: { a: "x" } })).toBeNull();
   });
+  it("choice whose option is not the most probable one is uncertain (fails closed)", () => {
+    expect(certaintyOf({ type: "choice", choice: "b", probabilities: { a: 0.9, b: 0.1 } })).toBeNull();
+    expect(certaintyOf({ type: "choice", choice: "b", probabilities: { a: 0.9, b: 0.1 }, confidence: 0.99 })).toBeNull();
+    expect(toLunaAnswer("k", { type: "choice", choice: "b", probabilities: { a: 0.9, b: 0.1 } })).toMatchObject({
+      type: "choice",
+      value: "b",
+      certainty: null,
+    });
+  });
+  it("choice missing from the probabilities is uncertain; a tie for the top counts as most probable", () => {
+    expect(certaintyOf({ type: "choice", choice: "z", probabilities: { a: 0.9, b: 0.1 } })).toBeNull();
+    expect(certaintyOf({ type: "choice", choice: "b", probabilities: { a: 0.5, b: 0.5 } })).toBe(0.5);
+  });
   it("score: record or array probabilities", () => {
     expect(certaintyOf({ type: "score", score: 1.2, probabilities: { "0": 0.1, "1": 0.75, "2": 0.15 } })).toBe(0.75);
     expect(certaintyOf({ type: "score", score: 1, probabilities: [0.1, 0.2, 0.7] })).toBe(0.7);

@@ -2,12 +2,9 @@
 // Phase 2 seam: purchase history and retrieved passages are added here.
 import { decisionLabel } from "@/lib/shared/labels";
 import type { Case, Decision } from "@/server/domain/case";
-import { analysisText, caseFormText, factsText, preliminaryAssessmentText } from "./prompt-inputs";
+import { analysisText, caseFormText, factsText, neutralise, preliminaryAssessmentText } from "./prompt-inputs";
 
 const block = (tag: string, body: string) => `<${tag}>\n${body}\n</${tag}>`;
-
-/** Employee text must not be able to close or open our delimiters. */
-const neutralise = (text: string) => text.replace(/</g, "&lt;");
 
 function pathBlocks(c: Case): string[] {
   switch (c.decisionPath) {
@@ -50,7 +47,7 @@ export function buildCaseContext(c: Case): string {
     : "(no decision yet)";
   const history = c.decisionHistory.length
     ? c.decisionHistory
-        .map((h) => `- ${h.at} ${h.trigger}: ${decisionLine(c, h.decision)}${h.messageId ? ` [message ${h.messageId}]` : ""}`)
+        .map((h) => `- ${h.at} ${h.trigger}: ${decisionLine(c, h.decision)}`)
         .join("\n")
     : "(empty)";
   return [

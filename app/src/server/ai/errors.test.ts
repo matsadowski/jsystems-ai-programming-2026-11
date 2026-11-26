@@ -7,6 +7,8 @@ import {
   AppError,
   CaseNotFoundError,
 } from "@/server/http/errors";
+import { captureLogs } from "../../../tests/helpers/log-capture";
+import { toErrorResponse } from "@/server/http/responses";
 import { toAppAiError } from "./errors";
 
 const noObject = () =>
@@ -89,5 +91,39 @@ describe("toAppAiError", () => {
     expect(e.cause).toBe(cause);
     expect(e.detail).toContain("decision");
     expect(e.detail).toContain("boom");
+  });
+});
+
+describe("no model output in error details (TAC-001-05)", () => {
+  const SENTENCE = "Klient powiedział, że telefon spadł mu z balkonu";
+  const leaky: [string, () => unknown][] = [
+    [
+      "NoObjectGeneratedError",
+      () =>
+        new NoObjectGeneratedError({
+          message: `No object generated: could not parse the response. ${SENTENCE}`,
+          text: `{"reason":"${SENTENCE}"`,
+          response: { id: "r", timestamp: new Date(0), modelId: "m" },
+          usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 } as never,
+          finishReason: "stop",
+        }),
+    ],
+    ["TypeValidationError", () => new TypeValidationError({ value: { reason: SENTENCE }, cause: new Error(SENTENCE) })],
+    ["NoOutputGeneratedError", () => new NoOutputGeneratedError({ message: SENTENCE })],
+  ];
+
+  it.each(leaky)("%s: detail keeps the class name and drops the message", (name, make) => {
+    const source = make() as Error;
+    const e = toAppAiError(source, "vision");
+    expect(e.detail).toBe(`vision: ${source.name} (invalid or missing model output)`);
+    expect(source.name).toContain(name);
+    const logs = captureLogs();
+    try {
+      toErrorResponse(e, "req-leak");
+      expect(logs.text()).toContain("invalid or missing model output");
+      expect(logs.text()).not.toContain("balkonu");
+    } finally {
+      logs.restore();
+    }
   });
 });

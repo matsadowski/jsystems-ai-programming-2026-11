@@ -18,7 +18,7 @@ export const CHAT_TOTAL_MS = 60_000;
 export interface ChatHooks {
   repo: CaseRepository;
   clock: Clock;
-  /** The new user message. Not duplicated when it is already the last message of the case. */
+  /** The new user message. Not duplicated when a message with this id is already stored. */
   userMessage: UIMessage;
   /** Request abort (client disconnect). */
   signal?: AbortSignal;
@@ -34,8 +34,7 @@ export function stripReasoning<M extends UIMessage>(message: M): M {
 }
 
 function modelMessages(c: Case, userMessage: UIMessage): UIMessage[] {
-  const last = c.messages.at(-1);
-  return last?.id === userMessage.id ? c.messages : [...c.messages, userMessage];
+  return c.messages.some((m) => m.id === userMessage.id) ? c.messages : [...c.messages, userMessage];
 }
 
 export async function chatStream(c: Case, hooks: ChatHooks) {

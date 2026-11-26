@@ -30,7 +30,17 @@ function hasTimeout(err: unknown, depth = 0): boolean {
   return hasTimeout((err as { cause?: unknown }).cause, depth + 1);
 }
 
+function isInvalidOutput(err: unknown): boolean {
+  return (
+    NoObjectGeneratedError.isInstance(err) ||
+    NoOutputGeneratedError.isInstance(err) ||
+    TypeValidationError.isInstance(err)
+  );
+}
+
+/** Log detail. Invalid-output errors carry model text in `message`: keep class name only (TAC-001-05). */
 function describe(kind: AiCallKind, err: unknown): string {
+  if (isInvalidOutput(err)) return `${kind}: ${(err as Error).name} (invalid or missing model output)`;
   if (err instanceof Error) return `${kind}: ${err.name}: ${err.message}`;
   return `${kind}: ${String(err)}`;
 }
@@ -39,13 +49,7 @@ export function toAppAiError(err: unknown, kind: AiCallKind): AppError {
   if (err instanceof AppError) return err;
   const opts = { detail: describe(kind, err), cause: err };
   if (hasTimeout(err)) return new AiTimeoutError(opts);
-  if (
-    NoObjectGeneratedError.isInstance(err) ||
-    NoOutputGeneratedError.isInstance(err) ||
-    TypeValidationError.isInstance(err)
-  ) {
-    return new AiInvalidOutputError(opts);
-  }
+  if (isInvalidOutput(err)) return new AiInvalidOutputError(opts);
   // APICallError and everything else.
   return new AiUnavailableError(opts);
 }

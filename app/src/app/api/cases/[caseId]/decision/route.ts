@@ -8,14 +8,14 @@ export const runtime = "nodejs";
 export const maxDuration = 60;
 
 export async function POST(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ caseId: string }> },
 ): Promise<Response> {
   const requestId = newRequestId();
   try {
     const { caseId } = await context.params;
     logger.info("decide_case_request", { requestId, caseIdLength: caseId.length });
-    return jsonResponse(await decideCase(getCaseDeps(), caseId), 200, requestId);
+    return jsonResponse(await decideCase(getCaseDeps(), caseId, request.signal), 200, requestId);
   } catch (error) {
     return toErrorResponse(error, requestId);
   }

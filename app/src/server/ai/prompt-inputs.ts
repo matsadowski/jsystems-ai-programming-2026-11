@@ -5,11 +5,14 @@ import type { CaseInput } from "@/lib/shared/case-input";
 import { answerLabelPl, QUESTION_LABELS_PL } from "@/server/decisions/questions";
 import type { DecisionFacts, ImageAnalysis, LunaAssessment } from "@/server/domain/case";
 
+/** Free text must not be able to close or open our prompt delimiters. */
+export const neutralise = (text: string): string => text.replace(/</g, "&lt;");
+
 export function caseFormText(input: CaseInput): string {
   return [
     `Case type: ${input.caseType}`,
     `Device category: ${CATEGORY_LABELS[input.category]}`,
-    `Model: ${input.model}`,
+    `Model: ${neutralise(input.model)}`,
     `Purchase date: ${input.purchaseDate}`,
   ].join("\n");
 }
