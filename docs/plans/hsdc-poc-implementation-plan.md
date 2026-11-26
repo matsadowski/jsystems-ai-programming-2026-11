@@ -74,6 +74,8 @@ must record their first real runs.
 | D13 | (2026-11-26, review design note 1) `reviseDecision` also enforces G3/G6 analogues: a positive decision (`ACCEPT`, `REPAIR`, `REPLACE`, `REFUND`) is refused when the stored analysis shows insufficient evidence (G3/G3c) or, for `ACCEPT`, clear signs of use / not resaleable (G6), unless the tool input states the basis is a physical inspection. ADR 002 §7 amendment | User, 2026-11-26 |
 | D14 | (2026-11-26, review design note 2) FAST-path injection risk accepted as in ADR 004; checked by the Luna eval injection case before any switch to `gated` | User, 2026-11-26 |
 
+| D15 | (2026-11-26, gate G4) After the Luna eval (no threshold meets the exit criteria; 3 unsafe disagreements at 0.80), the default stays `DECISION_MODE=shadow` | User, 2026-11-26 |
+
 ### 2.1 Proposed ADR amendments (need approval with this plan)
 
 These fill gaps where the ADRs leave an implementing agent unsure. They are **not** assumed until
