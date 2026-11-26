@@ -64,6 +64,10 @@ must record their first real runs.
 | D6 | LLM slugs: `VISION_MODEL=anthropic/claude-sonnet-5.5`, `DECISION_MODEL=anthropic/claude-opus-5.5` (verified to exist). `LUNA_MODEL=openai/gpt-6-luna-decisions` | ADR [000 §7](../ADR/000-main-architecture.md#7-environment-variables) + verification |
 | D7 | Default `DECISION_MODE=shadow`. Switching to `gated` is a user decision after the eval (T20) | [ADR-004 §3.1](../ADR/004-confidence-gated-decisions.md#31-modes-decision_mode), [PRD §12.3](../PRD.md#123-open-questions) |
 
+| D8 | (2026-11-26, supersedes D6 for runtime) The user's OpenRouter account guardrail blocks all Anthropic models (404 "Model blocked by guardrail"). `VISION_MODEL` and `DECISION_MODEL` are `openai/gpt-6-luna`, verified to accept an image and a strict JSON schema (HTTP 200, Polish output) | User, 2026-11-26 |
+| D9 | (2026-11-26) Luna Decisions returns 401 from its upstream provider ("OpenAI account ... deactivated"): provider outage. Fallback scope 1 (§7) applies: `DECISION_MODE=llm_only` in `.env.example`, no Luna captures, no gated E2E, no Luna eval. ADR-004 code stays, unit-tested. AC-41 and AC-44 (FAST path observable at runtime) are BLOCKED (provider) | User, 2026-11-26 |
+| D10 | PR base (C1): option (b), a `design_system` → `main` PR first, then `feat/hsdc-poc` → `main`. Push/PR still need the explicit G3 go-ahead | User, 2026-11-26 |
+
 ### 2.1 Proposed ADR amendments (need approval with this plan)
 
 These fill gaps where the ADRs leave an implementing agent unsure. They are **not** assumed until
