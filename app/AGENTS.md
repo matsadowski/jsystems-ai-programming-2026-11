@@ -31,7 +31,7 @@ Node 24 · Next.js 16.4 App Router (TypeScript strict) · React 19 · Tailwind C
 | Coverage | `npm run test:coverage` |
 | Production build / start | `npm run build` then `npm run start` |
 | E2E (real stack, needs a build) | `npm run test:e2e` |
-| Real LLM captures / eval | `npm run capture` / `npm run eval` (need `app/.env`) |
+| Real LLM captures / eval | `npm run capture` / `npm run eval -- [--runs N] [--only targeted\|matrix\|<case-id>]` (need `app/.env`; eval cost is capped by `EVAL_MAX_COST_USD`, reports in `evals/reports/`) |
 
 ## Code rules
 
