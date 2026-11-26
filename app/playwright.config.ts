@@ -18,6 +18,17 @@ export default defineConfig({
       command: "npm run start -- --port 3000",
       url: "http://localhost:3000",
       reuseExistingServer: !process.env.CI,
+      // The RULES-path specs (expired return/complaint, validation, layout, a11y) never call a
+      // model, so a placeholder key is enough and no secret is needed. With E2E_REAL_LLM=1
+      // (part b) the server reads the real app/.env instead.
+      env:
+        process.env.E2E_REAL_LLM === "1"
+          ? {}
+          : {
+              OPENROUTER_API_KEY: "placeholder-not-a-key",
+              VISION_MODEL: "anthropic/claude-sonnet-5.5",
+              DECISION_MODEL: "anthropic/claude-opus-5.5",
+            },
       timeout: 120_000,
     },
   ],
