@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Czy polski naprawdę jest „najlepszym językiem” dla modeli AI? Weryfikacja źródła i dane z lat 2024–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:wght@600&display=swap">
+<style>
+:root{--bg:#f4f6f8;--surface:#fcfcfb;--ink:#12171e;--ink-2:#4a525d;--muted:#7c838c;--rule:#dde2e8;--accent:#1f4fa8;--accent-soft:#e4ecf8;
+--serif:"IBM Plex Serif",Georgia,serif;--sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--surface:#171b21;--ink:#eef1f4;--ink-2:#b9c0c8;--muted:#8a929b;--rule:#2a3038;--accent:#8db4ff;--accent-soft:#1c2a42;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1318;--surface:#171b21;--ink:#eef1f4;--ink-2:#b9c0c8;--muted:#8a929b;--rule:#2a3038;--accent:#8db4ff;--accent-soft:#1c2a42;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;padding-inline:16px;padding-block:32px 64px}
+main{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;text-wrap:balance}
+h1{font-size:clamp(26px,4.5vw,38px);margin:0 0 12px}
+h2{font-size:clamp(21px,3vw,27px);margin:40px 0 12px;padding-top:8px}
+h3{font-size:18px;margin:28px 0 8px}
+p,li{max-width:72ch}
+p{margin:0 0 14px}
+ul,ol{padding-left:22px;margin:0 0 14px}
+li{margin-bottom:6px}
+li>ul,li>ol{margin:6px 0 0}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.9em;background:var(--accent-soft);padding:1px 5px;border-radius:4px}
+hr{border:0;border-top:1px solid var(--rule);margin:36px 0}
+strong{font-weight:600}
+.tbl{overflow-x:auto;margin:8px 0 18px;background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-weight:600;color:var(--ink-2);white-space:nowrap}
+td.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+main>p:first-of-type{font-family:var(--mono);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<h1 id="czy-polski-naprawde-jest-najlepszym-jezykiem-dla-modeli-ai-weryfikacja-zroda-i-dane-z-lat-20242026">Czy polski naprawdę jest „najlepszym językiem” dla modeli AI? Weryfikacja źródła i dane z lat 2024–2026</h1>
+<p>Data badania: 2026-11-24 · Metoda: 6 agentów badawczych + 5 agentów weryfikujących (Claude Haiku), koordynacja i kontrola jakości: Claude Opus · Wersja angielska: <a href="polish-vs-english-llm.en.html">polish-vs-english-llm.en.md</a></p>
+<h2 id="w-skrocie">W skrócie</h2>
+<ol><li><strong>Źródło istnieje, ale ma wąski zakres.</strong> Artykuł na cryps.pl (25.10.2025) opiera się na badaniu <strong>OneRuler</strong> (Kim, Russell, Karpińska, Iyyer; arXiv 2503.01996; COLM 2025). Polski uzyskał <strong>88%</strong>, angielski <strong>83,9%</strong> (6. miejsce na 26). To średnia z zadań typu „igła w stogu siana” (wyszukiwanie informacji w bardzo długim tekście) przy kontekście 64K i 128K tokenów, liczona dla 6–7 modeli z początku 2025 roku.</li><li><strong>Badanie mierzyło wyszukiwanie w długim kontekście, a nie promptowanie ani rozumowanie.</strong> Autorzy nie przeprowadzili testu istotności statystycznej. Dla każdego języka „stogiem siana” była inna książka. Sami autorzy nazywają wynik polskiego „nieoczekiwanym” i nie umieją go wyjaśnić. Współautorka Marzena Karpińska oraz Microsoft publicznie zastrzegli, że badanie nie dowodzi, że polski jest najlepszy do promptowania (źródło wtórne: media).</li><li><strong>Nie znaleziono replikacji z 2026 roku.</strong> Żaden inny wielojęzyczny benchmark długiego kontekstu otwarty w tym przeglądzie nie obejmuje polskiego. Zastrzeżenia: nie udało się pobrać listy cytowań OneRulera, nie sprawdzono też HELMET i BABILong. Istnieją benchmarki tylko dla rosyjskiego (LIBRA, CODi 2025).</li><li><strong>Na tych samych pytaniach (tłumaczonych lub dopasowanych) polski jest zwykle nieco słabszy od angielskiego, a różnica maleje wraz z rozmiarem modelu.</strong> Na dopasowanych polskich egzaminach medycznych (Grzybowski i in., EMNLP Findings 2025) modele 3–8B tracą po polsku 4,7–18,1 pp. Llama-3.1-70B traci 1,4–1,7 pp. GPT-4o radzi sobie po polsku o około 1,3 pp <em>lepiej</em>. Bielik, polski model, też wypada lepiej po polsku.</li><li><strong>Wyszukiwanie: klasyczne wyszukiwanie po słowach działa po polsku wyraźnie gorzej.</strong> BM25 na BEIR-PL (tłumaczeniu angielskiego BEIR) osiąga średnio 35,67 nDCG@10 wobec 42,41 po angielsku (−15,9%). Autorzy wskazują na fleksję polszczyzny. Nikt nie zmierzył wyszukiwarki wektorowej (dense retriever) w obu językach na tych samych danych.</li><li><strong>Język wpływa na rozumowanie.</strong> Wymuszenie rozumowania po angielsku zwykle pomaga: w PolyMath QwQ-32B uzyskuje 47,9 przy rozumowaniu po angielsku i 43,4 w języku pytania. Agenci tracą skuteczność poza angielskim: w GAIA (MAPS) 47,4% po angielsku wobec średnio 35,8% w 11 innych językach. Efekt jest największy dla małych modeli i języków o małych zasobach. Polski należy do języków o dużych zasobach.</li><li><strong>Polski zużywa więcej tokenów.</strong> Na jedno słowo potrzeba średnio <strong>1,83 raza więcej tokenów</strong> niż po angielsku (2,25 wobec 1,23, Tokenizer Tax 2026). W oknie kontekstu mieści się więc mniej słów, a wywołania API są droższe.</li></ol>
+<p><strong>Wniosek:</strong> stwierdzenie „polski bije angielski” jest prawdziwe dla jednego typu zadań (znajdowanie faktów w bardzo długim kontekście), w jednym badaniu z 2025 roku, bez testu statystycznego. Szersze dane nie potwierdzają tezy, że „polski jest lepszy dla AI”. W najnowszych dużych modelach polski jest blisko angielskiego (ok. 98–100% wyniku po angielsku). W małych i otwartych modelach angielski wciąż ma wyraźną przewagę.</p>
+<hr>
+<h2 id="1-ustalenie-zroda">1. Ustalenie źródła</h2>
+<div class="tbl"><table><thead><tr><th>Element</th><th>Ustalenie</th><th>Status</th></tr></thead><tbody>
+<tr><td>Artykuł</td><td>cryps.pl, Maciej Halikowski, 25.10.2025. Liczby zgadzają się z publikacją (88%, ~84%, chiński 62,1%)</td><td>Zweryfikowane</td></tr>
+<tr><td>Publikacja</td><td><em>One ruler to measure them all: Benchmarking multilingual long-context language models</em>. Y. Kim, J. Russell, M. Karpińska, M. Iyyer. arXiv <a href="https://arxiv.org/abs/2503.01996" target="_blank" rel="noopener">2503.01996</a> (v1 3.03.2025, v3 30.09.2025), COLM 2025. Kod: <a href="https://github.com/mungg/OneRuler" target="_blank" rel="noopener">github.com/mungg/OneRuler</a></td><td>Zweryfikowane (źródło pierwotne)</td></tr>
+<tr><td>Projekt badania</td><td>26 języków; 7 zadań (5 wariantów „igły w stogu siana” i 2 zadania ze zliczaniem najczęstszych słów); kontekst 8K, 32K, 64K i 128K tokenów; modele: Gemini 1.5 Flash, o3-mini-high, Llama 3.3 70B, Llama 3.1 8B, Qwen 2.5 72B, Qwen 2.5 7B, DeepSeek-R1 (tylko po angielsku)</td><td>Zweryfikowane</td></tr>
+<tr><td>Główny wynik</td><td>Polski 88% (1. miejsce), angielski 83,9% (6. miejsce), chiński 62,1% (4. od końca). Średnia z zadań wyszukiwania dla wszystkich modeli przy 64K i 128K (sekcja 3.1)</td><td>Potwierdzone niezależnie przez 3 agentów</td></tr>
+<tr><td>Pojedynczy model</td><td>o3-mini-high przy 128K: polski 92%, ukraiński 89%, angielski 67%</td><td>Zweryfikowane</td></tr>
+<tr><td>Luka zasobowa</td><td>Różnica między 5 najlepszymi a 5 najsłabszymi językami (według wielkości Wikipedii) rośnie z 11 pp przy 8K do 34 pp przy 128K</td><td>Zweryfikowane (tekst)</td></tr>
+<tr><td>Język instrukcji</td><td>Według streszczenia publikacji wynik może się zmienić nawet o 20%. Przykład: angielski kontekst przy 64K spada z 91% do 71%, gdy instrukcje są po koreańsku</td><td>Zweryfikowane (wartości z przykładu); „20%” pochodzi ze streszczenia</td></tr>
+<tr><td>Istotność</td><td>Brak testu statystycznego, przedziałów ufności i wariancji dla porównania polski–angielski. Różnica wynosi 4,1 pp</td><td>Zweryfikowane (brak testu)</td></tr>
+<tr><td>Wyjaśnienie</td><td>Autorzy nazywają wynik nieoczekiwanym i piszą, że nie wiadomo, skąd się bierze. Wymieniają hipotezy (dane treningowe, alfabet, rodzina językowa, tokenizer), ale nie twierdzą, że któraś jest przyczyną</td><td>Zweryfikowane</td></tr>
+<tr><td>Czynnik zakłócający</td><td>Dla każdego języka „stogiem siana” jest inna książka: dla polskiego <em>Noce i dnie</em>, dla angielskiego <em>Little Women</em>. Autorzy przyznają, że wiek i styl książek mogły wpłynąć na wyniki</td><td>Zweryfikowane (tab. 4, dod. A)</td></tr>
+<tr><td>Pozostałe języki</td><td>Wyniki pozostałych 23 języków są tylko na wykresach, a repozytorium nie zawiera plików z wynikami. Liczby podawane w mediach (francuski 87, włoski 86, hiszpański 85, rosyjski 84) <strong>nie występują</strong> w tekście publikacji</td><td>Nie do zweryfikowania</td></tr>
+</tbody></table></div>
+<h3 id="jak-media-zmieniy-przekaz">Jak media zmieniły przekaz</h3>
+<div class="tbl"><table><thead><tr><th>Teza medialna</th><th>Co mówi publikacja</th></tr></thead><tbody>
+<tr><td>„Polski to najlepszy język do promptowania AI” (nagłówek Euronews, Polskie Radio i inni)</td><td>Badanie nie dotyczyło promptowania, tylko wyszukiwania i agregacji informacji w długim kontekście</td></tr>
+<tr><td>„Polski radzi sobie mimo mniejszej ilości danych” / „gramatyka zmniejsza niejednoznaczność” (cryps.pl)</td><td>Tego nie ma w publikacji. Autorzy podają tylko hipotezy</td></tr>
+<tr><td>Lista modeli „Gemini, Llama, Qwen”</td><td>Pomija o3-mini-high i DeepSeek-R1</td></tr>
+<tr><td>„Rosyjski na 2. miejscu”, francuski 87, włoski 86…</td><td>Nie znaleziono w tekście publikacji</td></tr>
+</tbody></table></div>
+<p>Źródła wtórne (PAP / Nauka w Polsce): według Karpińskiej z badania na pewno nie wynika, że polski jest najlepszy do promptowania. Microsoft (12.11.2025) dodał, że badanie nie miało porównywać języków pod kątem promptowania.</p>
+<hr>
+<h2 id="2-wyszukiwanie-w-dugim-kontekscie-po-onerulerze">2. Wyszukiwanie w długim kontekście po OneRulerze</h2>
+<ul><li><strong>MLNeedle</strong> (<a href="https://arxiv.org/abs/2408.10151" target="_blank" rel="noopener">2408.10151</a>; według wyszukiwarki NAACL 2025): angielski, niemiecki, hiszpański, chiński, wietnamski, hindi i arabski, bez języków słowiańskich. Model najczęściej odnajduje „igłę”, gdy jest ona po angielsku, niezależnie od języka „stogu siana”. Dla Llama3-8B kolumna z angielską igłą to 0,61–0,70, a z chińską 0,15–0,22.</li><li><strong>MLRBench</strong> (<a href="https://arxiv.org/abs/2504.12845" target="_blank" rel="noopener">2504.12845</a>, EACL 2026): bez języków słowiańskich. W warunkach wielojęzycznych modele wykorzystują mniej niż 30% deklarowanego kontekstu.</li><li><strong>LIBRA</strong> (<a href="https://arxiv.org/abs/2408.02439" target="_blank" rel="noopener">2408.02439</a>): tylko rosyjski. GPT-4o uzyskuje 70,2 ogółem, 73,3 przy 4K i 54,8 przy 128K.</li><li><strong>Nie znaleziono replikacji z 2026 roku</strong> tezy „polski &gt; angielski” na GPT-5.x, Claude, Gemini 3 i podobnych modelach. Listy cytowań OneRulera nie udało się pobrać (Semantic Scholar zwracał błędy 429/403).</li></ul>
+<p><strong>Nasza hipoteza, niezbadana w żadnej publikacji:</strong> OneRuler mierzy długość kontekstu w <em>tokenach</em>. Polski tekst zużywa około 1,8 raza więcej tokenów na słowo, więc polski „stóg siana” o długości 128K tokenów zawiera znacznie mniej słów niż angielski. Czy to ułatwia wyszukiwanie, nikt nie sprawdził. Sami autorzy przyznają, że różnice w tokenizacji utrudniają uczciwe porównanie.</p>
+<hr>
+<h2 id="3-wyszukiwanie-informacji-i-rag">3. Wyszukiwanie informacji i RAG</h2>
+<div class="tbl"><table><thead><tr><th>Dowód</th><th>Polski/słowiańskie wobec angielskiego</th><th>Porównywalne?</th></tr></thead><tbody>
+<tr><td><strong>BEIR-PL</strong> (Wojtasik i in., <a href="https://arxiv.org/abs/2305.19840" target="_blank" rel="noopener">2305.19840</a>, LREC-COLING 2024): BM25, 11 zbiorów danych</td><td>PL 35,67 wobec EN 42,41 średnio nDCG@10 (<strong>−15,9%</strong>). Największy spadek na NQ (−38%). Podana przyczyna: fleksja osłabia dopasowanie po słowach</td><td>Tak (maszynowe tłumaczenie BEIR)</td></tr>
+<tr><td><strong>PIRB</strong> (41 zadań) / <strong>PL-MTEB</strong> (11 zadań wyszukiwania)</td><td>Tylko polski. Najlepsze wyniki: PIRB mE5-large 57,29, PL-MTEB stella-pl-retrieval-8k 61,59, Qwen3-Embedding-8B 59,21</td><td>Brak angielskiego odpowiednika</td></tr>
+<tr><td><strong>CUS-QA</strong> (czeski, słowacki, ukraiński; <a href="https://arxiv.org/abs/2507.22752" target="_blank" rel="noopener">2507.22752</a>), Llama-3.3-70B</td><td>Bez RAG angielski wypada nieco lepiej (język lokalny od −0,6 do −3,1). <strong>Z RAG lepszy jest język lokalny</strong> (od +3,5 do +7,5)</td><td>Tak (tłumaczone pytania)</td></tr>
+<tr><td><strong>Linguistic Nepotism</strong> (<a href="https://arxiv.org/abs/2509.13930" target="_blank" rel="noopener">2509.13930</a>)</td><td>Modele trafniej cytują źródła angielskie. Llama-3.3-70B: EN 85,9 wobec RU 74,5</td><td>Częściowo</td></tr>
+<tr><td><strong>DELTA</strong> (<a href="https://arxiv.org/abs/2601.02956" target="_blank" rel="noopener">2601.02956</a>, styczeń 2026)</td><td>Duża część „preferencji dla angielskiego” w RAG wynika z tego, gdzie leżą dowody. W 73% badanych przypadków poprawną odpowiedź potwierdza źródło angielskie</td><td>Tak (MKQA)</td></tr>
+<tr><td><strong>Koszt międzyjęzykowy</strong> (<a href="https://arxiv.org/abs/2507.07543" target="_blank" rel="noopener">2507.07543</a>, EN–AR)</td><td>Gdy zapytanie i dokumenty są w różnych językach, wyszukiwanie słabnie. M-E5 Hit@20 spada z 88% do 46%, BGE-M3 z 89% do 73%</td><td>Tak, ale bez języka słowiańskiego</td></tr>
+<tr><td>Polskie systemy RAG (LREC 2026, EACL SRW 2026)</td><td>Tylko polski. Bielik-11B wygrywa z PLLuM-12B (ocena sędziego 4,52 wobec 4,03). PLLuM-70B wypada najlepiej w RAG na polskiej Wikipedii</td><td>Brak angielskiego</td></tr>
+</tbody></table></div>
+<p><strong>Wniosek:</strong> wyszukiwanie po słowach (BM25) jest po polsku wyraźnie słabsze. RAG w języku lokalnym pomaga językom słowiańskim. Różnicy polski–angielski dla wyszukiwarek wektorowych nikt nie zmierzył na równoległych danych.</p>
+<hr>
+<h2 id="4-rozumowanie-i-wiedza-na-tych-samych-pytaniach">4. Rozumowanie i wiedza na tych samych pytaniach</h2>
+<h3 id="4-1-polski-i-angielski-na-tych-samych-lub-dopasowanych-pytaniach">4.1 Polski i angielski na tych samych lub dopasowanych pytaniach</h3>
+<p><strong>Grzybowski i in., <em>Polish-English medical knowledge transfer</em></strong> (Findings of EMNLP 2025, <a href="https://arxiv.org/abs/2412.00559" target="_blank" rel="noopener">2412.00559</a>), dopasowany egzamin LEK:</p>
+<div class="tbl"><table><thead><tr><th>Model</th><th>PL</th><th>EN</th><th>EN−PL</th></tr></thead><tbody>
+<tr><td>Llama-3.2-3B</td><td class=n>39,22</td><td class=n>52,08</td><td class=n>+12,86</td></tr>
+<tr><td>Llama-3.1-8B</td><td class=n>51,25</td><td class=n>64,69</td><td class=n>+13,44</td></tr>
+<tr><td>Qwen2.5-7B</td><td class=n>51,92</td><td class=n>67,73</td><td class=n>+15,81</td></tr>
+<tr><td>Bielik-11B-v2.2</td><td class=n>62,36</td><td class=n>56,98</td><td class=n><strong>−5,38</strong></td></tr>
+<tr><td>Llama-3.1-70B</td><td class=n>80,94</td><td class=n>82,60</td><td class=n>+1,66</td></tr>
+<tr><td>Qwen2.5-72B</td><td class=n>76,87</td><td class=n>81,93</td><td class=n>+5,06</td></tr>
+<tr><td>Mistral-Large-2407</td><td class=n>76,75</td><td class=n>82,40</td><td class=n>+5,65</td></tr>
+<tr><td>gpt-4o-mini</td><td class=n>75,88</td><td class=n>75,92</td><td class=n>+0,04</td></tr>
+<tr><td>gpt-4o</td><td class=n>89,96</td><td class=n>88,69</td><td class=n><strong>−1,27</strong></td></tr>
+</tbody></table></div>
+<p>Zastrzeżenie: zestawy polskie i angielskie pochodzą częściowo z różnych edycji egzaminu (22 wobec 14 zestawów).</p>
+<p><strong>EU20</strong> (<a href="https://arxiv.org/abs/2410.08928" target="_blank" rel="noopener">2410.08928</a>, tłumaczenia DeepL), Llama-3.1-70B-Instruct: średnio PL 0,70 wobec EN 0,79. GSM8K 0,69 wobec 0,87, MMLU 0,78 wobec 0,82, TruthfulQA 0,59 wobec 0,60.</p>
+<p><strong>Belebele</strong> (w pełni równoległy, modele z 2023 roku): polski wypada o 6–18 pp gorzej niż angielski (GPT-3.5-turbo: 74,7 wobec 87,7).</p>
+<h3 id="4-2-najnowsze-duze-modele-prawie-rowno-w-jezykach-o-duzych-zasobach">4.2 Najnowsze duże modele: prawie równo w językach o dużych zasobach</h3>
+<ul><li><strong>Anthropic, Global-MMLU, wynik jako % wyniku tego samego modelu po angielsku</strong> (<a href="https://platform.claude.com/docs/en/build-with-claude/multilingual-support" target="_blank" rel="noopener">dokumentacja</a>): Claude Opus 5.5 osiąga 99,1–99,3% dla niemieckiego, francuskiego, hiszpańskiego i chińskiego, 98,3% dla suahili i 96,3% dla joruba. <strong>Polskiego ani innych języków słowiańskich nie ma w tabeli.</strong></li><li><strong>MMLU-ProX</strong> (EMNLP 2025; bez polskiego; z językami słowiańskimi RU, UK, SR, CS). Różnica między angielskim a językami słowiańskimi: Qwen3-235B-Think 0,2–3,7 pp, Qwen3-32B 3,8–4,6 pp, Llama-3.1-8B 16–22 pp. <em>Pojedyncza ekstrakcja, niższa pewność.</em></li></ul>
+<h3 id="4-3-czy-liczy-sie-jezyk-rozumowania">4.3 Czy liczy się język <em>rozumowania</em>?</h3>
+<ul><li><strong>Modele wewnętrznie „przechodzą przez angielski”.</strong> Schut i in. (<a href="https://arxiv.org/abs/2502.15603" target="_blank" rel="noopener">2502.15603</a>) mierzą w modelach otwartych wskaźnik takiego przechodzenia na poziomie 0,50–0,70. Badania interpretowalności Anthropic pokazują pojęcia wspólne dla wielu języków, a w większych modelach takich wspólnych pojęć jest więcej.</li><li><strong>Wymuszenie rozumowania po angielsku zwykle pomaga:</strong><ul><li>PolyMath, QwQ-32B: 47,9 przy rozumowaniu po angielsku, 45,9 bez narzuconego języka, 43,4 w języku pytania.</li><li><em>Language Matters</em> (<a href="https://arxiv.org/abs/2505.17407" target="_blank" rel="noopener">2505.17407</a>), MATH-500, średnia z 4 modeli rozumujących, rozumowanie po angielsku wobec rozumowania w języku pytania: hiszpański 88,0 wobec 72,5, rosyjski 86,7 wobec 81,6, suahili 57,4 wobec 25,9.</li><li>Barua i in., AIME: R1-Distill-Llama-70B uzyskuje 52,6 przy tokach rozumowania po angielsku i 24,2 w języku pytania.</li></ul></li><li><strong>Kontrargument:</strong> Kang i in. (<a href="https://arxiv.org/abs/2510.27269" target="_blank" rel="noopener">2510.27269</a>) przypisują większość różnicy <em>rozumieniu</em> pytania, a nie samemu etapowi rozumowania.</li></ul>
+<p><strong>Odpowiedź:</strong> tak, język wpływa na rozumowanie. Efekt jest duży w małych modelach, w językach o małych zasobach i przy trudnej matematyce. W najnowszych dużych modelach i językach o dużych zasobach, w tym polskim, jest mały (kilka pp lub mniej).</p>
+<hr>
+<h2 id="5-agenci-narzedzia-wykonywanie-instrukcji">5. Agenci, narzędzia, wykonywanie instrukcji</h2>
+<ul><li><strong>MAPS</strong> (<a href="https://arxiv.org/abs/2505.15935" target="_blank" rel="noopener">2505.15935</a>, 2026): w GAIA agenci osiągają 47,4% po angielsku wobec średnio 35,8% w 11 innych językach. GPT-o1 osiąga 39,1 po rosyjsku. Skuteczność ataków poza angielskim rośnie nawet o 27 pp (ASB). Polskiego nie ma w zestawie.</li><li><strong>MASSIVE-Agents</strong> (Findings of EMNLP 2025, 52 wersje językowe, w tym pl-PL): w najmocniejszych modelach polski ≈ angielski. Claude 3.5 Sonnet v2 ma 89,47 w obu językach. Llama-3.1-405B ma 88,42 po polsku wobec 87,89 po angielsku. Mniejsze modele mocno tracą: Nova Micro 17,37 wobec 32,11, Command R 38,95 wobec 60,00. <em>Zastrzeżenie: etykiety metryk i średnie w publikacji są wewnętrznie niespójne.</em></li><li><strong>Multi-IF</strong> (Meta): angielski nie zawsze wypada najlepiej. Dla o1-preview hiszpański ma 0,912, a angielski 0,856.</li><li><strong>Bezpieczeństwo:</strong> w raporcie PLLuM (<a href="https://arxiv.org/abs/2511.03823" target="_blank" rel="noopener">2511.03823</a>) ataki na Llama-3.1-8B są skuteczniejsze po polsku: 3,51% wobec 0,74% po angielsku (DoNotAnswer) i 24,27% wobec 0,32% na nowym zbiorze danych.</li></ul>
+<hr>
+<h2 id="6-tokenizacja-polski-podatek-tokenowy">6. Tokenizacja: polski „podatek tokenowy”</h2>
+<p><em>The Tokenizer Tax Across 24 European Languages</em> (Ovcharov, <a href="https://arxiv.org/abs/2605.24718" target="_blank" rel="noopener">2605.24718</a>, maj 2026), tab. 4, SIB-200, średnia z 6 tokenizerów:</p>
+<div class="tbl"><table><thead><tr><th>Język</th><th>Tokeny/słowo</th><th>× angielski</th></tr></thead><tbody>
+<tr><td>angielski</td><td class=n>1,23</td><td class=n>1,00</td></tr>
+<tr><td>hiszpański</td><td class=n>1,46</td><td class=n>1,19</td></tr>
+<tr><td>francuski</td><td class=n>1,52</td><td class=n>1,24</td></tr>
+<tr><td>włoski</td><td class=n>1,67</td><td class=n>1,36</td></tr>
+<tr><td>niemiecki</td><td class=n>1,76</td><td class=n>1,43</td></tr>
+<tr><td><strong>polski</strong></td><td class=n><strong>2,25</strong></td><td class=n><strong>1,83</strong></td></tr>
+<tr><td>czeski</td><td class=n>2,28</td><td class=n>1,85</td></tr>
+<tr><td>słoweński</td><td class=n>2,28</td><td class=n>1,85</td></tr>
+<tr><td>chorwacki</td><td class=n>2,31</td><td class=n>1,88</td></tr>
+<tr><td>bułgarski</td><td class=n>2,33</td><td class=n>1,89</td></tr>
+<tr><td>słowacki</td><td class=n>2,45</td><td class=n>1,99</td></tr>
+<tr><td>ukraiński</td><td class=n>2,66</td><td class=n>2,16</td></tr>
+</tbody></table></div>
+<p>Publikacja o Bieliku v3 (<a href="https://arxiv.org/abs/2604.10799" target="_blank" rel="noopener">2604.10799</a>) mierzy liczbę tokenów na słowo w preambule Konstytucji RP. Qwen3 potrzebuje 2,69 po polsku wobec 1,17 po angielsku, Gemma3 2,20 wobec 1,20. Tokenizer APT4, zoptymalizowany pod polski, potrzebuje 1,62 po polsku wobec 1,98 po angielsku.</p>
+<hr>
+<h2 id="7-rekomendacje-praktyczne">7. Rekomendacje praktyczne</h2>
+<ol><li><strong>Najnowsze duże modele (Claude, GPT, Gemini):</strong> prompty po polsku sprawdzają się w zadaniach wiedzy i rozumowania; spodziewana strata to najwyżej kilka pp. Nie przechodź na polski dlatego, że „jest lepszy”, ale też nie unikaj go.</li><li><strong>Małe i otwarte modele (≤ 14B):</strong> przy trudnym rozumowaniu rozważ prompt lub tok rozumowania po angielsku i odpowiedź po polsku. Do wiedzy specyficznej dla Polski warto rozważyć Bielika lub PLLuM.</li><li><strong>RAG po polsku:</strong> nie opieraj się na samym BM25. Używaj wyszukiwania hybrydowego lub wektorowego z modelami embeddingowymi dostrojonymi do polskiego albo wielojęzycznymi (liderzy PL-MTEB i PIRB). Gdy to możliwe, trzymaj zapytania i dokumenty w tym samym języku.</li><li><strong>Budżet:</strong> licz się z około 1,8 raza większą liczbą tokenów dla polskiego tekstu, czyli wyższym kosztem i mniejszym zapasem w oknie kontekstu.</li><li><strong>Bezpieczeństwo:</strong> testy red-team przeprowadzaj także po polsku. Zabezpieczenia dostrojone po angielsku mogą być po polsku słabsze.</li><li><strong>Testuj na własnych danych:</strong> publiczne wyniki rzadko obejmują polski i najnowsze modele z 2026 roku.</li></ol>
+<hr>
+<h2 id="8-luki-i-ograniczenia">8. Luki i ograniczenia</h2>
+<ul><li><strong>Nie znaleziono pierwotnego benchmarku z 2026 roku, który porównywałby polski i angielski na tych samych pytaniach dla najnowszych dużych modeli.</strong> Każdy agent wykonał co najmniej 5 udokumentowanych iteracji, w tym wyszukiwania po polsku, czesku, słowacku, ukraińsku, rosyjsku, serbsku, chorwacku, słoweńsku i bułgarsku.</li><li>Subagenci czytali publikacje przez narzędzie pobierające strony, które streszcza treść. Bezpośrednie parsowanie PDF nie było dostępne. Kluczowe liczby sprawdziło niezależnie co najmniej dwóch agentów (OneRuler, Grzybowski, tab. 1 Bielika). Wartości z pojedynczej ekstrakcji oznaczono jako mniej pewne (MMLU-ProX, MASSIVE-Agents, EU20).</li><li>Wartości dostępnych tylko na wykresach (większość języków w OneRulerze, wyniki Global-MMLU dla poszczególnych języków) nie były szacowane.</li><li>Poza zakresem: HELMET i BABILong po polsku, wartości dla polskiego z wykresów Global-MMLU oraz bieżący stan Open PL LLM Leaderboard.</li></ul>
+<h2 id="zroda-pierwotne">Źródła (pierwotne)</h2>
+<p>Pełna lista z odnośnikami znajduje się w <a href="polish-vs-english-llm.en.html#sources-primary">wersji angielskiej</a>.</p>
+<p>Źródła wtórne (tylko jako tropy): cryps.pl, Euronews, Polskie Radio, Notes from Poland, PAP / Nauka w Polsce, Spidersweb.</p>
+</main>
+</body>
+</html>
