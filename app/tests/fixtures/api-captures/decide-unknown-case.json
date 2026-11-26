@@ -1,0 +1,13 @@
+{
+  "status": 404,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "06efdcbe-a52c-4a58-8e6d-472179f0673e"
+  },
+  "body": {
+    "error": {
+      "code": "CASE_NOT_FOUND",
+      "message": "Sesja zgłoszenia wygasła. Rozpocznij nowe zgłoszenie."
+    }
+  }
+}

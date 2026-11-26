@@ -1,0 +1,13 @@
+{
+  "status": 502,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "8dc8e5a7-1e5b-4098-adb5-a3e7db3d0587"
+  },
+  "body": {
+    "error": {
+      "code": "AI_UNAVAILABLE",
+      "message": "Nie udało się przygotować decyzji. Spróbuj ponownie."
+    }
+  }
+}

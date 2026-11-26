@@ -1,0 +1,13 @@
+{
+  "status": 415,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "56e2c109-c974-497f-93d1-0b2feebe78a7"
+  },
+  "body": {
+    "error": {
+      "code": "UNSUPPORTED_MEDIA_TYPE",
+      "message": "Dozwolone formaty: JPG, PNG, WEBP"
+    }
+  }
+}

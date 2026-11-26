@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-11-26T10:45:37.237Z",
+  "target": "POST /api/cases/{caseId}/decision",
+  "request": {
+    "caseId": "(from the matching create capture)"
+  },
+  "server": "next start (local)",
+  "notes": "Random UUID that was never created: 404 expected."
+}

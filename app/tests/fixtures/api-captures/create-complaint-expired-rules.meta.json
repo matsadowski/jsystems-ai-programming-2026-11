@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T10:45:37.114Z",
+  "target": "POST /api/cases",
+  "request": {
+    "fields": {
+      "caseType": "COMPLAINT",
+      "category": "LAPTOP",
+      "model": "Laptop testowy",
+      "purchaseDate": "2024-10-26",
+      "reason": "Klient zgłasza usterkę urządzenia i prosi o rozpatrzenie reklamacji."
+    },
+    "image": "laptop-2.webp"
+  },
+  "server": "next start (local)",
+  "notes": "Complaint 25 months ago. RULES path (purchase date outside the return/complaint window): no model call."
+}

@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T10:14:52.176Z",
+  "target": "POST /api/cases",
+  "request": {
+    "fields": {
+      "caseType": "RETURN",
+      "category": "SMARTPHONE",
+      "model": "Smartfon testowy",
+      "purchaseDate": "2026-11-23",
+      "reason": "(empty)"
+    },
+    "image": "phone-1.jpg"
+  },
+  "server": "next start (local)",
+  "notes": "In-window return needs the vision model; the AI pipeline is not wired yet (or the key is a placeholder), so the server answers 502 AI_UNAVAILABLE. Replace with a real capture once T12b/T14b are wired."
+}

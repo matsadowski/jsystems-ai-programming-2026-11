@@ -1,0 +1,154 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"decision\": \"NEEDS_MANUAL_REVIEW\",\n  \"citedClauses\": [\"C4.1\", \"C4.2\", \"C5\"],\n  \"justification\": [\n    \"Zgłoszenie nie określa, na czym polega usterka, a na zdjęciu nie widać deklarowanej wady; nie da się więc ocenić, czy jest to wada objęta polityką. C4.1 wymaga opisu problemu i zdjęcia pokazującego wadę.\",\n    \"Zdjęcie pokazuje laptop bez wyraźnych uszkodzeń, ale zgodność urządzenia z zadeklarowaną kategorią jest niepewna, a dokładnego modelu nie można potwierdzić. Zgodnie z C4.2 i C5 sprawa wymaga ręcznej weryfikacji.\",\n    \"Na zdjęciu nie widać wyraźnych uszkodzeń wykluczonych, takich jak pęknięcia czy wgniecenia; obecne materiały nie pozwalają jednak ustalić przyczyny zgłaszanej usterki.\"\n  ],\n  \"nextSteps\": [\n    \"Poprosić klienta o opis usterki: objawy, okoliczności występowania i informację, czy problem jest stały.\",\n    \"Poprosić o zdjęcie pokazujące zgłaszaną wadę oraz potwierdzenie modelu urządzenia; jeśli wady nie da się sfotografować, skierować urządzenie do inspekcji.\"\n  ],\n  \"missingEvidence\": [\n    \"Brak opisu konkretnej usterki.\",\n    \"Brak zdjęcia pokazującego deklarowaną wadę; jej widoczność jest niepewna.\",\n    \"Niepewna zgodność urządzenia ze zgłoszoną kategorią i brak potwierdzenia dokładnego modelu.\"\n  ],\n  \"confidence\": \"HIGH\"\n}"
+    }
+  ],
+  "finishReason": {
+    "unified": "stop",
+    "raw": "stop"
+  },
+  "usage": {
+    "inputTokens": {
+      "total": 2396,
+      "noCache": 2396,
+      "cacheRead": 0,
+      "cacheWrite": 2393
+    },
+    "outputTokens": {
+      "total": 637,
+      "text": 422,
+      "reasoning": 215
+    },
+    "raw": {
+      "prompt_tokens": 2396,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2393,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "completion_tokens": 637,
+      "completion_tokens_details": {
+        "reasoning_tokens": 215,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      },
+      "total_tokens": 3033,
+      "cost": 0,
+      "cost_details": {
+        "upstream_inference_cost": 0.000617925,
+        "upstream_inference_prompt_cost": 0.000299425,
+        "upstream_inference_completions_cost": 0.0003185
+      },
+      "is_byok": true
+    }
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openrouter": {
+      "provider": "Azure",
+      "reasoning_details": [
+        {
+          "type": "reasoning.encrypted",
+          "data": "gAAAAABrCApZG8nvKqDZEbP7pL1AywIqYzr4g0f2Zcr9tD5rh7axwpeoXqJJHxMPy-ZF4qWtgvu1w1ttWoM8mCjDmKRgc-ZI4ffbxx0aoXCDaZVadiIBWuwu5oK5Wc5WAkuvbHBTObgdt7E-E1OVvFR68Hl7MkBtDeloDfn10E60s7IM_KX46SO1J5-52Ggzv98vBTVYpkN9n2MX697g-qyppK6pVXqv752nmF1_F0h4Ij4hwibJJxXMfTN8xKXDYintPIn_Oyv53jM67oGLlmws25Bm8M4YfEwxZb4u6u4eMrY8r_C__XUR8PNk70epVtk2_b1QrCjPnGC51TBregUe4leHsmHrLPOkOXFihd6sbecKKE3FMwacNTr6MRTKU6V_abylyU89vNd7Y8mSzuNl1SKoChdzre4SCRINWoKlCqGltBfDysQVGhABItF_ylwxx3e-i4xUfOkDE3wZtMYX2qd45YmxOjnsgB6mQcB_nf4qQofq7p-QY9EfE4kP-qV3FiP1PGnD0Vdx0Sya84OX6Cd8Kibg2MrooMj9IlMtcrOaMG2eT5n1rgaX5ADiAPHbbZAVB7oDsE4SQ_BxiJNqPUXLzO4A_gJEVF1pmi3S5whQAUoJ8To9KqyCmHh2Nd4z6hg7U2kfduX1zD4yxDG0z7c5XKm1fHgEF4o4l-H1E-mCr-ZqWnBLYDkx-j7HU_e_3jUKeO54NPoiUnhccs-_Z4USIUTCL2XFD9zRKsKIPktDAtmx9hEY340wahBSDdKrsx69SARKSVzPZlJCMZlXG6bNtU1crBQ7bawir4A1i6Diinnp164nx6v_3h69pJGTptedAFyvMf2ndMgyxYLuWHZ94NYc3O0_UUnUVrefA9Gfegzl1zD8dQrwLCZwxvM5Ls5SQV-Yl9zhsdJiFH8PsAL2LUO9SoyhuGoh3ZFaeX8IFJsJtmQVS716JvgDhSF-hylW2eilAun8mSHPZI_ZEw8qU4WYu766cGo-qMOsUEo1TUbCuS7BwMh8vIK37Ixz9hi8CKOEPeG01VJnpvDT68W_iVbGdtImVH0IwRBtW_jb4RqNIsfUukE-GsIQ1pFHiAw3JTRw_nZBWZar7m3LgWpfA59fGA7bi0FneBm2Es2C5OM6gVYGMTon9wFhpFH4eAMKnyy-lTxhvev1OF7hJvH2-QzaUGOQRFl1lFYkTJzmrTYdOUHfa5V2LLjCij6-bBgyQ5i1c56plZLDfPhLdwyXI0_DcOsI6UASZXZzqK-IBPzE0wLFnSCozRuvN3LrnaT927cngeaiy574kD6AlHD9eEyXg_XiHETtNpqrTOOv4kue1tUe9wKjQ2E9yVmzaViYtINa8GIO54ngeUT_dtxn-2y6KPrmWkf6bp8c-sLv1JI6pmxMzt8anlHZXnlkLK0VWtUi0nhGZdeELqv-N5aV1ZmcUOCYFOWO2LIVdy8LMC35l7NckRR9RwliBUBbtJcIsf3JicgUEG7wjfi_bwQe443BhzBVnPSDxiW09ScXwaEEJpkQ-UCncS330NS1fkY5X_aFDfTKxYaqzYdCbu2w79vpiRSAYnNHS7JpdDa1jdkDapjUIyIPD0tpvbuM5rSXIcFXm1IFGgrCtea13-t70h83UuWdGtjO0tJpmpizqnLQcADjmpPggiAK3bBg0bnt7OUrnk8mhm-Yupyrgb4j0CxsbZHtFxxTyrg_RtnaBTm6T-M0r1teWUosxrirCllZVEG3Kz6qa4PiVhIcgN1HYr6grmykTJSjt_-1xMeL8Sb6qjzbxTs_cBOQstyyHcBzYdEqsAFPXChHJCgpBdIyF9UDwAPm-UtE7bbVeu__g8qschZx6Wz09xQRU4Ak82bNBVSEnrwuPJKWOv57xPZKhY-eKexg_tehB6z7ShiUPeF6vjU6HewQysmYmL5Zhs1Hy-fMaroMvfLhqmrwKZ2oozoE_7h4heMhDFaqEMGiyvjnGB3V5zMgkPOd_zysxP8XfJUssVtwV5lpsVs5KnJcPR9F_4iliM3RZOdsey9vXtMP0cSar0fi7Tu3QINp0ewE9tomcpEzSkXNROrCDkDZ44amr_O4he6gDxLSPOaE2KRAtc68dRDTx2e-5ZAD5oLb6B5dmOWZVrf3V0Eo4MusZchKtEys1HKbHyH66itTUpE3fUGRU3686uH7zumRKO3JGY-sqGAMy5MLCJJepE3l4zKWhf_oK7BuhPFtySptNhcoIt5LUz85tWEv5_3Hcd9Cnb8WnLpYoxtX2CJK7dZ3nLLz6zCNS9_l3z_EhOZTMhIGVCL-9ywskEW4tPopBUBrRlyGFO-4pg70WuUas7DMmNtOB-5qXkkF6Hzq_rSpl5u7VqmYcsARtcol6DZnt9uNipFKHAhYTC2MeUAa3v3AMPDcYV5vUt_6oJzEFE-4dVHBnDdqVLBbb4KoSEF8Q3cuGC82Mp2x_l_X9anyRWDTbY04GvK5mw2OOZn5KiLyysiH4LKNIQnrDNgjq0oE-lZMDTa3faBke7ogaOfMzV3aLw312EoXlqxRXgdmWlAqGFJAHX57WqRVABPh4aJ18nRzcdpCidcdT81_eN5sido16v_qWD01LfbCQy-VwHG0D9rSRl5IX9iCADrTcVD8whAdrkv0_RUqH3-NAChYSWIy9X4xUCP2csel2-2lPv23R-8rgviStPastn43g-Z4hyZvZUNAaq60ib9Ef4S9XSF2_aapJbsa_3DQ_Zo-GRUZgUR5KXzftDWuNQLqvyIdFNj1la7cX_C1FAfZC0HzxAOnr935NLQTHQZac5eaLNt_roOV7E1SLICf9Zv5ftJyBT-xHI5iga4p31KaoEcu18usot9_oBZul2Ckk3L55BklPXkMrT6wHnD68e2DY3DoH0D6FVd5E6z_TKjfGMzuLd1R9757sUpv4PD1Ktgsl7dCBWolrnjppHjbDMsIP15GZ1oB0W1dto69bQZihn4KaeHmSOrlx9zOe--EkK38zrIIipMDGS9czeM3_qheF2ES9j-JBuNK0dJ57YpnhgnGePhDuPOjKfzkf4VUfpk-U0Su_plL_wQF2WHtL38VZwkdCxsKFhzv1ok--MLfVVi_HlB1RJJ80xrOeDLaZ_gTrAnglww3ExPRppz9BF2mlDK8d2YcxCk_CqeGgXeoeHwTsBBMHpev1juKZMBuEk1caR4lppsfJVIjkbzFGeNIEuIsuSZ1UpifL6G45vL2loNLgBS5PPsuV9lQkH-ptJYWu8IcBSMjzEmMKvl3kvieWe_QKyzD9MFY_h5s5IALZYfcyJ-p6BOtbc7H1TW2zhaorem-Ogfb8gPNY5G1IL40W6NaQdfn_UyBUWwL2d-vXq-lr7b3e54vnLp3pXREePBs3bigVRHC6fusE80udj9uDJFQoTIFbrnxRpv4mmLPAY4QWUa32sDZw0A1i66sSlCa3LrObVti3C8nBDhsoTuNigUhJHt_y9ZHDksr19I7hIuccBtnCe2f-WxB5Lr0GD54tH5m-LwCmqH5slWKCAZyPj3EKM-SOhlxB1VJUXWHraRxUbG3VVoXkdAVYNNLWGkjPMhLGjWirKTCbnkw7jNcuJIOIipivvTTubAiOYOY0EKNhHprWIrqmMIDmlQXjl4uH5G98M9GtccCQP66RTbS3-br4sG_rbM_iVcCGY2b-M5OfSGgF1FpEdUUnqKHO_eXey1ugIAt0q871Wax0GU-M2p2agKT9NluXcQMpmOUPM3RwoVkCzrFK8Hhn9VXHKgaRzxI0bL0CeA2vB3gDFOtX-2B8Vm9ofUxrdtNhFGNZjcLrnfKv_0sT8jo7cgsHUSI0JhXYDTzO7li4-_Odrj8pH0LHlJN4pAKrR1XFFoBeKJ9FiGvToLQddHMPZARplDpieE3wcKTbB7X0hylXJyxf52a8nXEfIFtsmu94NUumFm5rWR5Mt4wIi96a3Tw0YENEESq7eLSZkM=.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LWx1bmEtMjAyNjA5MjJ8YXp1cmUifQ",
+          "id": "rs_089b75a46c2fabbb016b080a56f3908195aa93e56aeb8d9c88",
+          "format": "azure-openai-responses-v1",
+          "index": 0
+        }
+      ],
+      "usage": {
+        "promptTokens": 2396,
+        "promptTokensDetails": {
+          "cachedTokens": 0
+        },
+        "completionTokens": 637,
+        "completionTokensDetails": {
+          "reasoningTokens": 215
+        },
+        "totalTokens": 3033,
+        "cost": 0,
+        "costDetails": {
+          "upstreamInferenceCost": 0.000617925
+        }
+      }
+    }
+  },
+  "request": {},
+  "response": {
+    "id": "gen-1795689045-0K0GsEUs2BuXWqnN9AwZ",
+    "modelId": "openai/gpt-6-luna",
+    "headers": {
+      "access-control-allow-origin": "*",
+      "access-control-expose-headers": "WWW-Authenticate,PAYMENT-REQUIRED,Payment-Receipt,PAYMENT-RESPONSE,Location,X-Generation-Id,x-openrouter-error-origin,x-openrouter-error-tool,X-Provider-Name,request-id,x-openrouter-subscription-passthrough,anthropic-ratelimit-unified-status,Retry-After,cf-ray",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-ray": "a60838371f18cce3-WAW",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Thu, 26 Nov 2026 10:30:48 GMT",
+      "permissions-policy": "payment=(self \"https://checkout.stripe.com\" \"https://connect-js.stripe.com\" \"https://js.stripe.com\" \"https://*.js.stripe.com\" \"https://hooks.stripe.com\")",
+      "referrer-policy": "no-referrer, strict-origin-when-cross-origin",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-generation-id": "gen-1795689045-0K0GsEUs2BuXWqnN9AwZ",
+      "x-openrouter-release": "api;6974da3e-2d30-4253-9b9d-763143ceef81"
+    },
+    "body": {
+      "id": "gen-1795689045-0K0GsEUs2BuXWqnN9AwZ",
+      "model": "openai/gpt-6-luna",
+      "provider": "Azure",
+      "usage": {
+        "prompt_tokens": 2396,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2393,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "completion_tokens": 637,
+        "completion_tokens_details": {
+          "reasoning_tokens": 215,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        },
+        "total_tokens": 3033,
+        "cost": 0,
+        "cost_details": {
+          "upstream_inference_cost": 0.000617925,
+          "upstream_inference_prompt_cost": 0.000299425,
+          "upstream_inference_completions_cost": 0.0003185
+        },
+        "is_byok": true
+      },
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"decision\": \"NEEDS_MANUAL_REVIEW\",\n  \"citedClauses\": [\"C4.1\", \"C4.2\", \"C5\"],\n  \"justification\": [\n    \"Zgłoszenie nie określa, na czym polega usterka, a na zdjęciu nie widać deklarowanej wady; nie da się więc ocenić, czy jest to wada objęta polityką. C4.1 wymaga opisu problemu i zdjęcia pokazującego wadę.\",\n    \"Zdjęcie pokazuje laptop bez wyraźnych uszkodzeń, ale zgodność urządzenia z zadeklarowaną kategorią jest niepewna, a dokładnego modelu nie można potwierdzić. Zgodnie z C4.2 i C5 sprawa wymaga ręcznej weryfikacji.\",\n    \"Na zdjęciu nie widać wyraźnych uszkodzeń wykluczonych, takich jak pęknięcia czy wgniecenia; obecne materiały nie pozwalają jednak ustalić przyczyny zgłaszanej usterki.\"\n  ],\n  \"nextSteps\": [\n    \"Poprosić klienta o opis usterki: objawy, okoliczności występowania i informację, czy problem jest stały.\",\n    \"Poprosić o zdjęcie pokazujące zgłaszaną wadę oraz potwierdzenie modelu urządzenia; jeśli wady nie da się sfotografować, skierować urządzenie do inspekcji.\"\n  ],\n  \"missingEvidence\": [\n    \"Brak opisu konkretnej usterki.\",\n    \"Brak zdjęcia pokazującego deklarowaną wadę; jej widoczność jest niepewna.\",\n    \"Niepewna zgodność urządzenia ze zgłoszoną kategorią i brak potwierdzenia dokładnego modelu.\"\n  ],\n  \"confidence\": \"HIGH\"\n}",
+            "reasoning_details": [
+              {
+                "type": "reasoning.encrypted",
+                "data": "gAAAAABrCApZG8nvKqDZEbP7pL1AywIqYzr4g0f2Zcr9tD5rh7axwpeoXqJJHxMPy-ZF4qWtgvu1w1ttWoM8mCjDmKRgc-ZI4ffbxx0aoXCDaZVadiIBWuwu5oK5Wc5WAkuvbHBTObgdt7E-E1OVvFR68Hl7MkBtDeloDfn10E60s7IM_KX46SO1J5-52Ggzv98vBTVYpkN9n2MX697g-qyppK6pVXqv752nmF1_F0h4Ij4hwibJJxXMfTN8xKXDYintPIn_Oyv53jM67oGLlmws25Bm8M4YfEwxZb4u6u4eMrY8r_C__XUR8PNk70epVtk2_b1QrCjPnGC51TBregUe4leHsmHrLPOkOXFihd6sbecKKE3FMwacNTr6MRTKU6V_abylyU89vNd7Y8mSzuNl1SKoChdzre4SCRINWoKlCqGltBfDysQVGhABItF_ylwxx3e-i4xUfOkDE3wZtMYX2qd45YmxOjnsgB6mQcB_nf4qQofq7p-QY9EfE4kP-qV3FiP1PGnD0Vdx0Sya84OX6Cd8Kibg2MrooMj9IlMtcrOaMG2eT5n1rgaX5ADiAPHbbZAVB7oDsE4SQ_BxiJNqPUXLzO4A_gJEVF1pmi3S5whQAUoJ8To9KqyCmHh2Nd4z6hg7U2kfduX1zD4yxDG0z7c5XKm1fHgEF4o4l-H1E-mCr-ZqWnBLYDkx-j7HU_e_3jUKeO54NPoiUnhccs-_Z4USIUTCL2XFD9zRKsKIPktDAtmx9hEY340wahBSDdKrsx69SARKSVzPZlJCMZlXG6bNtU1crBQ7bawir4A1i6Diinnp164nx6v_3h69pJGTptedAFyvMf2ndMgyxYLuWHZ94NYc3O0_UUnUVrefA9Gfegzl1zD8dQrwLCZwxvM5Ls5SQV-Yl9zhsdJiFH8PsAL2LUO9SoyhuGoh3ZFaeX8IFJsJtmQVS716JvgDhSF-hylW2eilAun8mSHPZI_ZEw8qU4WYu766cGo-qMOsUEo1TUbCuS7BwMh8vIK37Ixz9hi8CKOEPeG01VJnpvDT68W_iVbGdtImVH0IwRBtW_jb4RqNIsfUukE-GsIQ1pFHiAw3JTRw_nZBWZar7m3LgWpfA59fGA7bi0FneBm2Es2C5OM6gVYGMTon9wFhpFH4eAMKnyy-lTxhvev1OF7hJvH2-QzaUGOQRFl1lFYkTJzmrTYdOUHfa5V2LLjCij6-bBgyQ5i1c56plZLDfPhLdwyXI0_DcOsI6UASZXZzqK-IBPzE0wLFnSCozRuvN3LrnaT927cngeaiy574kD6AlHD9eEyXg_XiHETtNpqrTOOv4kue1tUe9wKjQ2E9yVmzaViYtINa8GIO54ngeUT_dtxn-2y6KPrmWkf6bp8c-sLv1JI6pmxMzt8anlHZXnlkLK0VWtUi0nhGZdeELqv-N5aV1ZmcUOCYFOWO2LIVdy8LMC35l7NckRR9RwliBUBbtJcIsf3JicgUEG7wjfi_bwQe443BhzBVnPSDxiW09ScXwaEEJpkQ-UCncS330NS1fkY5X_aFDfTKxYaqzYdCbu2w79vpiRSAYnNHS7JpdDa1jdkDapjUIyIPD0tpvbuM5rSXIcFXm1IFGgrCtea13-t70h83UuWdGtjO0tJpmpizqnLQcADjmpPggiAK3bBg0bnt7OUrnk8mhm-Yupyrgb4j0CxsbZHtFxxTyrg_RtnaBTm6T-M0r1teWUosxrirCllZVEG3Kz6qa4PiVhIcgN1HYr6grmykTJSjt_-1xMeL8Sb6qjzbxTs_cBOQstyyHcBzYdEqsAFPXChHJCgpBdIyF9UDwAPm-UtE7bbVeu__g8qschZx6Wz09xQRU4Ak82bNBVSEnrwuPJKWOv57xPZKhY-eKexg_tehB6z7ShiUPeF6vjU6HewQysmYmL5Zhs1Hy-fMaroMvfLhqmrwKZ2oozoE_7h4heMhDFaqEMGiyvjnGB3V5zMgkPOd_zysxP8XfJUssVtwV5lpsVs5KnJcPR9F_4iliM3RZOdsey9vXtMP0cSar0fi7Tu3QINp0ewE9tomcpEzSkXNROrCDkDZ44amr_O4he6gDxLSPOaE2KRAtc68dRDTx2e-5ZAD5oLb6B5dmOWZVrf3V0Eo4MusZchKtEys1HKbHyH66itTUpE3fUGRU3686uH7zumRKO3JGY-sqGAMy5MLCJJepE3l4zKWhf_oK7BuhPFtySptNhcoIt5LUz85tWEv5_3Hcd9Cnb8WnLpYoxtX2CJK7dZ3nLLz6zCNS9_l3z_EhOZTMhIGVCL-9ywskEW4tPopBUBrRlyGFO-4pg70WuUas7DMmNtOB-5qXkkF6Hzq_rSpl5u7VqmYcsARtcol6DZnt9uNipFKHAhYTC2MeUAa3v3AMPDcYV5vUt_6oJzEFE-4dVHBnDdqVLBbb4KoSEF8Q3cuGC82Mp2x_l_X9anyRWDTbY04GvK5mw2OOZn5KiLyysiH4LKNIQnrDNgjq0oE-lZMDTa3faBke7ogaOfMzV3aLw312EoXlqxRXgdmWlAqGFJAHX57WqRVABPh4aJ18nRzcdpCidcdT81_eN5sido16v_qWD01LfbCQy-VwHG0D9rSRl5IX9iCADrTcVD8whAdrkv0_RUqH3-NAChYSWIy9X4xUCP2csel2-2lPv23R-8rgviStPastn43g-Z4hyZvZUNAaq60ib9Ef4S9XSF2_aapJbsa_3DQ_Zo-GRUZgUR5KXzftDWuNQLqvyIdFNj1la7cX_C1FAfZC0HzxAOnr935NLQTHQZac5eaLNt_roOV7E1SLICf9Zv5ftJyBT-xHI5iga4p31KaoEcu18usot9_oBZul2Ckk3L55BklPXkMrT6wHnD68e2DY3DoH0D6FVd5E6z_TKjfGMzuLd1R9757sUpv4PD1Ktgsl7dCBWolrnjppHjbDMsIP15GZ1oB0W1dto69bQZihn4KaeHmSOrlx9zOe--EkK38zrIIipMDGS9czeM3_qheF2ES9j-JBuNK0dJ57YpnhgnGePhDuPOjKfzkf4VUfpk-U0Su_plL_wQF2WHtL38VZwkdCxsKFhzv1ok--MLfVVi_HlB1RJJ80xrOeDLaZ_gTrAnglww3ExPRppz9BF2mlDK8d2YcxCk_CqeGgXeoeHwTsBBMHpev1juKZMBuEk1caR4lppsfJVIjkbzFGeNIEuIsuSZ1UpifL6G45vL2loNLgBS5PPsuV9lQkH-ptJYWu8IcBSMjzEmMKvl3kvieWe_QKyzD9MFY_h5s5IALZYfcyJ-p6BOtbc7H1TW2zhaorem-Ogfb8gPNY5G1IL40W6NaQdfn_UyBUWwL2d-vXq-lr7b3e54vnLp3pXREePBs3bigVRHC6fusE80udj9uDJFQoTIFbrnxRpv4mmLPAY4QWUa32sDZw0A1i66sSlCa3LrObVti3C8nBDhsoTuNigUhJHt_y9ZHDksr19I7hIuccBtnCe2f-WxB5Lr0GD54tH5m-LwCmqH5slWKCAZyPj3EKM-SOhlxB1VJUXWHraRxUbG3VVoXkdAVYNNLWGkjPMhLGjWirKTCbnkw7jNcuJIOIipivvTTubAiOYOY0EKNhHprWIrqmMIDmlQXjl4uH5G98M9GtccCQP66RTbS3-br4sG_rbM_iVcCGY2b-M5OfSGgF1FpEdUUnqKHO_eXey1ugIAt0q871Wax0GU-M2p2agKT9NluXcQMpmOUPM3RwoVkCzrFK8Hhn9VXHKgaRzxI0bL0CeA2vB3gDFOtX-2B8Vm9ofUxrdtNhFGNZjcLrnfKv_0sT8jo7cgsHUSI0JhXYDTzO7li4-_Odrj8pH0LHlJN4pAKrR1XFFoBeKJ9FiGvToLQddHMPZARplDpieE3wcKTbB7X0hylXJyxf52a8nXEfIFtsmu94NUumFm5rWR5Mt4wIi96a3Tw0YENEESq7eLSZkM=.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LWx1bmEtMjAyNjA5MjJ8YXp1cmUifQ",
+                "id": "rs_089b75a46c2fabbb016b080a56f3908195aa93e56aeb8d9c88",
+                "format": "azure-openai-responses-v1",
+                "index": 0
+              }
+            ],
+            "refusal": null
+          },
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop",
+          "native_finish_reason": "completed"
+        }
+      ],
+      "object": "chat.completion",
+      "created": 1795689045,
+      "system_fingerprint": null,
+      "service_tier": "default"
+    }
+  }
+}

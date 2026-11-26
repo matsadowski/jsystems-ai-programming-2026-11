@@ -1,0 +1,29 @@
+{
+  "status": 200,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "9016a6e9-fcc6-463b-b17a-500afc990184"
+  },
+  "body": {
+    "decision": {
+      "value": "REJECT",
+      "label": "Reklamacja odrzucona",
+      "tone": "negative",
+      "daysSincePurchase": 761,
+      "citedClauses": [
+        "C1.3"
+      ],
+      "decisionPath": "RULES"
+    },
+    "firstMessage": {
+      "id": "3bb92be8-e11a-4162-991d-5f3d37b33fb5",
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "text",
+          "text": "Dzień dobry, przeanalizowałem zgłoszenie **Reklamacja** dotyczące: Laptop — Laptop testowy.\n\n### Decyzja: Reklamacja odrzucona\n\nOd daty zakupu (26.10.2024) minęło **761 dni**.\n\n#### Uzasadnienie\n\n- Od daty zakupu minęło 761 dni, a termin wynosi 24 miesiące (pkt C1.3).\n- Może obowiązywać gwarancja producenta.\n\n#### Kolejne kroki\n\n1. Poinformuj klienta, że termin na reklamację upłynął (pkt C1.3).\n\n*Decyzja jest rekomendacją wygenerowaną przez AI na podstawie zdjęcia, danych zgłoszenia i regulaminu. Ostateczną decyzję podejmuje pracownik.*\n"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-11-26T10:45:37.134Z",
+  "target": "POST /api/cases/{caseId}/decision",
+  "request": {
+    "caseId": "(from the matching create capture)"
+  },
+  "server": "next start (local)",
+  "notes": "Decision for the expired complaint. RULES path (purchase date outside the return/complaint window): no model call."
+}

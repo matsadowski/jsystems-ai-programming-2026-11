@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T10:45:46.110Z",
+  "target": "POST /api/cases",
+  "request": {
+    "fields": {
+      "caseType": "RETURN",
+      "category": "SMARTPHONE",
+      "model": "Smartfon testowy",
+      "purchaseDate": "2026-11-23",
+      "reason": "(empty)"
+    },
+    "image": "phone-1.jpg"
+  },
+  "server": "next start (local)",
+  "notes": "In-window return on the real LLM path (DECISION_MODE=llm_only, VISION_MODEL openai/gpt-6-luna): 201 with analysis."
+}

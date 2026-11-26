@@ -1,0 +1,56 @@
+{
+  "status": 200,
+  "headers": {
+    "content-type": "application/json",
+    "x-generation-id": "gen-dec-1795691202-lQmDh6U6gQLYojzHeDtm"
+  },
+  "body": {
+    "model": "openai/gpt-6-luna-decisions-20261006",
+    "answers": {
+      "device_matches": {
+        "type": "noul",
+        "noul": 1
+      },
+      "photo_assessable": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "defect_visibility": {
+        "type": "choice",
+        "choice": "not_visible",
+        "probabilities": {
+          "visible": 0.02,
+          "not_visible": 0.58,
+          "not_photographable": 0.4
+        },
+        "confidence": 0.37
+      },
+      "damage_cause": {
+        "type": "choice",
+        "choice": "no_visible_damage",
+        "probabilities": {
+          "manufacturing_defect": 0.02,
+          "impact": 0.02,
+          "liquid_or_heat": 0.01,
+          "modification": 0.01,
+          "normal_wear": 0.04,
+          "no_visible_damage": 0.9
+        },
+        "confidence": 0.88
+      }
+    },
+    "usage": {
+      "input_tokens": 1601,
+      "output_tokens": 0,
+      "cost": 0,
+      "is_byok": true,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001601,
+        "upstream_inference_prompt_cost": 0.0001601,
+        "upstream_inference_completions_cost": 0
+      }
+    },
+    "id": "gen-dec-1795691202-lQmDh6U6gQLYojzHeDtm",
+    "provider": "Azure"
+  }
+}

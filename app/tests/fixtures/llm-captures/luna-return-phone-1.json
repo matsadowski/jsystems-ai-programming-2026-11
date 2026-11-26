@@ -1,0 +1,50 @@
+{
+  "status": 200,
+  "headers": {
+    "content-type": "application/json",
+    "x-generation-id": "gen-dec-1795691199-GfQaTSNRGjz0MY6kbICq"
+  },
+  "body": {
+    "model": "openai/gpt-6-luna-decisions-20261006",
+    "answers": {
+      "device_matches": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "photo_assessable": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "signs_of_use": {
+        "type": "score",
+        "score": 3,
+        "legend": {
+          "0": "No visible signs of use; looks new",
+          "1": "Only unboxing marks (fingerprints, protective film removed)",
+          "2": "Slight wear (light scratches, small marks)",
+          "3": "Clear wear or damage (scratches, dents, cracks, dirt, liquid traces, swollen battery)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "confidence": 1
+      }
+    },
+    "usage": {
+      "input_tokens": 1722,
+      "output_tokens": 0,
+      "cost": 0,
+      "is_byok": true,
+      "cost_details": {
+        "upstream_inference_cost": 0.0001722,
+        "upstream_inference_prompt_cost": 0.0001722,
+        "upstream_inference_completions_cost": 0
+      }
+    },
+    "id": "gen-dec-1795691199-GfQaTSNRGjz0MY6kbICq",
+    "provider": "Azure"
+  }
+}
