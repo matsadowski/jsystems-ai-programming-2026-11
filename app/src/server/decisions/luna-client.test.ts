@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetConfigCache } from "@/server/config/config";
 import { LunaUnavailableError } from "@/server/http/errors";
+import { loadCapture } from "../../../tests/helpers/captures";
 import { captureLogs, type CapturedLogs } from "../../../tests/helpers/log-capture";
 import { buildQuestions, buildStateText } from "./questions";
 import { buildLunaRequestBody, callLuna } from "./luna-client";
@@ -10,26 +11,19 @@ const JPEG = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 1, 2, 3, 4]);
 const questions = buildQuestions("RETURN", "SMARTPHONE", "Smartfon testowy");
 const stateText = buildStateText({ caseType: "RETURN", category: "SMARTPHONE", model: "Smartfon testowy" });
 
-// PROVISIONAL: from docs (T01b notes Q8); replace with tests/fixtures/llm-captures after T11b
-const PROVISIONAL_SUCCESS = {
-  id: "gen-dec-1",
-  model: "openai/gpt-6-luna-decisions",
-  provider: "OpenAI",
-  answers: {
-    device_matches: { type: "noul", noul: 0.97, confidence: 0.97 },
-    photo_assessable: { type: "noul", noul: 0.91, confidence: 0.91 },
-    signs_of_use: { type: "score", score: 0.2, probabilities: { "0": 0.9, "1": 0.07, "2": 0.02, "3": 0.01 }, confidence: 0.9 },
-  },
-  usage: { cost: 0.000042, input_tokens: 476, output_tokens: 70 },
-};
-// PROVISIONAL: from docs (T01b notes Q8); replace with tests/fixtures/llm-captures after T11b
-const PROVISIONAL_REFUSAL = {
-  id: "gen-dec-2",
-  answers: {
-    device_matches: { type: "refusal" },
-    photo_assessable: { type: "noul", noul: 0.9, confidence: 0.9 },
-  },
-};
+interface LunaCapture {
+  status: number;
+  body: { answers: Record<string, unknown>; usage?: unknown; [k: string]: unknown };
+}
+const RETURN_PHONE = loadCapture<LunaCapture>("llm", "luna-return-phone-1");
+const COMPLAINT_LAPTOP = loadCapture<LunaCapture>("llm", "luna-complaint-laptop-2");
+const complaintQuestions = buildQuestions("COMPLAINT", "LAPTOP", "Laptop testowy");
+const complaintStateText = buildStateText({
+  caseType: "COMPLAINT",
+  category: "LAPTOP",
+  model: "Laptop testowy",
+  reason: "Ekran miga",
+});
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
@@ -71,8 +65,8 @@ describe("buildLunaRequestBody", () => {
 });
 
 describe("callLuna", () => {
-  it("POSTs to the decisions endpoint with Bearer auth and maps answers", async () => {
-    const fetchImpl = vi.fn(async () => json(PROVISIONAL_SUCCESS));
+  it("POSTs to the decisions endpoint with Bearer auth and maps the real return/phone-1 capture", async () => {
+    const fetchImpl = vi.fn(async () => json(RETURN_PHONE.body, RETURN_PHONE.status));
     const res = await callLuna({ ...base, fetchImpl: fetchImpl as unknown as typeof fetch });
     expect(fetchImpl).toHaveBeenCalledTimes(1);
     const [url, init] = fetchImpl.mock.calls[0] as unknown as [string, RequestInit];
@@ -84,15 +78,41 @@ describe("callLuna", () => {
     expect(init.signal).toBeInstanceOf(AbortSignal);
 
     expect(res.answers.map((a) => a.key)).toEqual(["device_matches", "photo_assessable", "signs_of_use"]);
-    expect(res.answers[0]).toMatchObject({ type: "noul", value: true, certainty: 0.97 });
-    expect(res.answers[2]).toMatchObject({ type: "score", value: 0 });
-    expect(res.costUsd).toBe(0.000042);
+    expect(res.answers[0]).toMatchObject({ type: "noul", value: true, certainty: 0.98 });
+    expect(res.answers[1]).toMatchObject({ type: "noul", value: true, certainty: 0.94 });
+    expect(res.answers[2]).toMatchObject({ type: "score", value: 3, certainty: 1 });
+    expect(res.costUsd).toBe(0);
     expect(res.latencyMs).toBeGreaterThanOrEqual(0);
-    expect(res.raw).toEqual(PROVISIONAL_SUCCESS);
+    expect(res.raw).toEqual(RETURN_PHONE.body);
+  });
+
+  it("maps the real complaint/laptop-2 capture: a low-confidence choice stays a choice with its certainty", async () => {
+    const fetchImpl = async () => json(COMPLAINT_LAPTOP.body, COMPLAINT_LAPTOP.status);
+    const res = await callLuna({
+      ...base,
+      questions: complaintQuestions,
+      stateText: complaintStateText,
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+    });
+    expect(res.answers.map((a) => a.key)).toEqual([
+      "device_matches",
+      "photo_assessable",
+      "defect_visibility",
+      "damage_cause",
+    ]);
+    expect(res.answers[2]).toMatchObject({ type: "choice", value: "not_visible", certainty: 0.37 });
+    expect(res.answers[3]).toMatchObject({ type: "choice", value: "no_visible_damage", certainty: 0.88 });
+    expect(res.costUsd).toBe(0);
   });
 
   it("maps a refusal and a missing key to refusal/missing answers; costUsd null when absent", async () => {
-    const fetchImpl = async () => json(PROVISIONAL_REFUSAL);
+    // derived-from: luna-return-phone-1 (device_matches replaced by a refusal, signs_of_use and usage removed)
+    const kept = structuredClone(RETURN_PHONE.body);
+    delete kept.usage;
+    delete kept.answers.signs_of_use;
+    kept.answers.device_matches = { type: "refusal" };
+    const derived = kept;
+    const fetchImpl = async () => json(derived);
     const res = await callLuna({ ...base, fetchImpl: fetchImpl as unknown as typeof fetch });
     expect(res.answers[0]).toMatchObject({ key: "device_matches", type: "refusal", value: null });
     expect(res.answers[1]).toMatchObject({ type: "noul", value: true });
@@ -118,14 +138,19 @@ describe("callLuna", () => {
   });
 
   it("throws LunaUnavailableError on malformed JSON", async () => {
-    const fetchImpl = async () => new Response("<html>nope</html>", { status: 200 });
+    // derived-from: luna-return-phone-1 (200 status, body truncated mid-JSON)
+    const truncated = JSON.stringify(RETURN_PHONE.body).slice(0, 40);
+    const fetchImpl = async () => new Response(truncated, { status: RETURN_PHONE.status });
     await expect(callLuna({ ...base, fetchImpl: fetchImpl as unknown as typeof fetch })).rejects.toBeInstanceOf(
       LunaUnavailableError,
     );
   });
 
   it("throws LunaUnavailableError when the body does not match the schema", async () => {
-    const fetchImpl = async () => json({ id: "x", nope: true });
+    // derived-from: luna-return-phone-1 (answers removed)
+    const noAnswers = structuredClone(RETURN_PHONE.body) as Partial<LunaCapture["body"]>;
+    delete noAnswers.answers;
+    const fetchImpl = async () => json(noAnswers);
     await expect(callLuna({ ...base, fetchImpl: fetchImpl as unknown as typeof fetch })).rejects.toBeInstanceOf(
       LunaUnavailableError,
     );

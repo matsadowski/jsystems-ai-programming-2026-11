@@ -35,6 +35,41 @@ describe("toErrorResponse", () => {
   });
 });
 
+describe("toErrorResponse logging (ADR 001 §5.4)", () => {
+  const parsed = () => logs!.lines.map((l) => JSON.parse(l) as Record<string, unknown>);
+
+  it("logs a 5xx AppError at error level with request id, code, status, detail and cause name", () => {
+    logs = captureLogs();
+    const cause = new TypeError("model not found sk-or-v1-leak2");
+    toErrorResponse(new AppError("AI_UNAVAILABLE", { detail: "vision call failed", cause }), "req-502");
+    expect(parsed()).toHaveLength(1);
+    expect(parsed()[0]).toMatchObject({
+      level: "error",
+      event: "request_failed",
+      requestId: "req-502",
+      code: "AI_UNAVAILABLE",
+      status: 502,
+      detail: "vision call failed",
+      causeName: "TypeError",
+    });
+    expect(logs.text()).not.toContain("leak2");
+  });
+
+  it("logs a 4xx AppError at info level without detail or message body", () => {
+    logs = captureLogs();
+    toErrorResponse(new ValidationError({ reason: "SEKRETNY-POWOD" }), "req-400");
+    expect(parsed()).toHaveLength(1);
+    expect(parsed()[0]).toEqual({
+      level: "info",
+      event: "request_rejected",
+      requestId: "req-400",
+      code: "VALIDATION_ERROR",
+      status: 400,
+    });
+    expect(logs.text()).not.toContain("SEKRETNY-POWOD");
+  });
+});
+
 describe("jsonResponse / newRequestId", () => {
   it("sets status and header", async () => {
     const res = jsonResponse({ a: 1 }, 201, "rid");

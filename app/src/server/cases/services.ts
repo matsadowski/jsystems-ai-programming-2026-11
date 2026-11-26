@@ -117,6 +117,15 @@ export async function createCaseWithAnalysis(
     photoBytes: image.originalByteSize,
     reasonLength: input.reason.length,
   });
+  if (routed.shadowFast && routed.lunaAssessment) {
+    logger.info("luna_shadow", {
+      caseId,
+      shadowFast: routed.shadowFast,
+      uncertainKeys: routed.lunaAssessment.uncertainKeys,
+      latencyMs: routed.lunaAssessment.latencyMs,
+      costUsd: routed.lunaAssessment.costUsd,
+    });
+  }
 
   return {
     caseId,
@@ -166,6 +175,9 @@ export async function decideCase(deps: CaseServiceDeps, caseId: string): Promise
     decisionPath: updated.decisionPath,
     decision: decision.decision,
     source: decision.source,
+    ...(updated.shadow
+      ? { shadowFast: updated.shadow.fastDecision, agreesWithLlm: updated.shadow.agreesWithLlm }
+      : {}),
   });
   return toDecideResponse(updated);
 }

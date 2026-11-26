@@ -310,5 +310,78 @@ describe("decideCase", () => {
     await decideCase(deps, created.caseId);
     expect(repo.get(created.caseId)?.shadow).toEqual({ fastDecision: "UNCERTAIN", agreesWithLlm: null });
   });
+  describe("shadow logging (ADR 004 §3.1: stored and logged)", () => {
+    const certainLuna: AssessWithLuna = async () => ({
+      questionsVersion: "luna-questions@1",
+      answers: [
+        toLunaAnswer("device_matches", { type: "noul", noul: 0.98 }),
+        toLunaAnswer("photo_assessable", { type: "noul", noul: 0.97 }),
+        toLunaAnswer("signs_of_use", { type: "score", score: 0, probabilities: { "0": 0.95, "1": 0.05 } }),
+      ],
+      uncertainKeys: [],
+      refusedKeys: [],
+      latencyMs: 123,
+      costUsd: 0.0002,
+    });
+    const events = (logs: ReturnType<typeof captureLogs>, event: string) =>
+      logs.lines.map((l) => JSON.parse(l) as Record<string, unknown>).filter((l) => l.event === event);
+
+    it("createCaseWithAnalysis logs luna_shadow with the fast result, uncertainKeys, latency and cost", async () => {
+      const logs = captureLogs();
+      try {
+        const { deps } = makeDeps({ mode: "shadow", luna: certainLuna });
+        await createCaseWithAnalysis(deps, freshReturn, photo("laptop-1.png"));
+        const [line, ...rest] = events(logs, "luna_shadow");
+        expect(rest).toHaveLength(0);
+        expect(line).toMatchObject({
+          shadowFast: "ACCEPT",
+          uncertainKeys: [],
+          latencyMs: 123,
+          costUsd: 0.0002,
+        });
+        expect(line.caseId).toEqual(expect.any(String));
+      } finally {
+        logs.restore();
+      }
+    });
+
+    it("does not log luna_shadow when Luna is unavailable", async () => {
+      const logs = captureLogs();
+      try {
+        const { deps } = makeDeps({ mode: "shadow", luna: async () => { throw new Error("down"); } });
+        await createCaseWithAnalysis(deps, freshReturn, photo("laptop-1.png"));
+        expect(events(logs, "luna_shadow")).toHaveLength(0);
+      } finally {
+        logs.restore();
+      }
+    });
+
+    it("decideCase adds shadowFast and agreesWithLlm to case_decided", async () => {
+      const logs = captureLogs();
+      try {
+        const { deps } = makeDeps({ mode: "shadow", luna: certainLuna });
+        const created = await createCaseWithAnalysis(deps, freshReturn, photo("laptop-1.png"));
+        await decideCase(deps, created.caseId);
+        const [line] = events(logs, "case_decided");
+        expect(line).toMatchObject({ shadowFast: "ACCEPT", agreesWithLlm: true });
+      } finally {
+        logs.restore();
+      }
+    });
+
+    it("case_decided carries no shadow fields outside shadow mode", async () => {
+      const logs = captureLogs();
+      try {
+        const { deps } = makeDeps({ mode: "llm_only" });
+        const created = await createCaseWithAnalysis(deps, freshReturn, photo("laptop-1.png"));
+        await decideCase(deps, created.caseId);
+        const [line] = events(logs, "case_decided");
+        expect(line).not.toHaveProperty("shadowFast");
+        expect(line).not.toHaveProperty("agreesWithLlm");
+      } finally {
+        logs.restore();
+      }
+    });
+  });
 });
 
