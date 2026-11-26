@@ -1,0 +1,23 @@
+{
+  "status": 201,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "0b9e2ec7-afe2-4d87-8151-7216ca585a6c"
+  },
+  "body": {
+    "caseId": "68a45647-a3a3-4b7e-aa53-420e6d8bccbb",
+    "caseSummary": {
+      "caseId": "68a45647-a3a3-4b7e-aa53-420e6d8bccbb",
+      "caseType": "RETURN",
+      "caseTypeLabel": "Zwrot",
+      "category": "SMARTPHONE",
+      "categoryLabel": "Smartfon",
+      "model": "Smartfon testowy",
+      "purchaseDate": "2026-10-27",
+      "reason": ""
+    },
+    "analysis": null,
+    "decisionPath": "RULES",
+    "assessment": null
+  }
+}

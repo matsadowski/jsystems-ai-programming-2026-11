@@ -1,0 +1,23 @@
+{
+  "status": 201,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "4c11598b-dec5-431b-88be-ed83ce5b1b26"
+  },
+  "body": {
+    "caseId": "827dd27d-6c1a-44f9-8634-826abe711cf0",
+    "caseSummary": {
+      "caseId": "827dd27d-6c1a-44f9-8634-826abe711cf0",
+      "caseType": "COMPLAINT",
+      "caseTypeLabel": "Reklamacja",
+      "category": "LAPTOP",
+      "categoryLabel": "Laptop",
+      "model": "Laptop testowy",
+      "purchaseDate": "2024-10-26",
+      "reason": "Klient zgłasza usterkę urządzenia i prosi o rozpatrzenie reklamacji."
+    },
+    "analysis": null,
+    "decisionPath": "RULES",
+    "assessment": null
+  }
+}

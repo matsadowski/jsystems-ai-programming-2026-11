@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-11-26T10:14:52.082Z",
+  "target": "POST /api/cases",
+  "request": {
+    "fields": {
+      "caseType": "RETURN",
+      "category": "SMARTPHONE",
+      "purchaseDate": "2026-12-01",
+      "reason": "(empty)"
+    },
+    "image": "phone-1.jpg"
+  },
+  "server": "next start (local)",
+  "notes": "Missing model and purchase date in the future: 400 with fieldErrors."
+}

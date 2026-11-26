@@ -1,0 +1,29 @@
+{
+  "status": 200,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "badaa4f0-58ef-4be8-be4e-85cf887833c1"
+  },
+  "body": {
+    "decision": {
+      "value": "REJECT",
+      "label": "Zwrot odrzucony",
+      "tone": "negative",
+      "daysSincePurchase": 30,
+      "citedClauses": [
+        "R1.3"
+      ],
+      "decisionPath": "RULES"
+    },
+    "firstMessage": {
+      "id": "14085031-1a8e-44d6-94ba-7a3d1101f4b4",
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "text",
+          "text": "Dzień dobry, przeanalizowałem zgłoszenie **Zwrot** dotyczące: Smartfon — Smartfon testowy.\n\n### Decyzja: Zwrot odrzucony\n\nOd daty zakupu (27.10.2026) minęło **30 dni**.\n\n#### Uzasadnienie\n\n- Od daty zakupu minęło 30 dni, a termin wynosi 14 dni (pkt R1.3).\n- Jeśli klient zgłasza wadę, można rozważyć reklamację.\n\n#### Kolejne kroki\n\n1. Poinformuj klienta, że termin na zwrot upłynął (pkt R1.3).\n\n*Decyzja jest rekomendacją wygenerowaną przez AI na podstawie zdjęcia, danych zgłoszenia i regulaminu. Ostateczną decyzję podejmuje pracownik.*\n"
+        }
+      ]
+    }
+  }
+}

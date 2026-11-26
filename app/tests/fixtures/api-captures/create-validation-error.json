@@ -1,0 +1,17 @@
+{
+  "status": 400,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "76054484-e773-4050-917f-7b4e1a50e522"
+  },
+  "body": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Popraw zaznaczone pola",
+      "fieldErrors": {
+        "model": "Podaj nazwę lub model (2–100 znaków)",
+        "purchaseDate": "Data zakupu nie może być z przyszłości"
+      }
+    }
+  }
+}

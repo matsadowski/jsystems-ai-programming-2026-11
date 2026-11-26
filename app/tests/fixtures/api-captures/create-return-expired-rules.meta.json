@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T10:14:51.874Z",
+  "target": "POST /api/cases",
+  "request": {
+    "fields": {
+      "caseType": "RETURN",
+      "category": "SMARTPHONE",
+      "model": "Smartfon testowy",
+      "purchaseDate": "2026-10-27",
+      "reason": "(empty)"
+    },
+    "image": "phone-3.jpeg"
+  },
+  "server": "next start (local)",
+  "notes": "Return 30 days ago. RULES path (purchase date outside the return/complaint window): no model call."
+}

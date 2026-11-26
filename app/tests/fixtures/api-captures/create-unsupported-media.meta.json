@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-26T10:14:52.105Z",
+  "target": "POST /api/cases",
+  "request": {
+    "fields": {
+      "caseType": "RETURN",
+      "category": "SMARTPHONE",
+      "model": "Smartfon testowy",
+      "purchaseDate": "2026-11-23",
+      "reason": "(empty)"
+    },
+    "image": "x.jpg"
+  },
+  "server": "next start (local)",
+  "notes": "A plain text file named x.jpg: the server decides by content, 415 expected."
+}

@@ -13,6 +13,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "capture": "tsx --conditions=react-server scripts/capture.ts",
+    "capture:api": "tsx scripts/capture-api.ts",
     "eval": "tsx scripts/not-implemented.ts eval"
   },
   "dependencies": {
