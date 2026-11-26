@@ -39,3 +39,19 @@ persisting the assistant message and releasing the busy flag, error chunk text
 Then the orchestrator runs the real smoke (`npm run build && npm run start`, `npx tsx
 scripts/smoke-api.ts`: 201 → 200 → streamed chat), re-records `create-in-window-*` API captures as
 real LLM-path responses, and runs integration check G2.
+
+## Status update before dispatch (2026-11-26)
+
+- Captures available (real, `openai/gpt-6-luna`, D8): `vision-return-phone-1`,
+  `vision-complaint-laptop-2`, `decision-return-phone-1`, `decision-complaint-laptop-2`,
+  `chat-plain`, `chat-revise` (a tool call `reviseDecision` + continuation; stream recorded as an
+  array of per-call part arrays). Inspect their exact structure before writing replays.
+- **No Luna captures**: the Luna provider is down (D9). Keep `luna-client.ts` as is; wire the
+  Luna port in `deps.ts` with `callLuna` anyway (it is only called in `shadow`/`gated`; the default
+  `.env.example` mode is now `llm_only`).
+- Prompt `chat-system@2` (Polish labels only).
+- **Do not make real API calls** (no `npm run capture`, no `smoke-api.ts` run): the orchestrator
+  runs the real smoke. Write `scripts/smoke-api.ts` so it uses `BASE_URL` and real example images,
+  prints status codes, and saves nothing secret.
+- Editable files are the T12b + T14b lists above plus their tests, and `app/package.json` only for
+  a `"smoke:api"` script line. Run `npm run test`, lint, typecheck and build. Do not commit.
