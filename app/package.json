@@ -12,7 +12,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "capture": "tsx scripts/not-implemented.ts capture",
+    "capture": "tsx --conditions=react-server scripts/capture.ts",
     "eval": "tsx scripts/not-implemented.ts eval"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "@ai-sdk/provider": "4.0.39",
     "@axe-core/playwright": "4.14.1",
     "@playwright/test": "1.65.1",
     "@tailwindcss/turbopack": "4.3.3",
