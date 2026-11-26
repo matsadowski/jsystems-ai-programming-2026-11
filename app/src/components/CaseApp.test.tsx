@@ -122,6 +122,9 @@ describe("CaseApp", () => {
     expect(screen.getByRole("heading", { name: "Uzasadnienie" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Kolejne kroki" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Nowe zgłoszenie" })).toBeInTheDocument();
+    // Each screen has exactly one level-1 heading (ADR 003 §3.6 accessibility).
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Rozmowa o zgłoszeniu");
 
     const caseId = (cap("create-return-expired-rules").body as { caseId: string }).caseId;
     expect(calls.map((c) => c.url)).toEqual(["/api/cases", `/api/cases/${caseId}/decision`]);

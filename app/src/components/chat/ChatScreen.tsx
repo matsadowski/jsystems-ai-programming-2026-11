@@ -46,6 +46,7 @@ export function ChatScreen({
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 p-4 lg:h-[calc(100vh-5rem)] lg:flex-row">
+      <h1 className="sr-only">Rozmowa o zgłoszeniu</h1>
       <aside className="w-full shrink-0 lg:w-80 lg:overflow-y-auto">
         <CaseSummaryPanel
           caseSummary={caseSummary}
