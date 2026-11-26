@@ -76,6 +76,8 @@ must record their first real runs.
 
 | D15 | (2026-11-26, gate G4) After the Luna eval (no threshold meets the exit criteria; 3 unsafe disagreements at 0.80), the default stays `DECISION_MODE=shadow` | User, 2026-11-26 |
 
+| D16 | (2026-11-26) GitHub Issues stay disabled (`gh repo edit --enable-issues` was blocked by the harness permission classifier). Accepted deviation from D2 and the DoD item "issue closed": progress was tracked in this plan's Status column | User, 2026-11-26 |
+
 ### 2.1 Proposed ADR amendments (need approval with this plan)
 
 These fill gaps where the ADRs leave an implementing agent unsure. They are **not** assumed until
@@ -328,7 +330,7 @@ Each fallback is a user decision, recorded in this plan with the affected ACs.
 
 ## 8. Definition of Done (whole plan)
 
-- [ ] Every matrix row is `DONE` and its GitHub issue is closed.
+- [ ] Every matrix row is `DONE` (GitHub issues replaced by the Status column, D16).
 - [ ] Every PRD criterion AC-01…AC-47 is mapped to evidence in the PR body (§9), or explicitly
       descoped by the user.
 - [ ] On the final commit: `npm run lint`, `npm run typecheck`, `npm run test` (counts, 0
