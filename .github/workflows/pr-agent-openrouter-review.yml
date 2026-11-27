@@ -25,15 +25,14 @@ env:
   CONFIG__MODEL: ${{ vars.PR_AGENT_MODEL || 'openrouter/openai/gpt-6-luna' }}
   CONFIG__FALLBACK_MODELS: '[]'
   # Input token budget per model call. PR-Agent's own default is 32000, which made it skip most
-  # files of a large PR. gpt-6-luna accepts about 1.05M tokens, but a request above 272k input
-  # tokens is billed on the long-context meter (about 2x input, 1.5x output, whole request).
-  # 250000 stays under that line; chunking below covers bigger diffs at the normal rate.
-  # Override with the PR_AGENT_MAX_TOKENS variable (lower for a small model or tight quota).
+  # files of a large PR. 250000 fits the default model's context window with room for the reply,
+  # and chunking below covers bigger diffs. Check the chosen model's context length and pricing on
+  # https://openrouter.ai/models and set PR_AGENT_MAX_TOKENS lower for a smaller model or tight quota.
   CONFIG__CUSTOM_MODEL_MAX_TOKENS: ${{ vars.PR_AGENT_MAX_TOKENS || '250000' }}
   CONFIG__MAX_MODEL_TOKENS: ${{ vars.PR_AGENT_MAX_TOKENS || '250000' }}
   CONFIG__REASONING_EFFORT: low
-  CONFIG__ADDITIONAL_REASONING_EFFORT_MODELS: ${{ format('["{0}"]', vars.PR_AGENT_MODEL || 'openrouter/openai/gpt-6-luna') }}
-  CONFIG__NO_TEMPERATURE_MODELS: ${{ format('["{0}"]', vars.PR_AGENT_MODEL || 'openrouter/openai/gpt-6-luna') }}
+  # CONFIG__ADDITIONAL_REASONING_EFFORT_MODELS and CONFIG__NO_TEMPERATURE_MODELS are derived from
+  # CONFIG__MODEL in the validation step, so the model is named in one place only.
   CONFIG__RESTRICTED_MODE: 'true'
   CONFIG__PROPAGATE_TOOL_ERRORS: 'true'
   CONFIG__USE_REPO_SETTINGS_FILE: 'false'
@@ -105,8 +104,15 @@ jobs:
           set -euo pipefail
           fail() { echo "::error::$1" >&2; exit 1; }
           [[ -n "${OPENROUTER__KEY:-}" ]] || fail 'Set Actions secret OPENROUTER_API_KEY.'
-          [[ "$CONFIG__MODEL" =~ ^openrouter/[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.:~-]+$ ]] || fail 'PR_AGENT_MODEL must be an OpenRouter slug with the openrouter/ prefix, e.g. openrouter/openai/gpt-6-luna.'
-          # Upper bound = gpt-6-luna's context window; a larger value would fail at the model call.
+          # vendor/model slugs (aliases like ~openai/... included) or single-segment routers such as openrouter/auto
+          [[ "$CONFIG__MODEL" =~ ^openrouter/[~a-zA-Z0-9_.-]+(/[a-zA-Z0-9_.:~-]+)?$ ]] || fail 'PR_AGENT_MODEL must be an OpenRouter model ID with the openrouter/ prefix, e.g. openrouter/openai/gpt-6-luna or openrouter/auto.'
+          # The regex above excludes quotes, so the value is safe to embed in these JSON lists.
+          {
+            echo "CONFIG__ADDITIONAL_REASONING_EFFORT_MODELS=[\"$CONFIG__MODEL\"]"
+            echo "CONFIG__NO_TEMPERATURE_MODELS=[\"$CONFIG__MODEL\"]"
+          } >> "$GITHUB_ENV"
+          # Sanity cap: the largest context window among the intended models (gpt-6-luna, ~1.05M);
+          # a model with a smaller window needs a lower PR_AGENT_MAX_TOKENS.
           [[ "$CONFIG__MAX_MODEL_TOKENS" =~ ^[1-9][0-9]{3,6}$ ]] && (( CONFIG__MAX_MODEL_TOKENS <= 1050000 )) || fail 'PR_AGENT_MAX_TOKENS must be a whole number of tokens between 1000 and 1050000, e.g. 250000.'
           [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]] || fail 'Invalid PR number.'
           if [[ "$GITHUB_EVENT_NAME" == issue_comment ]]; then
